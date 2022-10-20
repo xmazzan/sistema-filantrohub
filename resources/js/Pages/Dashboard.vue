@@ -1,22 +1,23 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Components/Welcome.vue';
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <Welcome />
-                </div>
+    <AppLayout title="Home">
+        <div class="w-full h-screen bg-no-repeat justify-around" style="background-image: url(../imgs/main.png)">
+            <div class="py-28 justify-center">
+                <span> FILANTROHUB </span>
             </div>
+            <div class="flex items-center justify-center">
+                <input type="text" placeholder="Busque um projeto">
+            </div>
+            <div class="py-28 justify-center">
+                <span> BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO </span>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <span>TESTE</span>
         </div>
     </AppLayout>
 </template>
