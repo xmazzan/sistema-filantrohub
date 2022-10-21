@@ -13,7 +13,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     <div class="flex items-center justify-center">
                         <input type="text" class="w-[35.5rem] rounded-xl shadow-md shadow-black" placeholder="Busque um projeto">
                     </div>
-        
+    
                     <div class="pt-8 justify-center">
                         <span class="text-2xl text-white"> BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO </span>
                     </div>
