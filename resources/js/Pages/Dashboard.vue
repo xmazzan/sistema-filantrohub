@@ -4,17 +4,22 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
 <template>
     <AppLayout title="Home">
-        <div class="w-full bg-center bg-no-repeat" style="background-image: url(../imgs/main.png)">
-            <div class="py-28 text-center text-white">
-                <span> FILANTROHUB </span>
-            </div>
-            <div class="flex items-center justify-center">
-                <input type="text" class="w-auto w-1/4" placeholder="Busque um projeto">
-            </div>
-            <div class="py-28 text-center text-white">
-                <span> BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO </span>
-            </div>
-        </div>
+        <main class="w-full h-screen bg-no-repeat justify-around bg-[length:100vw_91vh]" style="background-image: url(../imgs/main3.png)">
+                <div class=" flex flex-col text-center justify-center h-[74%]">
+
+                    <div class="p-[3.25rem]">
+                        <img  class="inline-flex w-[16%] " src="imgs/fh150.png" alt="logo">
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <input type="text" class="w-[35.5rem] rounded-xl shadow-md shadow-black" placeholder="Busque um projeto">
+                    </div>
+        
+                    <div class="pt-8 justify-center">
+                        <span class="text-2xl text-white"> BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO </span>
+                    </div>
+                </div>
+        </main>
+
 
         <div class="py-8 text-center text-black font-bold">
                 <span> PROJETOS EM DESTAQUE </span>
