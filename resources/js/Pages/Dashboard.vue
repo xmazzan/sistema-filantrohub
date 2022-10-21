@@ -20,11 +20,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                 </div>
         </main>
 
-
         <div class="py-8 text-center text-black font-bold">
                 <span> PROJETOS EM DESTAQUE </span>
         </div>
-
+        
         <div class="mb-3">
             <div class="inline-block w-2/5 ml-60">
                 <p class="font-bold">Doação de Roupas</p>

@@ -27503,6 +27503,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+<<<<<<< HEAD
   "class": "py-8 text-center text-black font-bold"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " PROJETOS EM DESTAQUE ")], -1
 /* HOISTED */
@@ -27599,6 +27600,10 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, "FILANTROHUB"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-center"
 }, "@Copyright - No ar desde Dezembro/2022")], -1
+=======
+  "class": "max-w-6xl mx-auto sm:px-6 lg:px-8"
+}, null, -1
+>>>>>>> 1337228 (home)
 /* HOISTED */
 );
 
