@@ -1,9 +1,9 @@
-<script>
-export default {
-    
-}
+<script setup>
+import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
+
 <template>
+<AppLayout title="Home">
 <div id="event-create-container" class="col-md-6 offset-md-3">
     <h1>Editando o evento: ...</h1> <!--{{ $event->title }}-->
     <form action="" method="POST">
@@ -58,6 +58,7 @@ export default {
         <input type="submit" class="btn btn-primary" value="Editar Evento" >
     </form>
 </div>
+</AppLayout>
 </template>
 
 <style scoped>

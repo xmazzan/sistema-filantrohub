@@ -9,7 +9,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         <form action="/events" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="image">Imagem do Evento:</label>
-                <input type="file" id="image" name="image" class="from-control-file">
+                <input type="file" id="image" name="image" class="from-control-file max-w-[50%]">
             </div>
             <div class="form-group">
                 <label for="title">Evento:</label>

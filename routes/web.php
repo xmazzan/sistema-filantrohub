@@ -32,3 +32,14 @@ Route::get('/Create.vue', function () {
     return Inertia::render('Create');
 })->name('create');
 
+Route::get('/Edit.vue', function () {
+    return Inertia::render('Edit');
+})->name('edit');
+
+Route::get('/Login.vue', function () {
+    return Inertia::render('Login');
+})->name('login');
+
+Route::get('/Register', function () {
+    return Inertia::render('Register');
+})->name('register');
