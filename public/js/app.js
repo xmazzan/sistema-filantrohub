@@ -27537,14 +27537,17 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     id: "event-create-container",
     "class": "col-md-6 offset-md-3"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Crie o seu evento"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "ml-60 text-xl font-bold"
+  }, "Crie o seu evento"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     action: "/events",
     method: "POST",
     enctype: "multipart/form-data"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "form-group"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-    "for": "image"
+    "for": "image",
+    "class": "mr-1"
   }, "Imagem do Evento:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "file",
     id: "image",
@@ -27561,7 +27564,7 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
     name: "title",
     placeholder: "Nome do evento"
   })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "form-group"
+    "class": "form-group columns-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
     "for": "date"
   }, "Dias de funcionamento do projeto:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -27627,7 +27630,7 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
     placeholder: "O que vai acontecer no evento?"
   })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "submit",
-    "class": "btn btn-primary",
+    "class": "btn btn-primary ml-60 w-36",
     value: "Criar Evento"
   })])], -1
   /* HOISTED */
@@ -27811,7 +27814,9 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     id: "event-create-container",
     "class": "col-md-6 offset-md-3"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Editando o evento: ..."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("{{ $event->title }}"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "ml-60 text-xl font-bold"
+  }, "Editando o evento: ..."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("{{ $event->title }}"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     action: "",
     method: "POST"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form action=\"/events/update/{{ $event->id }}\" method=\"POST\" enctype=\"multipart/form-data\" > "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -27839,7 +27844,7 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
     placeholder: "Nome do Evento",
     value: ""
   })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "form-group"
+    "class": "form-group columns-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
     "for": "date"
   }, "Dias de funcionamento do projeto:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -27906,7 +27911,7 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
     placeholder: "O que vai acontecer no evento?"
   }, "...")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "submit",
-    "class": "btn btn-primary",
+    "class": "btn btn-primary ml-60 w-36",
     value: "Editar Evento"
   })])], -1
   /* HOISTED */

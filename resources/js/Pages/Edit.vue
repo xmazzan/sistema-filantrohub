@@ -5,7 +5,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <template>
 <AppLayout title="Home">
 <div id="event-create-container" class="col-md-6 offset-md-3">
-    <h1>Editando o evento: ...</h1> <!--{{ $event->title }}-->
+    <h1 class="ml-60 text-xl font-bold">Editando o evento: ...</h1> <!--{{ $event->title }}-->
     <form action="" method="POST">
         <!-- <form action="/events/update/{{ $event->id }}" method="POST" enctype="multipart/form-data" > -->
         <div class="form-group">
@@ -20,7 +20,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <input type="text" class="form-control" id="title" name="title" placeholder="Nome do Evento" value="">
         </div>
         
-        <div class="form-group">
+        <div class="form-group columns-2">
             <label for="date">Dias de funcionamento do projeto:</label>
             <div class="form-group">	
                 <input type="checkbox" name="dias[]" value="Segunda"> Segunda
@@ -55,7 +55,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <!-- <textarea class="form-control" id="description" name="description" placeholder="O que vai acontecer no evento?">{{ $event->description }}</textarea>  -->
             <textarea class="form-control" id="description" name="description" placeholder="O que vai acontecer no evento?">...</textarea> 
         </div>
-        <input type="submit" class="btn btn-primary" value="Editar Evento" >
+        <input type="submit" class="btn btn-primary ml-60 w-36" value="Editar Evento" >
     </form>
 </div>
 </AppLayout>

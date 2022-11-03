@@ -5,10 +5,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 <template>
     <AppLayout title="Home">
         <div id="event-create-container" class="col-md-6 offset-md-3">
-        <h1>Crie o seu evento</h1>
+        <h1 class="ml-60 text-xl font-bold">Crie o seu evento</h1>
         <form action="/events" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="image">Imagem do Evento:</label>
+                <label for="image" class="mr-1">Imagem do Evento:</label>
                 <input type="file" id="image" name="image" class="from-control-file max-w-[50%]">
             </div>
             <div class="form-group">
@@ -16,10 +16,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                 <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento">
             </div>
 
-            <div class="form-group">
+            <div class="form-group columns-2">
                 <label for="date">Dias de funcionamento do projeto:</label>
                 <div class="form-group">	
-                <input type="checkbox" name="dias[]" value="Segunda"> Segunda
+                    <input type="checkbox" name="dias[]" value="Segunda"> Segunda
                 </div>
                 <div class="form-group">	
                     <input type="checkbox" name="dias[]" value="Terça"> Terça
@@ -49,7 +49,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                 <label for="title">Descrição:</label>
                 <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"></textarea>
             </div>
-            <input type="submit" class="btn btn-primary" value="Criar Evento">
+            <input type="submit" class="btn btn-primary ml-60 w-36" value="Criar Evento">
         </form>
         </div>
     </AppLayout>
