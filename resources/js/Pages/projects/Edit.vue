@@ -7,6 +7,10 @@ export default {
         AppLayout
     },
 
+    props: {
+        erros: Object
+    },
+
     data() {
         return {
             form: useForm({

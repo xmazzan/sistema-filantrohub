@@ -9,6 +9,23 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'days' => 'array'
+    ];
+
+    protected $fillable = [
+        'image',
+        'title',
+        'days',
+        'postcode',
+        'state',
+        'city',
+        'neighborhood',
+        'street',
+        'number',
+        'complement',
+        'description',
+    ];
 
     /*
           ONE TO MANY - relation between database tables!
