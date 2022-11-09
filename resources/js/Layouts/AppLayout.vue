@@ -52,21 +52,25 @@ const logout = () => {
                                     Home
                                 </NavLink>
                             </div>
+
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('create')" :active="route().current('create')">
                                     Criar Eventos
                                 </NavLink>
                             </div>
+                        
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('login')" :active="route().current('login')">
                                     Entrar
                                 </NavLink>
                             </div>
+
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('register')" :active="route().current('register')">
                                     Cadastrar
                                 </NavLink>
                             </div>
+
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">

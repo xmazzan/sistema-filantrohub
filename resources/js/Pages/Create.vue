@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+
 </script>
 
 <template>
@@ -19,25 +20,25 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <div class="form-group columns-2">
                 <label for="date">Dias de funcionamento do projeto:</label>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Segunda"> Segunda
+                    <input type="checkbox" name="dias[]" value="1"> Segunda
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Terça"> Terça
+                    <input type="checkbox" name="dias[]" value="2"> Terça
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Quarta"> Quarta
+                    <input type="checkbox" name="dias[]" value="3"> Quarta
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="dias[]" value="4"> Quinta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Quinta"> Quinta
+                    <input type="checkbox" name="dias[]" value="5"> Sexta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Sexta"> Sexta
+                    <input type="checkbox" name="dias[]" value="6"> Sábado
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Sábado"> Sábado
-                </div>
-                <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Domingo"> Domingo
+                    <input type="checkbox" name="dias[]" value="7"> Domingo
                 </div>
             </div>
 
