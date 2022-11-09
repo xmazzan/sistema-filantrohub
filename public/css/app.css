@@ -1318,9 +1318,6 @@ select {
 .h-20 {
   height: 5rem;
 }
-.h-screen {
-  height: 100vh;
-}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1459,9 +1456,6 @@ select {
 .justify-between {
   justify-content: space-between;
 }
-.justify-around {
-  justify-content: space-around;
-}
 .justify-items-center {
   justify-items: center;
 }
@@ -1574,6 +1568,10 @@ select {
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+.border-red-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(185 28 28 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1700,10 +1698,6 @@ select {
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
-}
-.py-28 {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
 }
 .pt-6 {
   padding-top: 1.5rem;
@@ -1871,6 +1865,10 @@ select {
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 .underline {
   text-decoration-line: underline;
@@ -2225,6 +2223,10 @@ select {
     margin-left: 0px;
   }
 
+  .sm\:mb-0 {
+    margin-bottom: 0px;
+  }
+
   .sm\:block {
     display: block;
   }
@@ -2251,6 +2253,14 @@ select {
 
   .sm\:w-full {
     width: 100%;
+  }
+
+  .sm\:w-\[22\%\] {
+    width: 22%;
+  }
+
+  .sm\:w-\[48\%\] {
+    width: 48%;
   }
 
   .sm\:max-w-md {
@@ -2294,6 +2304,10 @@ select {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
   .sm\:items-start {
     align-items: flex-start;
   }
@@ -2312,6 +2326,12 @@ select {
 
   .sm\:justify-between {
     justify-content: space-between;
+  }
+
+  .sm\:space-x-4 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .sm\:rounded-lg {

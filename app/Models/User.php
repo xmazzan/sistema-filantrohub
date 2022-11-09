@@ -58,4 +58,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /*
+        ONE TO MANY - relation between database tables!
+    public function events() { // 1 usuário possui muitos eventos
+        return $this->hasMany('App\Models\Event');
+    } 
+
+      MANY TO MANY - relation between database tables!
+    public function eventsAsParticipant() {
+            return $this->belongsToMany('App\Models\Event');
+    }
+    */
 }
