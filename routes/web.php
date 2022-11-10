@@ -24,6 +24,7 @@ Route::get('/Create.vue', function () {
     return Inertia::render('Create');
 })->name('create');
 
+Route::get('/panel', [EventController::class, 'panel'])->name('panel'); // profile/dashboard
 //Authenticated
 /*
 Route::middleware([
@@ -31,7 +32,7 @@ Route::middleware([
 	config('jetstream.auth_session'),
 	'verified',
 ])->group(function () {
-    Route::get('/dashboard', [EventController::class, 'dashboard'])->name('dashboard'); // profile/dashboard
+    Route::get('/panel', [EventController::class, 'panel'])->name('panel'); // profile/dashboard
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('destroy');//acessar evento pelo id events/{id}
     Route::get('events/edit/{id}', [EventController::class, 'edit'])->name('edit');
     Route::put('events/update/{id}', [EventController::class, 'update'])->name('update');

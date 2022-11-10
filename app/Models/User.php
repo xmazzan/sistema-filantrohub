@@ -61,13 +61,13 @@ class User extends Authenticatable
 
     /*
         ONE TO MANY - relation between database tables!
-    public function events() { // 1 usuário possui muitos eventos
-        return $this->hasMany('App\Models\Event');
+    public function projects() { // 1 usuário possui muitos eventos
+        return $this->hasMany('App\Models\Project');
     } 
 
       MANY TO MANY - relation between database tables!
-    public function eventsAsParticipant() {
-            return $this->belongsToMany('App\Models\Event');
+    public function projectsAsParticipant() {
+            return $this->belongsToMany('App\Models\Project');
     }
     */
 }
