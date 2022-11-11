@@ -1729,12 +1729,10 @@ select {
 .p-\[3\.25rem\] {
   padding: 3.25rem;
 }
-.p-60 {
-  padding: 15rem;
-}
-.p-20 {
+.p-20{
   padding: 5rem;
 }
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
