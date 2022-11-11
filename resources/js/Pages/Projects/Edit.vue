@@ -1,6 +1,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
+import Swal from 'sweetalert2';
 
 export default {
     components: {
@@ -8,24 +9,24 @@ export default {
     },
 
     props: {
-        //erros: Object,
-        project: object,
+        erros: Object,
+        subject: Object,
     },
 
     data() {
         return {
             form: useForm({
-                image: null,
-                title: null,
-                postcode: null,
-                days: [],
-                state: null,
-                city: null,
-                neighborhood: null,
-                street: null,
-                number: null,
-                complement: null,
-                description: null,
+                image: this.subject.name,
+                title: this.subject.title,
+                postcode: this.subject.postcode,
+                days: this.subject.days,
+                state: this.subject.state,
+                city: this.subject.city,
+                neighborhood: this.subject.neighborhood,
+                street: this.subject.street,
+                number: this.subject.number,
+                complement: this.subject.complement,
+                description: this.subject.description,
             }),
         };
     },

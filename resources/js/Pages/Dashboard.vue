@@ -1,5 +1,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import moment from 'moment';
+
 export default {
     components: {
         AppLayout
@@ -8,6 +10,14 @@ export default {
     props: {
         projects: Object,
     },
+
+    methods: {
+        showService(id) {
+            Inertia.get(route('services.show', {service: id}))
+        },
+        
+        formatDate(dateValue)
+    }
 }
 </script>
 
@@ -27,12 +37,10 @@ export default {
             <div id="cards-container" class="row">
                 <div class="card col-md-3">
                     <div class="card-body">
-                        <!--
                         <p class="card-date"> formateDate</p>
                         <h5 class="card-title"> project.title </h5>
                         <p class="cards-participants"> Participantes</p>
                         <a href="" class="btn btn-primary">Saber mais</a>
-                        -->
                     </div>
                 </div>
             </div>

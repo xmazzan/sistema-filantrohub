@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Projects/Create');
     }
 
     /**
@@ -38,7 +38,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $this->projectService->createProject($request->validated());
+        return Redirect::route('projects.index');
     }
 
     /**
@@ -61,7 +62,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         return Inertia::render('Projects/Edit', [
-            'project' => $project
+            'subject' => $project,
         ]);
     }
 
@@ -91,6 +92,18 @@ class ProjectController extends Controller
     }
 
     /*
+    public function dashboard() {
+        
+        $user = auth()->user(); //user == método no modelo Eventos executando método belongTo que retorna em user(belongsTo - model User); events == método no modelo User, executando método hasMany(event)
+
+        //verificar os eventos dele - para verificar os eventos dele, não é necessário fazer um where com o ID DELE, como ele já está logado podemos utilizar a propriedade que utilizamos no model Http/Models/User.php
+        $events = $user->events; //EVENTOS QUE O USUÁRIO É DONO - permite o usuário acessar o método events em Http/Models/User.php
+        
+        $eventsAsParticipant = $user->eventsAsParticipant; //
+
+        return view('events/dashboard', ['events' => $events, 'eventsAsParticipant' => $eventsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
+    }
+
     public function joinProject($id) {    //***show.blade.php*** - action="/events/join/{{ $event->id }}" onclick="[...]submit()" --> edit.blade.php (com  formulário igual e values do $evend->id passado)
 
         $user = auth()->user();
