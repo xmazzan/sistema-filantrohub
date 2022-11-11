@@ -91,10 +91,11 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     <div class="inline-block w-full lg:max-w-md lg:ml-5 lg:mr-5">
                        <img src="imgs/img_do_sobre.png" alt="doação de roupas" class="mr-auto ml-auto w-4/5 border-solid border-2 border-blue-300 mt-2 max-w-sm lg:w-full lg:max-w-md">
                     </div>
-                </div> 
+                </div>
+        
+                
             </section>
-            
-        <footer class="bg-[#1da1f2]">
+        <footer class="bg-[#1da1f2] p-20">
             <p class="text-center font-bold truncate">FILANTROHUB</p>
             <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
         </footer>
