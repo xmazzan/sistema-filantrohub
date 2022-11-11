@@ -73,7 +73,9 @@ const logout = () => {
                                     Cadastrar
                                 </NavLink>
                             </div>  
+
                         </div>
+                       
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <div class="ml-3 relative">
@@ -225,10 +227,10 @@ const logout = () => {
                     </div>
                 </div>
                 </nav>
-             </div>
-            <!-- Page Content -->
+                <!-- Page Content -->
             <main>
                 <slot />
             </main>
+             </div>
     </div>
 </template>
