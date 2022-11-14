@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ProjectController;
 
 /*Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,14 +14,18 @@ use Inertia\Inertia;
     ]);
 });
 */
-Route::get('/Dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+Route::get('/', [ProjectController::class, 'index'])->name('dashboard'); //o name é o nome que usamos na pagina vue(ex:applayout)
 
 Route::get('/Create', function () {
     return Inertia::render('Create');
 })->name('create');
 
 
+
 //Authenticated
+
 Route::middleware([
 	'auth:sanctum',
 	config('jetstream.auth_session'),

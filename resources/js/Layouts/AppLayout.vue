@@ -39,7 +39,7 @@ const logout = () => {
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex">
+                        <div class="flex" v-if="$page.props.user">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
@@ -55,7 +55,7 @@ const logout = () => {
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('create')" :active="route().current('create')">
-                                    Criar Eventos
+                                    Criar Projetos
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -63,9 +63,30 @@ const logout = () => {
                                     Meus Projetos
                                 </NavLink>
                             </div>
+                        </div>
+
+                        <div class="flex" v-else>
+                            <!-- Logo -->
+                            <div class="shrink-0 flex items-center">
+                                <Link :href="route('dashboard')">
+                                    <ApplicationMark class="block h-9 w-auto" />
+                                </Link>
+                            </div>
+
+                            <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink>
-                                    Sair
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Home
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="route('create')" :active="route().current('create')">
+                                    Criar Projetos
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="route('profile.show')">
+                                    Entrar
                                 </NavLink>
                             </div>
                         </div>

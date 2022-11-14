@@ -1,6 +1,6 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import moment from 'moment';
+//import moment from 'moment';
 
 export default {
     components: {
@@ -8,9 +8,9 @@ export default {
     },
     
     props: {
-        projects: Object,
+        //projects: Object,
     },
-
+    /*
     methods: {
         showService(id) {
             Inertia.get(route('services.show', {service: id}))
@@ -18,6 +18,7 @@ export default {
         
         formatDate(dateValue)
     }
+    */
 }
 </script>
 

@@ -8,6 +8,8 @@ use App\Models\Project;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
+use Illuminate\Http\Request;
+
 class ProjectController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Dashboard');
     }
 
     /**
@@ -91,7 +93,17 @@ class ProjectController extends Controller
         return Redirect::back();
     }
 
+    public function panel() {
+        return Inertia::render('Projects/Panel');
+        //return Redirect::route('projects/panel'); //with('msg', 'Projeto editado com sucesso!');
+        //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
+    }
     /*
+    public function panel() {
+        return Redirect::route('projects/panel'); //with('msg', 'Projeto editado com sucesso!');
+        //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
+    }
+
     public function dashboard() {
         
         $user = auth()->user(); //user == método no modelo Eventos executando método belongTo que retorna em user(belongsTo - model User); events == método no modelo User, executando método hasMany(event)

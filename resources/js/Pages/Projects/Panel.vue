@@ -22,6 +22,14 @@ export default {
     <AppLayout title="Home">
         <div class="col-md-10 offset-md-1 dashboard-events-container">
             <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Participantes</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} id -->
@@ -51,26 +59,46 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tbody>
-                        <tr>
-                            <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} -->
-                            <td><a href="#" @click="showProject(project.id)">project->title</a></td> <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> -->
-                            <!-- LINK PARA VISUALIZAÇÃO DO EVENTO -->
-                            <td>count</td> <!-- {{ count($event->users) }} {{-- <td>0</td> --}} -->
-                            <td>
-                                <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
-                                <!--
-                                <form action="/events/leave/{{ $event->id }}" method="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Sair do Evento</button>
-                                </form>
-                                -->
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tr>
+                        <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} -->
+                        <td><a href="#" @click="showProject(project.id)">project->title</a></td> <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> -->
+                        <!-- LINK PARA VISUALIZAÇÃO DO EVENTO -->
+                        <td>count</td> <!-- {{ count($event->users) }} {{-- <td>0</td> --}} -->
+                        <td>
+                            <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
+                            <!--
+                            <form action="/events/leave/{{ $event->id }}" method="POST">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Sair do Evento</button>
+                            </form>
+                            -->
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </AppLayout>
 </template>
+
+<style scoped>
+.dashboard-title-container {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.dashboard-events-container th {
+    width: 25%;
+}
+
+.dashboard-events-container form {
+    display: inline-block;
+}
+
+/* Edit - img */
+.img-preview {
+    width: 100px;
+    margin-top: 20px;
+}
+
+</style>
