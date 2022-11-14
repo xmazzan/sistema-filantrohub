@@ -8,6 +8,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import ApplicationMark from '@/Components/ApplicationMark.vue';
 
 const form = useForm({
     name: '',
@@ -15,6 +16,7 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     terms: false,
+    filantropo: false,
 });
 
 const submit = () => {
@@ -22,6 +24,7 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
 </script>
 
 <template>
@@ -29,7 +32,11 @@ const submit = () => {
     <Head title="Register" />
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <div class="shrink-0 flex items-center">
+                <Link :href="route('dashboard')">
+                    <ApplicationMark  />
+                </Link>
+            </div>
         </template>
 
         <form @submit.prevent="submit">
@@ -98,6 +105,13 @@ const submit = () => {
                 </InputLabel>
             </div>
 
+         <div class="block mt-4">
+            <label class="flex items-center">
+                <Checkbox v-model:checked="form.filantropo" name="filantropo" />
+                <span class="ml-2 text-sm text-gray-600">Quero criar eventos:</span>
+            </label>
+         </div>
+
             <div class="flex items-center justify-end mt-4">
                 <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
                     Already registered?
@@ -109,5 +123,9 @@ const submit = () => {
             </div>
         </form>
     </AuthenticationCard>
+    <footer class="bg-[#1da1f2] p-20 mt-5">
+            <p class="text-center font-bold truncate">FILANTROHUB</p>
+            <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
+        </footer>
     </AppLayout>
 </template>

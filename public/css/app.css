@@ -1300,6 +1300,15 @@ select {
 .ml-auto {
   margin-left: auto;
 }
+.mt-9 {
+  margin-top: 2.25rem;
+}
+.ml-20 {
+  margin-left: 5rem;
+}
+.ml-5 {
+  margin-left: 1.25rem;
+}
 .block {
   display: block;
 }
@@ -1489,6 +1498,10 @@ select {
 .columns-2 {
   -moz-columns: 2;
        columns: 2;
+}
+.columns-3 {
+  -moz-columns: 3;
+       columns: 3;
 }
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));

@@ -58,6 +58,11 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         <input type="submit" class="btn btn-primary ml-60 w-36" value="Editar Evento" >
     </form>
 </div>
+
+<footer class="bg-[#1da1f2] p-20">
+            <p class="text-center font-bold truncate">FILANTROHUB</p>
+            <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
+        </footer>
 </AppLayout>
 </template>
 

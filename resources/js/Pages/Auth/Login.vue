@@ -8,6 +8,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import ApplicationMark from '@/Components/ApplicationMark.vue';
 
 defineProps({
     canResetPassword: Boolean,
@@ -34,7 +35,11 @@ const submit = () => {
 <AppLayout title="Home">
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <div class="shrink-0 flex items-center">
+                <Link :href="route('dashboard')">
+                    <ApplicationMark  />
+                </Link>
+            </div>
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -86,5 +91,9 @@ const submit = () => {
             </div>
         </form>
     </AuthenticationCard>
+    <footer class="bg-[#1da1f2] p-20">
+            <p class="text-center font-bold truncate">FILANTROHUB</p>
+            <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
+        </footer>
     </AppLayout>
 </template>
