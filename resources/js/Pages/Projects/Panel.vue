@@ -33,12 +33,12 @@ export default {
                 <tbody>
                     <tr>
                         <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} id -->
-                        <td><a href=""> $event->title </a></td> ]
+                        <td><a href=""> $event->title </a></td>
                         <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> Details.vue LINK PARA VISUALIZAÇÃO DO EVENTO -->
                         <td>0</td> <!-- {{ count($event->users) }} -->
                         <td>
                             <a href="#" class="btn btn-info edit-btn" @click="updateProject(project.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
-                            <a href="#" class="btn btn-danger delete-btn" @click="deleteProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
+                            <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
                         </td>
                     </tr>
                 </tbody>
@@ -65,7 +65,9 @@ export default {
                         <!-- LINK PARA VISUALIZAÇÃO DO EVENTO -->
                         <td>count</td> <!-- {{ count($event->users) }} {{-- <td>0</td> --}} -->
                         <td>
-                            <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
+                            <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(project.id)">
+                                <ion-icon name="trash-outline"></ion-icon> Deletar
+                            </a>
                             <!--
                             <form action="/events/leave/{{ $event->id }}" method="POST">
                                 @csrf
@@ -91,7 +93,7 @@ export default {
     width: 25%;
 }
 
-.dashboard-events-container form {
+.dashboard-events-container a{
     display: inline-block;
 }
 
