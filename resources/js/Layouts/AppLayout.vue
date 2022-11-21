@@ -38,58 +38,60 @@ const logout = () => {
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex">
-                             
-                          <!-- Logo -->
-                            <div class="shrink-0 flex items-center" v-if="$page.props.user">
+                        <div class="flex" v-if="$page.props.user">
+                            <!-- Logo -->
+                            <div class="shrink-0 flex items-center">
                                 <Link :href="route('index')">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
-                            <div class="shrink-0 flex items-center" v-else>
+                            <!-- Navigation Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="route('index')" :active="route().current('index')">
+                                    Home
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="route('create')" :active="route().current('create')">
+                                    Criar Projetos
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="route('project')" :active="route().current('project')">
+                                    Meus Projetos
+                                </NavLink>
+                            </div>
+                        </div>
+
+                        <div class="flex" v-else>
+                            <!-- Logo -->
+                            <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.user">
-                                <NavLink :href="route('index')" :active="route().current('index')">
-                                    Home
-                                </NavLink>
-                            </div>
-
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-else>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Home
                                 </NavLink>
                             </div>
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.user">
-                                <NavLink :href="route('project')" :active="route().current('project')">
-                                    Meus Projetos
-                                </NavLink>
-                            </div>
-                            
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-else>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('login')" :active="route().current('login')">
                                     Entrar
                                 </NavLink>
                             </div>
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.user">
-                                <NavLink :href="route('create')" :active="route().current('create')">
-                                    Criar Projetos
-                                </NavLink>
-                            </div>
-
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-else>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('register')" :active="route().current('register')">
                                     Cadastrar
                                 </NavLink>
                             </div>  
-
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6" v-if="$page.props.user">

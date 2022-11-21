@@ -14,10 +14,18 @@ class Projetos extends Model
     ];
 
     protected $fillable = [
-        'titulo',
-        'cidade',
-        'descricao',
-        'dias'
+        'image',
+        'title',
+        'days',
+        'postcode',
+        'state',
+        'city',
+        'neighborhood',
+        'street',
+        'number',
+        'complement',
+        'description',
     ];
+
 
 }

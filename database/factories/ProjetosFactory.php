@@ -16,8 +16,28 @@ class ProjetosFactory extends Factory
      */
     public function definition()
     {
+        $days = [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+        ];
+
         return [
-            //
+            //'image' => $this->faker->image(),
+            'title' => $this->faker->title(),
+            'days' => $this->faker->days(),
+            'postcode' => $this->faker->postcode(),
+            'state' => $this->faker->state(),
+            'city' => $this->faker->city(),
+            'neighborhood' => $this->faker->words(nb: 2, asText: true),
+            'street' => $this->faker->streetName(),
+            'number' => $this->faker->buildingNumber(),
+            'complement' => $this->faker->words(asText: true),
+            'description' => $this->faker->words(asText: true),
         ];
     }
 }

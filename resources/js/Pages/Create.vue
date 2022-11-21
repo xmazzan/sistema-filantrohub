@@ -1,5 +1,105 @@
-<script setup>
+<script >
 import AppLayout from '@/Layouts/AppLayout.vue';
+//import { mask } from 'vue-the-mask';
+import { useForm } from '@inertiajs/inertia-vue3';
+
+export default {
+    components: {
+        AppLayout
+    },
+
+    data() {
+        return {
+            form: useForm ({
+                image: null,
+                title: null,
+                dias: [],
+                postcode: null,
+                state: null,
+                city: null,
+                neighborhood: null,
+                street: null,
+                number: null,
+                complement: null,
+            }),
+        };
+    },
+    props: {
+        errors: Object,
+    },
+    methods: {
+        submitForm() {
+            this.form.post(
+                route('projects.store'),
+                {
+                    onSuccess: () => {
+                        /*Swal.fire({
+                            icon: 'success',
+                            titleText: 'Cliente cadastrado com sucesso',
+                            toast: true,
+                            position: 'top-end',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                        });*/
+                    }
+                }
+            )
+        },
+        validatePostcode(postcode, masked = true) {
+            if (!masked && postcode.length != 8) {
+                return false;
+            }
+            if (masked && postcode.length != 9) { //não entra porque recebe parâmetro false na linha 76
+                return false;
+            }
+            return true; //cep certo
+        },
+        getAddressFromPostcode(maskedPostcode) {
+            const postcode = maskedPostcode.replace('-','')
+            if (!this.validatePostcode(postcode, false)) { //quebra o true da função. Se não passasse o argumento, entraria como true
+                return; //nunca acontece, exceto com cep errado
+            }
+            
+            axios.get(`https://viacep.com.br/ws/${postcode}/json/`)
+                .then(response => {
+                    const address = response.data
+                    if (response.status != 200 || address.erro) {
+                        Swal.fire({
+                            icon: 'error',
+                            titleText: 'Erro ao consultar o CEP',
+                            toast: true,
+                            position: 'top-end',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                        })
+                        return;
+                    }
+                    this.form.neighborhood = address.bairro
+                    this.form.street = address.logradouro
+                    this.form.state = address.uf
+                    this.form.complement = address.complemento
+                    this.form.city = address.localidade
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
+        watch: {
+            'form.postcode': {
+                handler: function (postcode) {
+                    if (this.validatePostcode(postcode)) {
+                        this.getAddressFromPostcode(postcode);
+                    }
+                }
+            },
+        },
+    },
+    directives: {
+        //mask
+    },
+}
 </script>
 
 <template>
@@ -41,10 +141,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="title">Cidade:</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Local do evento">
-            </div>
             <div class="form-group">
                 <label for="title">Descrição:</label>
                 <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"></textarea>

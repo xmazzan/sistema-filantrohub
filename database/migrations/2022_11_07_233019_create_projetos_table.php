@@ -16,10 +16,17 @@ return new class extends Migration
         Schema::create('projetos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('titulo');
-            $table->string('cidade');
-            $table->string('descricao');
-            $table->string('dias');
+            $table->string("image");
+            $table->string("title");
+            $table->json("days");
+            $table->string('postcode')->nullable()->index();
+            $table->string('state')->nullable()->index();
+            $table->string('city')->nullable()->index();
+            $table->string('neighborhood')->nullable()->index();
+            $table->string('street')->nullable()->index();
+            $table->string('number')->nullable()->index();
+            $table->string('complement')->nullable()->index();
+            $table->text("description");
         });
     }
 
