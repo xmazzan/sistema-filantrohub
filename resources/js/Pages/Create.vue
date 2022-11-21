@@ -3,7 +3,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
 
 <template>
-    <AppLayout title="Home">
+    <AppLayout title="Criar">
         <div id="event-create-container" class="col-md-6 offset-md-3">
         <h1 class="ml-60 text-xl font-bold">Crie o seu evento</h1>
         <form action="/events" method="POST" enctype="multipart/form-data">

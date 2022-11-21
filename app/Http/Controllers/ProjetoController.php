@@ -22,4 +22,9 @@ class ProjetoController extends Controller
     public function show(){
         return Inertia::render('Projects');
     }
+
+    public function index(){
+        return Inertia::render('Know');
+    }
+
 }

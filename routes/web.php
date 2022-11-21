@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 
 Route::get('/', [DashboardController::class, 'show'])->name('dashboard');
 
+Route::get('/Know', [ProjetoController::class, 'index'])->name('know');
+
 Route::middleware([
 	'auth:sanctum',
 	config('jetstream.auth_session'),

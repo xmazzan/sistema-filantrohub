@@ -29,7 +29,7 @@ const logout = () => {
 </script>
 
 <template>
-<div v-if="$page.props.user">
+<div>
         <Head :title="title" />
         <Banner />
 
@@ -41,35 +41,58 @@ const logout = () => {
                         <div class="flex">
                              
                           <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center" v-if="$page.props.user">
                                 <Link :href="route('index')">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
+                            <div class="shrink-0 flex items-center" v-else>
+                                <Link :href="route('dashboard')">
+                                    <ApplicationMark class="block h-9 w-auto" />
+                                </Link>
+                            </div>
+
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.user">
                                 <NavLink :href="route('index')" :active="route().current('index')">
                                     Home
                                 </NavLink>
                             </div>
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('create')" :active="route().current('create')">
-                                    Criar Eventos
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-else>
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Home
                                 </NavLink>
                             </div>
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.user">
                                 <NavLink :href="route('project')" :active="route().current('project')">
                                     Meus Projetos
                                 </NavLink>
                             </div>
+                            
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-else>
+                                <NavLink :href="route('login')" :active="route().current('login')">
+                                    Entrar
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.user">
+                                <NavLink :href="route('create')" :active="route().current('create')">
+                                    Criar Projetos
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-else>
+                                <NavLink :href="route('register')" :active="route().current('register')">
+                                    Cadastrar
+                                </NavLink>
+                            </div>  
 
                         </div>
-                       
 
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <div class="hidden sm:flex sm:items-center sm:ml-6" v-if="$page.props.user">
                             <div class="ml-3 relative">
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
@@ -191,7 +214,7 @@ const logout = () => {
                         </div>
 
                         <!-- Hamburger -->
-                        <div class="-mr-2 flex items-center sm:hidden">
+                        <div class="-mr-2 flex items-center sm:hidden" v-if="$page.props.user">
                             <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition" @click="showingNavigationDropdown = ! showingNavigationDropdown">
                                 <svg
                                     class="h-6 w-6"
@@ -225,52 +248,4 @@ const logout = () => {
             </main>
              </div>
     </div>
-
-<div v-else>
-        <Head :title="title" />
-        <Banner />
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
-                <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
-                             
-                          <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                    <ApplicationMark class="block h-9 w-auto" />
-                                </Link>
-                            </div>
-
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Home
-                                </NavLink>
-                            </div>
-
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('login')" :active="route().current('login')">
-                                    Entrar
-                                </NavLink>
-                            </div>
-
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('register')" :active="route().current('register')">
-                                    Cadastrar
-                                </NavLink>
-                            </div>  
-
-                        </div>
-                    </div>
-                </div>
-                </nav>
-                <!-- Page Content -->
-            <main>
-                <slot />
-            </main>
-             </div>
-    </div>
-     
 </template>

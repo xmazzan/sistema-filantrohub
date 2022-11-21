@@ -32,7 +32,7 @@ const submit = () => {
 </script>
 
 <template>
-<AppLayout title="Home">
+<AppLayout title="Login">
     <AuthenticationCard>
         <template #logo>
             <div class="shrink-0 flex items-center">

@@ -28,7 +28,7 @@ const submit = () => {
 </script>
 
 <template>
-<AppLayout title="Home">
+<AppLayout title="Cadastrar">
     <Head title="Register" />
     <AuthenticationCard>
         <template #logo>

@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
@@ -35,7 +36,9 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                             <p class="w-6/12 text-base">Organizado por: SENAI<br>
                             Cidade: Lauro de Freitas<br>
                             Data: 15/10/2022</p>
+                            <Link :href="route('know')">
                             <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
+                            </Link>
                         </div>
                         </div>
             
@@ -53,7 +56,9 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                                <p class="w-6/12 text-base">Organizado por: SENAI<br>
                                Cidade: Lauro de Freitas<br>
                                Data: 15/10/2022</p>
-                               <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 mb-2" type="submit">Ver mais...</button>
+                               <Link :href="route('know')">
+                            <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
+                            </Link>
                            </div>
                         </div>
             
@@ -93,13 +98,11 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     </div>
                 </div>
         
-                
             </section>
         <footer class="bg-[#1da1f2] p-20">
             <p class="text-center font-bold truncate">FILANTROHUB</p>
             <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
         </footer>
-
 
     </AppLayout>
 </template>
