@@ -21,16 +21,17 @@ Route::middleware([
 
     Route::get('/Create', [ProjetoController::class, 'create'])->name('create');
 
-    Route::get('/Edit', [ProjetoController::class, 'edit'])->name('edit');
+    Route::get('/Edit', [ProjetoController::class, 'editPage'])->name('editPage');
 
-    Route::get('/MyProjects', [ProjetoController::class, 'show'])->name('project');
+    Route::get('/Projects', [ProjetoController::class, 'show'])->name('project');
 
-    Route::as('projects')->group(function () {
+    /*Route::as('projects.')->group(function () {
         Route::get('/Know', [ProjetoController::class, 'panel'])->name('panel');
         Route::delete('/project/{id}', [ProjetoController::class, 'destroy'])->name('destroy');
         Route::get('/project/edit/{id}', [ProjetoController::class, 'edit'])->name('edit');
         Route::put('/project/update/{id}', [ProjetoController::class, 'update'])->name('update');
         //Route::post('/project/join/{id}',[ProjectController::class, 'joinEvent'])->name('joinEvent'); 
         //Route::delete('/project/leave/{id}',[ProjectController::class, 'leaveEvent'])->name('leaveEvent');     
-    });
+    });*/
+
 });

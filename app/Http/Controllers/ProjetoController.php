@@ -24,8 +24,14 @@ class ProjetoController extends Controller
         ]);
     }
 
-    public function show(){
-        return Inertia::render('Projects');
+    public function editPage(){
+        return Inertia::render('Edit');
+    }
+
+    public function show(Projetos $project){
+        return Inertia::render('Projects', [
+            'subject' => $project,
+        ]);
     }
 
     public function index(){
@@ -35,7 +41,7 @@ class ProjetoController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $this->projectService->createProject($request->validated());
-        return Redirect::route('projects.index');
+        return Redirect::route('projects/Know');
     }
 
     public function panel() {
@@ -51,7 +57,7 @@ class ProjetoController extends Controller
     public function update(UpdateProjectRequest $request, Projetos $project)
     {
         $this->project->updateProject($project, $request->validated());
-        return Redirect::route('/panel'); //with('msg', 'Projeto editado com sucesso!');
+        return Redirect::route('/panel');
     }
 
 }

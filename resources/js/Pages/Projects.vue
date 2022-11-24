@@ -32,10 +32,9 @@ export default {
                 </thead>
                 <tbody>
                     <tr>
-                        <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} id -->
-                        <td><a href=""> $event->title </a></td>
-                        <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> Details.vue LINK PARA VISUALIZAÇÃO DO EVENTO -->
-                        <td>0</td> <!-- {{ count($event->users) }} -->
+                        <td scropt="row"> 1 </td>
+                        <td><a href=""> $project->title </a></td>
+                        <td>0</td>
                         <td>
                             <a href="#" class="btn btn-info edit-btn" @click="updateProject(projetos.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
                             <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(projetos.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
@@ -45,7 +44,7 @@ export default {
             </table>
         </div>
 
-        <div class="col-md-10 offset-md-1 dashboard-title-container"> <!-- md-1 é para ficar centralizada -->
+        <div class="col-md-10 offset-md-1 dashboard-title-container"> 
             <h1>Eventos que estou participando</h1>
         </div>
         <div class="col-md-10 offset-md-1 dashboard-events-container">
