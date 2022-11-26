@@ -2,6 +2,7 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { mask } from 'vue-the-mask';
 import { useForm } from '@inertiajs/inertia-vue3';
+import parseJson from 'parse-json';
 
 export default {
     components: {
@@ -22,6 +23,7 @@ export default {
                 street: null,
                 number: null,
                 complement: null,
+                description: null,
             }),
         };
     },
@@ -31,9 +33,15 @@ export default {
     },
 
     methods: {
-
+        
         submitForm() {
-            this.form.post(
+            this.form
+            .transform(data => ({
+                ...data,
+                //dataJson = JSON.stringify(days),
+                days: JSON.stringify(data.days), //days: JSON.parse(form.days), //days: parseJson
+            }))
+            .post(
                 route('projects.store'),
                 {
                     onSuccess: () => {
@@ -47,8 +55,19 @@ export default {
                             showConfirmButton: false,
                         });
                     }
-                }
+                },
             )
+        },
+
+        async getDays() {
+            const req = await fetch("http://localhost:3000/week");
+            const data = await req.json();
+
+            console.log(data);
+        },
+
+        mounted() {
+            this.getDays()
         },
 
         validatePostcode(postcode, masked = true) {
@@ -209,7 +228,7 @@ export default {
 
             <div class="form-group">
                 <label for="title">Descrição:</label>
-                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"></textarea>
+                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?" v-model.trim="form.description"></textarea>
             </div>
             <input type="submit" class="btn btn-primary" value="Criar Evento">
             <!--  

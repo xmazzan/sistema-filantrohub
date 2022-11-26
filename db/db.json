@@ -1,5 +1,6 @@
 {
-    "days": [
+    "week": {
+      "days": [
         {
             "id": 1,
             "day": "Segunda"
@@ -28,5 +29,6 @@
             "id": 7,
             "day": "Domingo"
           }
-    ]
+      ]
+    }
 }
