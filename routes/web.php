@@ -34,6 +34,7 @@ Route::middleware([
     Route::get('/panel', [ProjectController::class, 'panel'])->name('panel'); // profile/dashboard
 
     Route::as('projects.')->group(function () {
+        Route::post('/projects', [ProjectController::class, 'store'])->name('store');
         Route::get('/panel', [ProjectController::class, 'panel'])->name('panel'); // profile/dashboard
         Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('destroy');//acessar evento pelo id events/{id}
         Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('edit');

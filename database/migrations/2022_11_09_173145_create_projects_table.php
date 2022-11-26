@@ -17,16 +17,18 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("image");
-            $table->string("title");
+            $table->string("title"); //->index();;
             $table->json("days");
-            $table->string('postcode')->nullable()->index();
-            $table->string('state')->nullable()->index();
-            $table->string('city')->nullable()->index();
-            $table->string('neighborhood')->nullable()->index();
-            $table->string('street')->nullable()->index();
-            $table->string('number')->nullable()->index();
-            $table->string('complement')->nullable()->index();
+            $table->string('phone'); //->index();
+            $table->string('postcode')->nullable(); //->index();
+            $table->string('state')->nullable(); //->index();
+            $table->string('city')->nullable(); //->index();
+            $table->string('neighborhood')->nullable(); //->index();
+            $table->string('street')->nullable(); //->index();
+            $table->string('number')->nullable(); //->index();
+            $table->string('complement')->nullable(); //->index();
             $table->text("description");
+            //$table->foreignId('user_id')->constrained();
         });
     }
 
@@ -38,5 +40,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('projects');
+        //$table->foreignId('user_id')->constrained()->onDelete('cascade');
     }
 };

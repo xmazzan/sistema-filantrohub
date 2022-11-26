@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Services\ProjectService;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -12,6 +13,12 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    protected ProjectService $projectService;
+
+    public function __construct(ProjectService $projectService)
+    {
+        $this->projectService = $projectService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +48,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $this->projectService->createProject($request->validated());
-        return Redirect::route('projects.index');
+        return Redirect::route('Dashboard'); //return Redirect::route('projects.index');
     }
 
     /**
@@ -75,10 +82,10 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project) //public function update(UpdateProjectRequest $request)
     {
         $this->project->updateProject($project, $request->validated());
-        return Redirect::route('/panel'); //with('msg', 'Projeto editado com sucesso!');
+        return Redirect::route('/panel'); //'Projects/Panel' with('msg', 'Projeto editado com sucesso!');
     }
 
     /**

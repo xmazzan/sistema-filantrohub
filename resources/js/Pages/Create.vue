@@ -13,7 +13,8 @@ export default {
             form: useForm ({
                 image: null,
                 title: null,
-                dias: [],
+                days: [],
+                phone: null,
                 postcode: null,
                 state: null,
                 city: null,
@@ -119,7 +120,7 @@ export default {
     <AppLayout title="Home">
         <div id="event-create-container" class="col-md-6 offset-md-3">
         <h1>Crie o seu evento</h1>
-        <form action="/events" method="POST" enctype="multipart/form-data" @submit.prevent="submitForm">
+        <form action="" method="post" enctype="multipart/form-data" @submit.prevent="submitForm"> <!-- action="/events" -->
             <div class="form-group">
                 <label for="image">Imagem do Evento:</label>
                 <input type="file" id="image" name="image" class="from-control-file"> <!-- v-model="form.title" -->
@@ -155,6 +156,13 @@ export default {
             </div>
 
             <!-- POSTCODE -->
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="customer-phone flex flex-col mb-4 sm:mb-0 sm:w-[    8%]">
+                    <label for="txtCustomerPhone" class="text-gray-800">Telefone</label>
+                    <input type="tel" v-mask="['(##) ####-####','(##) #####-####']" id="txtCustomerPhone" maxlength="15" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.phone }" v-model.trim="form.phone">
+                    <small class="text-red-700" v-if="errors.phone">{{ errors.phone }}</small>
+                </div>
+            </div>
             <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
                 <div class="project-postcode flex flex-col mb-4 sm:mb-0 sm:w-[22%]">
                     <label for="txtCustomerPostcode" class="text-gray-800">CEP</label>
@@ -203,13 +211,21 @@ export default {
                 <label for="title">Descrição:</label>
                 <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"></textarea>
             </div>
-            <input type="submit" class="btn btn-primary" value="Criar Evento">
+            <!-- <input type="submit" class="btn btn-primary" value="Criar Evento"> -->
+            <div class="form-footer flex justify-end space-x-4 mt-4">
+                <button class="rounded-full border-1 py-2 px-4 bg-white font-bold hover:shadow-lg hover:shadow-gray-300 transition-colors" type="submit" :disabled="form.processing">Cadastrar</button>
+            </div>
         </form>
         </div>
     </AppLayout>
 </template>
 
 <style scoped>
+h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+}
 #event-create-container {
     padding: 30px;
 }

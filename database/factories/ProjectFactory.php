@@ -26,9 +26,13 @@ class ProjectFactory extends Factory
             'Domingo',
         ];
 
+        $days = $this->faker->randomElement($days);
+
         return [
             //'image' => $this->faker->image(),
+            'image' => '/imgs/doacao_de_comida.jpeg',
             'title' => $this->faker->title(),
+            'phone' => $this->faker->phoneNumber(),
             'days' => $this->faker->days(),
             'postcode' => $this->faker->postcode(),
             'state' => $this->faker->state(),

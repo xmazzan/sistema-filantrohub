@@ -39,7 +39,7 @@ export default {
                     <p class="subtitle">Veja os eventos dos próximos dias</p>
                     <div id="cards-container" class="row" style="border: 1px solid black">
                         <div class="card col-md-3">
-                            <img src="/imgs/doacao_de_comida.jpeg" alt="">
+                            <img src="/imgs/doacao_de_comida.jpeg" alt="Imagem do Evento">
                             <div class="card-body">
                                 <p class="card-date"> formateDate</p>
                                 <h5 class="card-title"> project.title </h5>
