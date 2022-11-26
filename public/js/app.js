@@ -28032,7 +28032,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "rounded-full border-1 py-2 px-4 bg-white font-bold hover:shadow-lg hover:shadow-gray-300 transition-colors",
         type: "submit",
         disabled: $data.form.processing
-      }, "Cadastrar", 8
+      }, "Criar Evento", 8
       /* PROPS */
       , _hoisted_36)])], 32
       /* HYDRATE_EVENTS */

@@ -213,7 +213,7 @@ export default {
             </div>
             <!-- <input type="submit" class="btn btn-primary" value="Criar Evento"> -->
             <div class="form-footer flex justify-end space-x-4 mt-4">
-                <button class="rounded-full border-1 py-2 px-4 bg-white font-bold hover:shadow-lg hover:shadow-gray-300 transition-colors" type="submit" :disabled="form.processing">Cadastrar</button>
+                <button class="rounded-full border-1 py-2 px-4 bg-white font-bold hover:shadow-lg hover:shadow-gray-300 transition-colors" type="submit" :disabled="form.processing">Criar Evento</button>
             </div>
         </form>
         </div>
