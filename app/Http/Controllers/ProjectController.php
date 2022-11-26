@@ -51,12 +51,16 @@ class ProjectController extends Controller
             //$extension = $request->image->extension();
             
             $requestImage = $request->image;
+            
             $extension = $requestImage->extension();
+
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-            $requestImage->move(public_path('img/events'), $imageName);
+            
+            $requestImage->move(public_path('imgs/projects'), $imageName);
+
             $request->image = $imageName;
         }
-
+        
         $this->projectService->createProject($request->validated());
         return Redirect::route('dashboard'); //return Redirect::route('projects.index');
     }

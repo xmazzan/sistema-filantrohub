@@ -35,12 +35,14 @@ export default {
     methods: {
         
         submitForm() {
+            var filename = this.getFileName()
             this.form
-            .transform(data => ({
-                ...data,
-                //dataJson = JSON.stringify(days),
-                days: JSON.stringify(data.days), //days: JSON.parse(form.days), //days: parseJson
-            }))
+            .transform( data => ({
+                    ... data,
+                    image: filename,
+                    days: JSON.stringify(data.days) || null,
+
+                }))
             .post(
                 route('projects.store'),
                 {
@@ -58,6 +60,19 @@ export default {
                 },
             )
         },
+
+        getFileName(){
+            var fullPath = document.getElementById('image').value;
+            if (fullPath) {
+                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                var filename = fullPath.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
+                alert(filename);
+                return filename;
+            }
+        },
 
         async getDays() {
             const req = await fetch("http://localhost:3000/week");

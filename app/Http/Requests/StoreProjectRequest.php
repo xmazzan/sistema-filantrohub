@@ -40,6 +40,7 @@ class StoreProjectRequest extends FormRequest
             'street' => ['nullable', 'string'],
             'number' => ['nullable', 'string'],
             'complement' => ['nullable', 'string'],
+            'description' => ['required','string'],
         ];
     }
 

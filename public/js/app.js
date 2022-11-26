@@ -25360,11 +25360,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     submitForm: function submitForm() {
+      var filename = this.getFileName();
       this.form.transform(function (data) {
         return _objectSpread(_objectSpread({}, data), {}, {
-          //dataJson = JSON.stringify(days),
-          days: JSON.stringify(data.days) //days: JSON.parse(form.days), //days: parseJson
-
+          image: filename,
+          days: JSON.stringify(data.days) || null
         });
       }).post(route('projects.store'), {
         onSuccess: function onSuccess() {
@@ -25379,6 +25379,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
         }
       });
+    },
+    getFileName: function getFileName() {
+      var fullPath = document.getElementById('image').value;
+
+      if (fullPath) {
+        var startIndex = fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/');
+        var filename = fullPath.substring(startIndex);
+
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+          filename = filename.substring(1);
+        }
+
+        alert(filename);
+        return filename;
+      }
     },
     getDays: function getDays() {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
