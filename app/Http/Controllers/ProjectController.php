@@ -47,8 +47,18 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        if($request->hasFile('image') && $request->file('image')->isValid()) { //isValid() é para verificar se é um arquivo/imagem que estamos procurando
+            //$extension = $request->image->extension();
+            
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $requestImage->move(public_path('img/events'), $imageName);
+            $request->image = $imageName;
+        }
+
         $this->projectService->createProject($request->validated());
-        return Redirect::route('Dashboard'); //return Redirect::route('projects.index');
+        return Redirect::route('dashboard'); //return Redirect::route('projects.index');
     }
 
     /**

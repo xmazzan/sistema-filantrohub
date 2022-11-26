@@ -39,7 +39,7 @@ export default {
                     onSuccess: () => {
                         Swal.fire({
                             icon: 'success',
-                            titleText: 'Cliente cadastrado com sucesso',
+                            titleText: 'Projeto cadastrado com sucesso',
                             toast: true,
                             position: 'top-end',
                             timer: 2000,
@@ -120,38 +120,38 @@ export default {
     <AppLayout title="Home">
         <div id="event-create-container" class="col-md-6 offset-md-3">
         <h1>Crie o seu evento</h1>
-        <form action="" method="post" enctype="multipart/form-data" @submit.prevent="submitForm"> <!-- action="/events" -->
+        <form action="" method="post" @submit.prevent="submitForm"> <!-- action="/events" enctype="multipart/form-data"-->
             <div class="form-group">
                 <label for="image">Imagem do Evento:</label>
                 <input type="file" id="image" name="image" class="from-control-file"> <!-- v-model="form.title" -->
             </div>
             <div class="form-group">
                 <label for="title">Evento:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento" v-model="form.title">
             </div>
 
             <div class="form-group">
                 <label for="date">Dias de funcionamento do projeto:</label>
                 <div class="form-group">	
-                <input type="checkbox" name="dias[]" value="Segunda"> Segunda
+                <input type="checkbox" name="days" value="Segunda" v-model.trim="form.days"> Segunda
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Terça"> Terça
+                    <input type="checkbox" name="days" value="Terça" v-model.trim="form.days"> Terça
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Quarta"> Quarta
+                    <input type="checkbox" name="days" value="Quarta" v-model.trim="form.days"> Quarta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Quinta"> Quinta
+                    <input type="checkbox" name="days" value="Quinta" v-model.trim="form.days"> Quinta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Sexta"> Sexta
+                    <input type="checkbox" name="days" value="Sexta" v-model.trim="form.days"> Sexta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Sábado"> Sábado
+                    <input type="checkbox" name="days" value="Sábado" v-model.trim="form.days"> Sábado
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Domingo"> Domingo
+                    <input type="checkbox" name="days" value="Domingo" v-model.trim ="form.days"> Domingo
                 </div>
             </div>
 
@@ -211,10 +211,12 @@ export default {
                 <label for="title">Descrição:</label>
                 <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"></textarea>
             </div>
-            <!-- <input type="submit" class="btn btn-primary" value="Criar Evento"> -->
+            <input type="submit" class="btn btn-primary" value="Criar Evento">
+            <!--  
             <div class="form-footer flex justify-end space-x-4 mt-4">
                 <button class="rounded-full border-1 py-2 px-4 bg-white font-bold hover:shadow-lg hover:shadow-gray-300 transition-colors" type="submit" :disabled="form.processing">Criar Evento</button>
             </div>
+            -->
         </form>
         </div>
     </AppLayout>
