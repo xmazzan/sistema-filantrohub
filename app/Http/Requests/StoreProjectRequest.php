@@ -28,7 +28,7 @@ class StoreProjectRequest extends FormRequest
         //$projectsModel = Project::class;
 
         return [
-            'image' => ['required', 'string', 'min:3'],
+            'image' => ['required', 'image', 'min:3'],
             'title' => ['required', 'string', 'min:3'],
             'days' => ['required', 'json', 'min:1'],
             'city' => ['required', 'string', 'min:3'],
@@ -40,7 +40,7 @@ class StoreProjectRequest extends FormRequest
             'street' => ['nullable', 'string'],
             'number' => ['nullable', 'string'],
             'complement' => ['nullable', 'string'],
-            'description' => ['required','string'],
+            'description' => ['required','string'], //tava faltando, por isso deu erro
         ];
     }
 

@@ -20,6 +20,9 @@ export default {
 
 <template>
     <AppLayout title="Home">
+        <div class="col-md-10 offset-md-1 dashboard-title-container">
+            <h1>Meus Projetos</h1>
+        </div>
         <div class="col-md-10 offset-md-1 dashboard-events-container">
             <table class="table">
                 <thead>
@@ -46,7 +49,7 @@ export default {
         </div>
 
         <div class="col-md-10 offset-md-1 dashboard-title-container"> <!-- md-1 é para ficar centralizada -->
-            <h1>Eventos que estou participando</h1>
+            <h1>Projetos que estou participando</h1>
         </div>
         <div class="col-md-10 offset-md-1 dashboard-events-container">
             <table class="table">

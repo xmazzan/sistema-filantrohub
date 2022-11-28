@@ -3,6 +3,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { mask } from 'vue-the-mask';
 import { useForm } from '@inertiajs/inertia-vue3';
 import parseJson from 'parse-json';
+import Swal from 'sweetalert2';
 
 export default {
     components: {
@@ -35,13 +36,10 @@ export default {
     methods: {
         
         submitForm() {
-            var filename = this.getFileName()
             this.form
             .transform( data => ({
                     ... data,
-                    image: filename,
                     days: JSON.stringify(data.days) || null,
-
                 }))
             .post(
                 route('projects.store'),
@@ -60,30 +58,7 @@ export default {
                 },
             )
         },
-
-        getFileName(){
-            var fullPath = document.getElementById('image').value;
-            if (fullPath) {
-                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-                var filename = fullPath.substring(startIndex);
-                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                    filename = filename.substring(1);
-                }
-                alert(filename);
-                return filename;
-            }
-        },
-
-        async getDays() {
-            const req = await fetch("http://localhost:3000/week");
-            const data = await req.json();
-
-            console.log(data);
-        },
-
-        mounted() {
-            this.getDays()
-        },
+        
 
         validatePostcode(postcode, masked = true) {
             if (!masked && postcode.length != 8) {
@@ -131,16 +106,16 @@ export default {
                 .catch(error => {
                     console.error(error)
                 })
-        },
+        }
+    },
 
-        watch: {
-            'form.postcode': {
-                handler: function (postcode) {
-                    if (this.validatePostcode(postcode)) {
-                        this.getAddressFromPostcode(postcode);
-                    }
+    watch: {
+        'form.postcode': {
+            handler: function (postcode) {
+                if (this.validatePostcode(postcode)) {
+                    this.getAddressFromPostcode(postcode);
                 }
-            },
+            }
         },
     },
 
@@ -157,7 +132,7 @@ export default {
         <form action="" method="post" @submit.prevent="submitForm"> <!-- action="/events" enctype="multipart/form-data"-->
             <div class="form-group">
                 <label for="image">Imagem do Evento:</label>
-                <input type="file" id="image" name="image" class="from-control-file"> <!-- v-model="form.title" -->
+                <input type="file" id="image" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
             </div>
             <div class="form-group">
                 <label for="title">Evento:</label>
