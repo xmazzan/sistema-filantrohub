@@ -1,5 +1,25 @@
-<script setup>
+<script>
 import AppLayout from '@/Layouts/AppLayout.vue';
+
+export default {
+    components: {
+        AppLayout
+    },
+    
+    props: {
+        projetos: Object,
+    },
+    /*
+    methods: {
+        showService(id) {
+            Inertia.get(route('services.show', {service: id}))
+        },
+        
+        formatDate(dateValue)
+    }
+    */
+}
+
 </script>
 
 <template>
@@ -25,16 +45,14 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     <h1> PROJETOS EM DESTAQUE </h1>
                 </div>
                 <ul class="after:content-[''] after:bg-stone-900/[.3]  after:h-0.5 after:w-3/6 after:block after:ml-auto after:mr-auto after:mt-8">
-                
-
-                    <li  class=" pb-4 mb-4 flex items-center justify-center flex-col-reverse sm:flex-row        md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8">
+                    <li  class=" pb-4 mb-4 flex items-center justify-center flex-col-reverse sm:flex-row        md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8" >
                         <div class="inline-block sm:w-2/5 ">
-                            <p class="font-bold  text-center sm:mb-4 lg:text-2xl">Doação de Roupas</p>
-                           <p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">Venha fazer parte de uma ação beneficente na cidade de Salvador, distribuindo roupas há 30 anos com a parceria de voluntários!</p>
+                           <p class="font-bold  text-center sm:mb-4 lg:text-2xl"></p>
+                           <p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl" ></p>
                            <div class="mr-2 ml-2 flex items-end justify-between">
                             <p class="w-6/12 text-base">Organizado por: SENAI<br>
-                            Cidade: Lauro de Freitas<br>
-                            Data: 15/10/2022</p>
+                            Cidade: <br> 
+                            Data: 15/10/2022 </p>
                             <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
                         </div>
                         </div>
@@ -53,7 +71,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                                <p class="w-6/12 text-base">Organizado por: SENAI<br>
                                Cidade: Lauro de Freitas<br>
                                Data: 15/10/2022</p>
-                               <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 mb-2" type="submit">Ver mais...</button>
+                            <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
                            </div>
                         </div>
             
@@ -93,13 +111,11 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     </div>
                 </div>
         
-                
             </section>
-        <footer class="bg-[#1da1f2]">
+        <footer class="bg-[#1da1f2] p-20">
             <p class="text-center font-bold truncate">FILANTROHUB</p>
             <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
         </footer>
-
 
     </AppLayout>
 </template>

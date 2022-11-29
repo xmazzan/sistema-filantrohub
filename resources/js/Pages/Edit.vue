@@ -1,26 +1,23 @@
-<script>
-export default {
-    
-}
+<script setup>
+import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
+
 <template>
+<AppLayout title="Home">
 <div id="event-create-container" class="col-md-6 offset-md-3">
-    <h1>Editando o evento: ...</h1> <!--{{ $event->title }}-->
+    <h1 class="ml-60 text-xl font-bold">Editando o evento: ...</h1> 
     <form action="" method="POST">
-        <!-- <form action="/events/update/{{ $event->id }}" method="POST" enctype="multipart/form-data" > -->
         <div class="form-group">
             <label for="image">Imagem do evento:</label>
             <input type="file" id="image" name="image" class="form-control-file">
-            <!-- <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}" class="img-preview"> {{-- img.img-preview --}} -->
             <img src="" alt="" class="img-preview">
         </div>
         <div class="form-group">
             <label for="title ">Evento:</label>
-            <!-- <input type="text" class="form-control" id="title" name="title" placeholder="Nome do Evento" value="{{ $event->title }}"> -->
             <input type="text" class="form-control" id="title" name="title" placeholder="Nome do Evento" value="">
         </div>
         
-        <div class="form-group">
+        <div class="form-group columns-2">
             <label for="date">Dias de funcionamento do projeto:</label>
             <div class="form-group">	
                 <input type="checkbox" name="dias[]" value="Segunda"> Segunda
@@ -47,17 +44,21 @@ export default {
 
         <div class="form-group">
             <label for="title ">Cidade:</label>
-            <!-- <input type="text" class="form-control" id="city" name="city" placeholder="Nome da Cidade" value="{{ $event->city }}">  -->
             <input type="text" class="form-control" id="city" name="city" placeholder="Nome da Cidade" value=""> 
         </div>
         <div class="form-group">
             <label for="title ">Descrição:</label>
-            <!-- <textarea class="form-control" id="description" name="description" placeholder="O que vai acontecer no evento?">{{ $event->description }}</textarea>  -->
             <textarea class="form-control" id="description" name="description" placeholder="O que vai acontecer no evento?">...</textarea> 
         </div>
-        <input type="submit" class="btn btn-primary" value="Editar Evento" >
+        <input type="submit" class="btn btn-primary ml-60 w-36" value="Editar Evento" >
     </form>
 </div>
+
+<footer class="bg-[#1da1f2] p-20">
+            <p class="text-center font-bold truncate">FILANTROHUB</p>
+            <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
+        </footer>
+</AppLayout>
 </template>
 
 <style scoped>
