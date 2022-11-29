@@ -1,20 +1,21 @@
-<script >
+<script>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { mask } from 'vue-the-mask';
 import { useForm } from '@inertiajs/inertia-vue3';
+import parseJson from 'parse-json';
 import Swal from 'sweetalert2';
 
 export default {
     components: {
         AppLayout
     },
-
     data() {
         return {
             form: useForm ({
                 image: null,
                 title: null,
-                dias: [],
+                days: [],
+                phone: null,
                 postcode: null,
                 state: null,
                 city: null,
@@ -22,6 +23,7 @@ export default {
                 street: null,
                 number: null,
                 complement: null,
+                description: null,
             }),
         };
     },
@@ -29,14 +31,20 @@ export default {
         errors: Object,
     },
     methods: {
+        
         submitForm() {
-            this.form.post(
+            this.form
+            .transform( data => ({
+                    ... data,
+                    days: JSON.stringify(data.days) || null,
+                }))
+            .post(
                 route('projects.store'),
                 {
                     onSuccess: () => {
                         Swal.fire({
                             icon: 'success',
-                            titleText: 'Cliente cadastrado com sucesso',
+                            titleText: 'Projeto cadastrado com sucesso',
                             toast: true,
                             position: 'top-end',
                             timer: 2000,
@@ -44,22 +52,23 @@ export default {
                             showConfirmButton: false,
                         });
                     }
-                }
+                },
             )
         },
+        
         validatePostcode(postcode, masked = true) {
             if (!masked && postcode.length != 8) {
                 return false;
             }
-            if (masked && postcode.length != 9) { 
+            if (masked && postcode.length != 9) { //não entra porque recebe parâmetro false na linha 76
                 return false;
             }
             return true; //cep certo
         },
         getAddressFromPostcode(maskedPostcode) {
             const postcode = maskedPostcode.replace('-','')
-            if (!this.validatePostcode(postcode, false)) { 
-                return; 
+            if (!this.validatePostcode(postcode, false)) { //quebra o true da função. Se não passasse o argumento, entraria como true
+                return; //nunca acontece, exceto com cep errado
             }
             
             axios.get(`https://viacep.com.br/ws/${postcode}/json/`)
@@ -86,15 +95,15 @@ export default {
                 .catch(error => {
                     console.error(error)
                 })
-        },
-        watch: {
-            'form.postcode': {
-                handler: function (postcode) {
-                    if (this.validatePostcode(postcode)) {
-                        this.getAddressFromPostcode(postcode);
-                    }
+        }
+    },
+    watch: {
+        'form.postcode': {
+            handler: function (postcode) {
+                if (this.validatePostcode(postcode)) {
+                    this.getAddressFromPostcode(postcode);
                 }
-            },
+            }
         },
     },
     directives: {
@@ -107,42 +116,49 @@ export default {
     <AppLayout title="Criar">
         <div id="event-create-container" class="col-md-6 offset-md-3">
         <h1 class="ml-60 text-xl font-bold">Crie o seu evento</h1>
-        <form action="/events" method="POST" enctype="multipart/form-data">
+        <form action="" method="post" @submit.prevent="submitForm">
             <div class="form-group">
-                <label for="image" class="mr-1">Imagem do Evento:</label>
-                <input type="file" id="image" name="image" class="from-control-file max-w-[50%]">
+                <label for="image">Imagem do Evento:</label>
+                <input type="file" id="image" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
             </div>
             <div class="form-group">
                 <label for="title">Evento:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento" v-model="form.title">
             </div>
 
             <div class="form-group columns-2">
                 <label for="date">Dias de funcionamento do projeto:</label>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="1"> Segunda
+                <input type="checkbox" name="days" value="Segunda" v-model.trim="form.days"> Segunda
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="2"> Terça
+                    <input type="checkbox" name="days" value="Terça" v-model.trim="form.days"> Terça
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="3"> Quarta
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" name="dias[]" value="4"> Quinta
+                    <input type="checkbox" name="days" value="Quarta" v-model.trim="form.days"> Quarta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="5"> Sexta
+                    <input type="checkbox" name="days" value="Quinta" v-model.trim="form.days"> Quinta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="6"> Sábado
+                    <input type="checkbox" name="days" value="Sexta" v-model.trim="form.days"> Sexta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="7"> Domingo
+                    <input type="checkbox" name="days" value="Sábado" v-model.trim="form.days"> Sábado
+                </div>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Domingo" v-model.trim ="form.days"> Domingo
                 </div>
             </div>
 
             <!-- POSTCODE -->
+                <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="customer-phone flex flex-col mb-4 sm:mb-0 sm:w-[    8%]">
+                    <label for="txtCustomerPhone" class="text-gray-800">Telefone</label>
+                    <input type="tel" v-mask="['(##) ####-####','(##) #####-####']" id="txtCustomerPhone" maxlength="15" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.phone }" v-model.trim="form.phone">
+                    <small class="text-red-700" v-if="errors.phone">{{ errors.phone }}</small>
+                </div>
+            </div>
             <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
                 <div class="project-postcode flex flex-col mb-4 sm:mb-0 sm:w-[22%]">
                     <label for="txtCustomerPostcode" class="text-gray-800">CEP</label>
@@ -189,7 +205,7 @@ export default {
 
             <div class="form-group">
                 <label for="title">Descrição:</label>
-                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"></textarea>
+                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?" v-model.trim="form.description"></textarea>
             </div>
             <input type="submit" class="btn btn-primary ml-60 w-36" value="Criar Evento">
         </form>

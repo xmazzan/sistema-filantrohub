@@ -17,6 +17,7 @@ class Projetos extends Model
         'image',
         'title',
         'days',
+        'phone',
         'postcode',
         'state',
         'city',
@@ -26,6 +27,4 @@ class Projetos extends Model
         'complement',
         'description',
     ];
-
-
 }

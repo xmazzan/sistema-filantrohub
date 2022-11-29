@@ -18,20 +18,16 @@ Route::middleware([
 ])->group(function () {
 
     Route::post('/', [DashboardController::class, 'index'])->name('index');
-
     Route::get('/Create', [ProjetoController::class, 'create'])->name('create');
-
     Route::get('/Edit', [ProjetoController::class, 'editPage'])->name('editPage');
-
     Route::get('/Projects', [ProjetoController::class, 'show'])->name('project');
 
-    /*Route::as('projects.')->group(function () {
-        Route::get('/Know', [ProjetoController::class, 'panel'])->name('panel');
-        Route::delete('/project/{id}', [ProjetoController::class, 'destroy'])->name('destroy');
+    Route::as('projects.')->group(function () {
+        Route::post('/projects', [ProjetoController::class, 'store'])->name('store');
+        Route::get('/panel', [ProjetoController::class, 'panel'])->name('panel'); // profile/dashboard
+        Route::delete('/project/{id}', [ProjetoController::class, 'destroy'])->name('destroy');//acessar evento pelo id events/{id}
         Route::get('/project/edit/{id}', [ProjetoController::class, 'edit'])->name('edit');
         Route::put('/project/update/{id}', [ProjetoController::class, 'update'])->name('update');
-        //Route::post('/project/join/{id}',[ProjectController::class, 'joinEvent'])->name('joinEvent'); 
-        //Route::delete('/project/leave/{id}',[ProjectController::class, 'leaveEvent'])->name('leaveEvent');     
-    });*/
+    });
 
 });

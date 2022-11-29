@@ -22,7 +22,6 @@ const switchToTeam = (team) => {
         preserveState: false,
     });
 };
-
 const logout = () => {
     Inertia.post(route('logout'));
 };
