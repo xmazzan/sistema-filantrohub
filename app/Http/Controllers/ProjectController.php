@@ -65,6 +65,7 @@ class ProjectController extends Controller
 
             $request->image = $imageName;
         }
+        //$request->image->save();
         
         $this->projectService->createProject($request->validated());
         return Redirect::route('dashboard'); //return Redirect::route('projects.index');
@@ -76,9 +77,13 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Project $id) //Project
     {
-        //
+        $project = Project::findOrFail($id);
+
+        return Inertia::render('Projects/Show', [
+           'project' => $project
+        ]);
     }
 
     /**
@@ -118,12 +123,13 @@ class ProjectController extends Controller
         $project->deleteOrFail();
         return Redirect::back();
     }
-
+    
     public function panel() {
 
         //$user = auth()->user();
         //$events = $user->events;
-        
+        //$eventsAsParticipant = $user->eventsAsParticipant;
+
         return Inertia::render('Projects/Panel');
         //return Redirect::route('projects/panel'); //with('msg', 'Projeto editado com sucesso!');
         //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
@@ -146,7 +152,7 @@ class ProjectController extends Controller
         return view('events/dashboard', ['events' => $events, 'eventsAsParticipant' => $eventsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
     }
 
-    public function joinProject($id) {    //***show.blade.php*** - action="/events/join/{{ $event->id }}" onclick="[...]submit()" --> edit.blade.php (com  formulário igual e values do $evend->id passado)
+    public function joinProject($id) {
 
         $user = auth()->user();
 

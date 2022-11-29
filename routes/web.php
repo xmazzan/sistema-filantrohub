@@ -22,7 +22,7 @@ Route::get('/Create', function () {
     return Inertia::render('Create');
 })->name('create');
 
-
+Route::put('/projects/{project}', [ProjectController::class, 'show'])->name('show');
 
 //Authenticated
 

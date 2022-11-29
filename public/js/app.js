@@ -25459,17 +25459,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     projects: Object
-  }
-  /*
+  },
   methods: {
-      showService(id) {
-          Inertia.get(route('services.show', {service: id}))
-      },
-      
-      formatDate(dateValue)
+    showProject: function showProject(id) {
+      Inertia.get(route('projects.show', {
+        project: id
+      }));
+    }
   }
-  */
-
 });
 
 /***/ }),
@@ -26294,6 +26291,28 @@ __webpack_require__.r(__webpack_exports__);
       Inertia.get(route('projects.show', {
         project: id
       }));
+    },
+    updateProject: function updateProject(id) {
+      Inertia.get(route('projects.edit', {
+        project: id
+      }));
+    },
+    deleteCustomer: function deleteCustomer(id) {
+      Swal.fire({
+        titleText: "Deseja excluir o cliente ".concat(id, "?"),
+        confirmButtonText: 'Sim',
+        confirmButtonColor: '#009FE3',
+        showDenyButton: true,
+        denyButtonText: 'Não'
+      }).then(function (result) {
+        if (!result.isConfirmed) {
+          return;
+        }
+
+        Inertia["delete"](route('customers.destroy', {
+          customer: id
+        }));
+      });
     }
   }
 });
@@ -26316,6 +26335,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     AppLayout: _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    projects: Object
   }
 });
 
@@ -30088,11 +30110,14 @@ var _hoisted_9 = {
   "class": "font-bold text-center sm:mb-4 lg:text-2xl"
 };
 var _hoisted_10 = {
-  "class": "trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl"
-};
-var _hoisted_11 = {
   "class": "mr-2 ml-2 flex items-end justify-between"
 };
+
+var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
 
 var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
@@ -30101,21 +30126,6 @@ var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2",
-    type: "submit"
-  }, "Ver mais....", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "inline-block"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -30140,13 +30150,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: p.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(p.title), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(p.description), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<p class=\" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl\">{{ p.description }}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<p class=\"w-6/12 text-base\">Organizado por: {{ p. }}<br>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>{{p.days}}</p> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cidade: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(p.city), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<p class=\"w-6/12 text-base\">Organizado por: {{ p. }}<br>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cidade: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(p.city), 1
+        ), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Bairro: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(p.neighborhood), 1
         /* TEXT */
-        ), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Bairro: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(p.neighborhood), 1
-        /* TEXT */
-        ), _hoisted_13]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul v-for=\"day in days.data\" :key=\"day.id\"> "), _hoisted_14])]), _hoisted_15])]);
+        ), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul v-for=\"day in days.data\" :key=\"day.id\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+          "class": "border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2",
+          href: "#",
+          onClick: _cache[0] || (_cache[0] = function ($event) {
+            return $options.showProject(_ctx.project.id);
+          })
+        }, "Ver mais...")])]), _hoisted_13])]);
       }), 128
       /* KEYED_FRAGMENT */
       )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("-\n                    <div id=\"cards-container\" class=\"row\" style=\"border: 1px solid black\">\n                        <div class=\"card col-md-3\">\n                            <img src=\"/imgs/doacao_de_comida.jpeg\" alt=\"Imagem do Evento\">\n                            <div class=\"card-body\">\n                                !--<p class=\"card-date\"> formateDate</p>--\n                                <h5 class=\"card-title\">  $project->title </h5>  !--{{ p.title }}--\n                                <p class=\"cards-participants\"> Participantes</p>\n                                <a href=\"\" class=\"btn btn-primary\">Saber mais</a>\n                            </div>\n                        </div>\n                    </div>\n                    ")])])])];
@@ -31505,7 +31519,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         href: "#",
         "class": "btn btn-info edit-btn",
         onClick: _cache[0] || (_cache[0] = function ($event) {
-          return _ctx.updateProject(_ctx.project.id);
+          return $options.updateProject(_ctx.project.id);
         })
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
         name: "create-outline"
@@ -31599,9 +31613,7 @@ var _hoisted_10 = {
   "class": "event-owner"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" @if(!$hasUserJoined) ");
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
   action: "/events/join/{{ $project->id }}",
   method: "POST"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" @csrf "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -31613,31 +31625,27 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" @else ");
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "already-joined-message"
 }, "Você já está participando desse evento!", -1
 /* HOISTED */
 );
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" @endif ");
-
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "O evento conta com:", -1
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "O evento conta com:", -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
+var _hoisted_14 = {
   id: "items-list"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " $item ", -1
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " $item ", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-md-12",
   id: "description-container"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Sobre o evento:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
@@ -31663,9 +31671,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         name: "star-outline"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Dono do Evento: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$projectOwner['name']), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" $project->user->name - usando método belongsTo() do model events no controller// {{ $projectOwner['email'] }}"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                        <a href=\"/events/join/{{ $project->id }}\" class=\"btn btn-primary\" id=\"event-submit\">\n                            Confirmar Presença\n                        </a>\n                    "), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" se não tiver ingressado, retornar true para mostrar o form (a variável foi declarada como false no EventController) --}}"), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" href=\"/events/join/{{ $project->id }}\" "), _hoisted_13, _hoisted_14, _hoisted_15, _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @foreach($project->items as $item) "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" $project->user->name - usando método belongsTo() do model events no controller// {{ $projectOwner['email'] }}"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                        <a href=\"/events/join/{{ $project->id }}\" class=\"btn btn-primary\" id=\"event-submit\">\n                            Confirmar Presença\n                        </a>\n                    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @if(!$hasUserJoined)  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" se não tiver ingressado, retornar true para mostrar o form (a variável foi declarada como false no EventController) --}}"), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" href=\"/events/join/{{ $project->id }}\" "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @else "), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @endif "), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @foreach($project->items as $item) "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
         name: "play-outline"
-      }), _hoisted_18, _hoisted_19]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @endforeach ")])]), _hoisted_20])])];
+      }), _hoisted_15, _hoisted_16]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @endforeach ")])]), _hoisted_17])])];
     }),
     _: 1
     /* STABLE */

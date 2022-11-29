@@ -5,6 +5,10 @@ export default {
     components: {
         AppLayout
     },
+
+    props: {
+        projects: Object,
+    }
 }
 </script>
 
@@ -32,7 +36,8 @@ export default {
                             Confirmar Presença
                         </a>
                     -->
-                    @if(!$hasUserJoined) 
+                    
+                    <!-- @if(!$hasUserJoined)  -->
                     <!-- se não tiver ingressado, retornar true para mostrar o form (a variável foi declarada como false no EventController) --}}-->
                         <form action="/events/join/{{ $project->id }}" method="POST">
                             @csrf
@@ -44,9 +49,9 @@ export default {
                                 Confirmar Presença
                             </a>
                         </form> <!-- href="/events/join/{{ $project->id }}" -->
-                    @else
+                    <!-- @else -->
                         <p class="already-joined-message">Você já está participando desse evento!</p>
-                    @endif
+                    <!-- @endif -->
                     <h3>O evento conta com:</h3>
                     <ul id="items-list">
                         <!-- @foreach($project->items as $item) -->

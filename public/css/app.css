@@ -1769,9 +1769,6 @@ select {
 .pt-8 {
   padding-top: 2rem;
 }
-.pl-10 {
-  padding-left: 2.5rem;
-}
 .text-left {
   text-align: left;
 }
@@ -2328,12 +2325,12 @@ select {
     margin-bottom: 0px;
   }
 
-  .sm\:ml-0 {
-    margin-left: 0px;
-  }
-
   .sm\:mb-4 {
     margin-bottom: 1rem;
+  }
+
+  .sm\:ml-0 {
+    margin-left: 0px;
   }
 
   .sm\:block {

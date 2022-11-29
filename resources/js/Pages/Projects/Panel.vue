@@ -13,7 +13,26 @@ export default {
     methods: {
         showProject(id) {
             Inertia.get(route('projects.show', {project: id}))
-        }
+        },
+
+        updateProject(id){
+            Inertia.get(route('projects.edit', {project: id}))
+        },
+
+        deleteCustomer(id) {
+            Swal.fire({
+                titleText: `Deseja excluir o cliente ${id}?`,
+                confirmButtonText: 'Sim',
+                confirmButtonColor: '#009FE3',
+                showDenyButton: true,
+                denyButtonText: 'Não'
+            }).then(result => {
+                if (!result.isConfirmed) {
+                    return;
+                }
+                Inertia.delete(route('customers.destroy', {customer: id}));
+            });
+        },
     }
 }
 </script>

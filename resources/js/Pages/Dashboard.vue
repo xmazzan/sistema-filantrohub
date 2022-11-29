@@ -10,15 +10,12 @@ export default {
     props: {
         projects: Object,
     },
-    /*
+
     methods: {
-        showService(id) {
-            Inertia.get(route('services.show', {service: id}))
-        },
-        
-        formatDate(dateValue)
+        showProject(id) {
+            Inertia.get(route('projects.show', {project: id}));
+        }
     }
-    */
 }
 </script>
 
@@ -33,8 +30,6 @@ export default {
                         <input type="text" id="search" name="search" class="form-control" placeholder="Procurar..."> <!--id para estilizar / name para pegar o conteúdo do formulário no backend / class form-control é do bootstrap para deixar o input mais bonito -->
                     </form>
                 </div>
-                
-                
 
                 <div id="events-container" class="col-md-12" > <!-- v-for="p in projects.data" :key="p.id" -->
                     <h2>Próximos Eventos</h2>
@@ -44,15 +39,16 @@ export default {
                         <li  class=" pb-4 mb-4 flex items-center justify-center flex-col-reverse sm:flex-row        md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8">
                             <div class="inline-block sm:w-2/5 ">
                                 <p class="font-bold  text-center sm:mb-4 lg:text-2xl">{{ p.title }}</p>
-                                <p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">{{ p.description }}</p>
+                                <!--<p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">{{ p.description }}</p>-->
                                 <div class="mr-2 ml-2 flex items-end justify-between">
                                     <!--<p class="w-6/12 text-base">Organizado por: {{ p. }}<br>-->
+                                    <!-- <p>{{p.days}}</p> -->
                                     <p>Cidade: {{ p.city }}<br>
                                     Bairro: {{ p.neighborhood }}<br></p> <!-- <ul v-for="day in days.data" :key="day.id"> -->
-                                    <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
+                                    <a class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " href="#" @click="showProject(project.id)">Ver mais...</a>
                                 </div>
                             </div>
-                
+                            
                             <div class="inline-block ">
                             <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
                             </div>
