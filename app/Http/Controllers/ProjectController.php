@@ -26,7 +26,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard');
+        //$projects = Project::withCount('Projects')->paginate(8);
+        //$projects = Project::all();
+
+        $projects = $this->projectService->listProjects();
+        return Inertia::render('Dashboard', ['projects' => $projects]);
+        //return Inertia::render('Dashboard', ['teste' => 'TESTE CONTROLLER DATA']);
     }
 
     /**
@@ -115,6 +120,10 @@ class ProjectController extends Controller
     }
 
     public function panel() {
+
+        //$user = auth()->user();
+        //$events = $user->events;
+        
         return Inertia::render('Projects/Panel');
         //return Redirect::route('projects/panel'); //with('msg', 'Projeto editado com sucesso!');
         //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php

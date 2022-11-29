@@ -8,7 +8,7 @@ export default {
     },
     
     props: {
-        //projects: Object,
+        projects: Object,
     },
     /*
     methods: {
@@ -33,21 +33,45 @@ export default {
                         <input type="text" id="search" name="search" class="form-control" placeholder="Procurar..."> <!--id para estilizar / name para pegar o conteúdo do formulário no backend / class form-control é do bootstrap para deixar o input mais bonito -->
                     </form>
                 </div>
+                
+                
 
-                <div id="events-container" class="col-md-12">
+                <div id="events-container" class="col-md-12" > <!-- v-for="p in projects.data" :key="p.id" -->
                     <h2>Próximos Eventos</h2>
                     <p class="subtitle">Veja os eventos dos próximos dias</p>
+
+                    <ul class="after:content-[''] after:bg-stone-900/[.3]  after:h-0.5 after:w-3/6 after:block after:ml-auto after:mr-auto after:mt-8" v-for="p in projects.data" :key="p.id">
+                        <li  class=" pb-4 mb-4 flex items-center justify-center flex-col-reverse sm:flex-row        md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8">
+                            <div class="inline-block sm:w-2/5 ">
+                                <p class="font-bold  text-center sm:mb-4 lg:text-2xl">{{ p.title }}</p>
+                                <p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">{{ p.description }}</p>
+                                <div class="mr-2 ml-2 flex items-end justify-between">
+                                    <!--<p class="w-6/12 text-base">Organizado por: {{ p. }}<br>-->
+                                    <p>Cidade: {{ p.city }}<br>
+                                    Bairro: {{ p.neighborhood }}<br></p> <!-- <ul v-for="day in days.data" :key="day.id"> -->
+                                    <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
+                                </div>
+                            </div>
+                
+                            <div class="inline-block ">
+                            <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!---
                     <div id="cards-container" class="row" style="border: 1px solid black">
                         <div class="card col-md-3">
                             <img src="/imgs/doacao_de_comida.jpeg" alt="Imagem do Evento">
                             <div class="card-body">
-                                <p class="card-date"> formateDate</p>
-                                <h5 class="card-title"> project.title </h5>
+                                !--<p class="card-date"> formateDate</p>--
+                                <h5 class="card-title">  $project->title </h5>  !--{{ p.title }}--
                                 <p class="cards-participants"> Participantes</p>
                                 <a href="" class="btn btn-primary">Saber mais</a>
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
         </div>

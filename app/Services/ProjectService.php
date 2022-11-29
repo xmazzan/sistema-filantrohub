@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Request;
 
 class ProjectService
 {
+    public function listProjects(): LengthAwarePaginator
+    {
+        return Project::query()
+            ->when(Request::input('title'), function (Builder $query) {
+                $title = Request::input('title');
+                $query->where('title', 'LIKE', "%{$title}%");
+            })
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('id', 'asc')
+            ->paginate(10);
+    }
+
     public function createProject(array $data): Project 
     {
         return Project::create($data);
