@@ -65,8 +65,10 @@ class ProjectController extends Controller
 
             $request->image = $imageName;
         }
-        //$request->image->save();
         
+        //$user = auth()->user();
+        //$project->user_id = $user->id;
+
         $this->projectService->createProject($request->validated());
         return Redirect::route('dashboard'); //return Redirect::route('projects.index');
     }
@@ -124,13 +126,15 @@ class ProjectController extends Controller
         return Redirect::back();
     }
     
-    public function panel() {
+    public function panel(Project $project) {
 
         //$user = auth()->user();
         //$events = $user->events;
         //$eventsAsParticipant = $user->eventsAsParticipant;
 
-        return Inertia::render('Projects/Panel');
+        return Inertia::render('Projects/Panel', [
+            'project' => $project,
+        ]);
         //return Redirect::route('projects/panel'); //with('msg', 'Projeto editado com sucesso!');
         //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
     }

@@ -80,13 +80,13 @@ const logout = () => {
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('create')" :active="route().current('create')">
-                                    Criar Projetos
+                                <NavLink :href="route('profile.show')">
+                                    Entrar
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('profile.show')">
-                                    Entrar
+                                <NavLink :href="route('register')">
+                                    Cadastrar
                                 </NavLink>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ export default {
     },
 
     props: {
-
+        Projects: Object,
     },
 
     methods: {

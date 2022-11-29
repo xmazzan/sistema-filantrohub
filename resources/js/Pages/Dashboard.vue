@@ -41,7 +41,7 @@ export default {
                                 <p class="font-bold  text-center sm:mb-4 lg:text-2xl">{{ p.title }}</p>
                                 <!--<p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">{{ p.description }}</p>-->
                                 <div class="mr-2 ml-2 flex items-end justify-between">
-                                    <!--<p class="w-6/12 text-base">Organizado por: {{ p. }}<br>-->
+                                    <!-- <p class="w-6/12 text-base">Organizado por: {{ $page.props.user.name }}<br> -->
                                     <!-- <p>{{p.days}}</p> -->
                                     <p>Cidade: {{ p.city }}<br>
                                     Bairro: {{ p.neighborhood }}<br></p> <!-- <ul v-for="day in days.data" :key="day.id"> -->

@@ -26,15 +26,16 @@ class Project extends Model
         'number',
         'complement',
         'description',
+        'user_id',
     ];
 
-    /*
-          ONE TO MANY - relation between database tables!
+    
+          //ONE TO MANY - relation between database tables!
     public function user() { // 1 usuário é dono do evento
         return $this->belongsTo('App\Models\User'); 
     }
 
-        MANY TO MANY - relation between database tables!
+    /*    MANY TO MANY - relation between database tables!
     public function users() {
         return $this->belongsToMany('App\Models\User');
    }

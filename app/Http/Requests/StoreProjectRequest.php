@@ -41,6 +41,7 @@ class StoreProjectRequest extends FormRequest
             'number' => ['nullable', 'string'],
             'complement' => ['nullable', 'string'],
             'description' => ['required','string'], //tava faltando, por isso deu erro
+            'user_id' => ['required','integer'],
         ];
     }
 
