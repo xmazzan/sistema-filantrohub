@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\User;
 use App\Models\Project;
 use App\Services\ProjectService;
 use Illuminate\Support\Facades\Redirect;
@@ -30,7 +31,9 @@ class ProjectController extends Controller
         //$projects = Project::all();
 
         $projects = $this->projectService->listProjects();
-        return Inertia::render('Dashboard', ['projects' => $projects]);
+        return Inertia::render('Dashboard', [
+            'projects' => $projects
+        ]);
         //return Inertia::render('Dashboard', ['teste' => 'TESTE CONTROLLER DATA']);
     }
 
@@ -126,24 +129,25 @@ class ProjectController extends Controller
         return Redirect::back();
     }
     
-    public function panel(Project $project) {
+    public function panel() {
 
         //$user = auth()->user();
-        //$events = $user->events;
-        //$eventsAsParticipant = $user->eventsAsParticipant;
+        //$project = $user->projects;
+        //$projectsAsParticipant = $user->projectsAsParticipant;
 
+        //$projects = $this->projectService->listProjects();
+        $projects = $this->projectService->showAuthProjects();
         return Inertia::render('Projects/Panel', [
-            'project' => $project,
+            'projects' => $projects,
         ]);
-        //return Redirect::route('projects/panel'); //with('msg', 'Projeto editado com sucesso!');
         //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
+   
+        //$filters = Request::only([
+        //    'title', 'document', 'phone', 'email',
+        //]);
+        
     }
     /*
-    public function panel() {
-        return Redirect::route('projects/panel'); //with('msg', 'Projeto editado com sucesso!');
-        //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
-    }
-
     public function dashboard() {
         
         $user = auth()->user(); //user == método no modelo Eventos executando método belongTo que retorna em user(belongsTo - model User); events == método no modelo User, executando método hasMany(event)

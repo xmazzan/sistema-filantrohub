@@ -7,7 +7,7 @@ export default {
     },
 
     props: {
-        Projects: Object,
+        projects: Object,
     },
 
     methods: {
@@ -53,9 +53,9 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="p in projects.data" :key="p.id"> <!--  -->
                         <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} id -->
-                        <td><a href=""> $event->title </a></td>
+                        <td><a href=""> {{p.title}} </a></td> <!-- this.props.user.event -->
                         <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> Details.vue LINK PARA VISUALIZAÇÃO DO EVENTO -->
                         <td>0</td> <!-- {{ count($event->users) }} -->
                         <td>
