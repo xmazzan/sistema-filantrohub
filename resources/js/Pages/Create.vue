@@ -268,4 +268,16 @@ h1 {
 .btn-primary {
     color: black;
 }
+
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview img {
+  max-width: 100%;
+  max-height: 500px;
+}
+
 </style>
