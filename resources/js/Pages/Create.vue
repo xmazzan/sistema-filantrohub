@@ -1,53 +1,222 @@
-<script setup>
+<script>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { mask } from 'vue-the-mask';
+import { useForm } from '@inertiajs/inertia-vue3';
+import parseJson from 'parse-json';
+import Swal from 'sweetalert2';
+
+export default {
+    components: {
+        AppLayout
+    },
+    
+    data() {
+        return {
+            form: useForm ({
+                image: null,
+                title: null,
+                days: [],
+                phone: null,
+                postcode: null,
+                state: null,
+                city: null,
+                neighborhood: null,
+                street: null,
+                number: null,
+                complement: null,
+                description: null,
+                user_id: null,
+            }),
+            imageUrl: null,
+        };
+
+    },
+    props: {
+        errors: Object,
+    },
+    methods: {
+        
+        onFileChange(e) {
+            const file = e.target.files[0];
+            this.imageUrl = URL.createObjectURL(file);
+        },
+
+        submitForm() {
+            this.form
+            .transform( data => ({
+                    ... data,
+                    days: JSON.stringify(data.days) || null,
+                    user_id: this.$page.props.user?.id,
+                }))
+            .post(
+                route('projects.store'),
+                {
+                    onSuccess: () => {
+                        Swal.fire({
+                            icon: 'success',
+                            titleText: 'Projeto cadastrado com sucesso',
+                            toast: true,
+                            position: 'top-end',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                        });
+                    }
+                },
+            )
+        },
+        
+        validatePostcode(postcode, masked = true) {
+            if (!masked && postcode.length != 8) {
+                return false;
+            }
+            if (masked && postcode.length != 9) { //não entra porque recebe parâmetro false na linha 76
+                return false;
+            }
+            return true; //cep certo
+        },
+        getAddressFromPostcode(maskedPostcode) {
+            const postcode = maskedPostcode.replace('-','')
+            if (!this.validatePostcode(postcode, false)) { //quebra o true da função. Se não passasse o argumento, entraria como true
+                return; //nunca acontece, exceto com cep errado
+            }
+            
+            axios.get(`https://viacep.com.br/ws/${postcode}/json/`)
+                .then(response => {
+                    const address = response.data
+                    if (response.status != 200 || address.erro) {
+                        Swal.fire({
+                            icon: 'error',
+                            titleText: 'Erro ao consultar o CEP',
+                            toast: true,
+                            position: 'top-end',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                        })
+                        return;
+                    }
+                    this.form.neighborhood = address.bairro
+                    this.form.street = address.logradouro
+                    this.form.state = address.uf
+                    this.form.complement = address.complemento
+                    this.form.city = address.localidade
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        }
+    },
+    watch: {
+        'form.postcode': {
+            handler: function (postcode) {
+                if (this.validatePostcode(postcode)) {
+                    this.getAddressFromPostcode(postcode);
+                }
+            }
+        },
+    },
+    directives: {
+        mask
+    },
+}
 </script>
 
 <template>
     <AppLayout title="Home">
         <div id="event-create-container" class="col-md-6 offset-md-3">
-        <h1>Crie o seu evento</h1>
-        <form action="/events" method="POST" enctype="multipart/form-data">
+        <h1 class="ml-60 text-xl font-bold">Crie o seu evento</h1>
+        <form action="" method="post" @submit.prevent="submitForm">
             <div class="form-group">
                 <label for="image">Imagem do Evento:</label>
-                <input type="file" id="image" name="image" class="from-control-file">
+                <input type="file" id="image" @change="onFileChange" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
+                <div id="preview">
+                    <img v-if="imageUrl" :src="imageUrl" />
+                </div>
             </div>
             <div class="form-group">
                 <label for="title">Evento:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento" v-model="form.title">
             </div>
 
             <div class="form-group">
                 <label for="date">Dias de funcionamento do projeto:</label>
                 <div class="form-group">	
-                <input type="checkbox" name="dias[]" value="Segunda"> Segunda
+                <input type="checkbox" name="days" value="Segunda" v-model.trim="form.days"> Segunda
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Terça"> Terça
+                    <input type="checkbox" name="days" value="Terça" v-model.trim="form.days"> Terça
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Quarta"> Quarta
+                    <input type="checkbox" name="days" value="Quarta" v-model.trim="form.days"> Quarta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Quinta"> Quinta
+                    <input type="checkbox" name="days" value="Quinta" v-model.trim="form.days"> Quinta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Sexta"> Sexta
+                    <input type="checkbox" name="days" value="Sexta" v-model.trim="form.days"> Sexta
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Sábado"> Sábado
+                    <input type="checkbox" name="days" value="Sábado" v-model.trim="form.days"> Sábado
                 </div>
                 <div class="form-group">	
-                    <input type="checkbox" name="dias[]" value="Domingo"> Domingo
+                    <input type="checkbox" name="days" value="Domingo" v-model.trim ="form.days"> Domingo
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="title">Cidade:</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Local do evento">
+            <!-- POSTCODE -->
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="customer-phone flex flex-col sm:mb-0 sm:w-[50%]">
+                    <label for="txtCustomerPhone" class="text-gray-800">Telefone</label>
+                    <input type="tel" v-mask="['(##) ####-####','(##) #####-####']" id="txtCustomerPhone" maxlength="15" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.phone }" v-model.trim="form.phone">
+                    <small class="text-red-700" v-if="errors.phone">{{ errors.phone }}</small>
+                </div>
+            </div>
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="project-postcode flex flex-col mb-2 sm:mb-0 sm:w-[22%]">
+                    <label for="txtCustomerPostcode" class="text-gray-800">CEP</label>
+                    <input type="text" v-mask="'#####-###'" id="txtCustomerPostcode" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.postcode }" v-model.trim="form.postcode"/>
+                    <small class="text-red-700" v-if="errors.postcode">{{ errors.postcode }}</small>
+                </div>
+                <div class="project-state flex flex-col mb-2 sm:mb-0 sm:w-[22%]">
+                    <label for="txtCustomerState" class="text-gray-800">Estado</label>
+                        <input type="text" id="txtCustomerState" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.state }" v-model.trim="form.state">
+                    <small class="text-red-700" v-if="errors.state">{{ errors.state }}</small>
+                </div>
+                <div class="project-city flex flex-col mb-2 sm:mb-0 sm:w-[48%] ">
+                    <label for="txtCustomerCity" class="text-gray-800">Cidade</label>
+                    <input type="text" id="txtCustomerCity" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.city }" v-model.trim="form.city">
+                    <small class="text-red-700" v-if="errors.city">{{ errors.city }}</small>
+                </div>
+            </div>
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="project-neighborhood flex flex-col mb-2 sm:mb-0 sm:w-[48%]">
+                    <label for="txtCustomerNeighborhood" class="text-gray-800">Bairro</label>
+                    <input type="text" id="txtCustomerNeighborhood" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.neighborhood }" v-model.trim="form.neighborhood">
+                    <small class="text-red-700" v-if="errors.neighborhood">{{ errors.neighborhood }}</small>
+                    
+                </div>
+                <div class="project-street flex flex-col mb-2 sm:mb-0 sm:w-[48%]">
+                    <label for="txtCustomerStreet" class="text-gray-800">Rua</label>
+                    <input type="text" id="txtCustomerStreet" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.street }" v-model.trim="form.street">
+                    <small class="text-red-700" v-if="errors.street">{{ errors.street }}</small>
+                </div>
+            </div>
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="project-number flex flex-col mb-2 sm:mb-0 sm:w-[22%] ">
+                    <label for="txtCustomerNeighborhood" class="text-gray-800">Número</label>
+                    <input type="text" id="txtCustomerNeighborhood" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.number }" v-model.trim="form.number">
+                    <small class="text-red-700" v-if="errors.number">{{ errors.number }}</small>
+                </div>
+                <div class="project-complement flex flex-col mb-2 sm:mb-0 sm:w-[48%]">
+                    <label for="txtCustomerComplement" class="text-gray-800">Complemento</label>
+                    <input type="text" id="txtCustomerComplement" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.complement }" v-model.trim="form.complement">
+                    <small class="text-red-700" v-if="errors.complement">{{ errors.complement }}</small>
+                </div>
             </div>
             <div class="form-group">
                 <label for="title">Descrição:</label>
-                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"></textarea>
+                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?" v-model.trim="form.description"></textarea>
             </div>
             <input type="submit" class="btn btn-primary" value="Criar Evento">
         </form>
@@ -75,4 +244,16 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 .btn-primary {
     color: black;
 }
+
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview img {
+  max-width: 100%;
+  max-height: 500px;
+}
+
 </style>

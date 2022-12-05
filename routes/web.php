@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,11 +25,28 @@ use Inertia\Inertia;
     ]);
 });
 */
-Route::get('/', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::get('/', [ProjectController::class, 'index'])->name('index');
 
-Route::get('/Create.vue', function () {
+Route::get('/create', function () {
     return Inertia::render('Create');
 })->name('create');
 
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('show');
+
+//Authenticated
+
+Route::middleware([
+	'auth:sanctum',
+	config('jetstream.auth_session'),
+	'verified',
+])->group(function () {
+    Route::as('projects.')->group(function () {
+        Route::post('/projects', [ProjectController::class, 'store'])->name('store');
+        Route::get('/panel', [ProjectController::class, 'panel'])->name('panel'); // profile/dashboard
+        Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('destroy');//acessar evento pelo id events/{id}
+        Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('edit');
+        Route::put('/project/update/{id}', [ProjectController::class, 'update'])->name('update');
+        Route::post('/project/join/{id}',[ProjectController::class, 'joinEvent'])->name('joinEvent'); //presente na /events/DASHBOARD.blade.php join==signIn action EventController
+        Route::delete('/project/leave/{id}',[ProjectController::class, 'leaveEvent'])->name('leaveEvent');     
+    });
+});

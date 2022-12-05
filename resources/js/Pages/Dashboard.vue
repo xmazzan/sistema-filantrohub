@@ -1,105 +1,206 @@
-<script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
+<script>
+import AppLayout from "@/Layouts/AppLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
+//import moment from 'moment';
+
+export default {
+ components: {
+  AppLayout,
+ },
+
+ props: {
+  projects: Object,
+ },
+
+ methods: {
+  showProject(id) {
+   Inertia.get(route("show", { project: id }));
+  },
+
+  getUrlByImageName(imageName){
+    const path = maskedPostcode.replace('tmp/','')
+  },
+  
+ },
+};
 </script>
 
+
 <template>
-    <AppLayout title="Home">
-        <section class="w-full h-[calc(100vh_-_64px)] bg-no-repeat justify-around bg-[length:100vw_91vh]" style="background-image: url(../imgs/main3.png)">
-            <div class=" flex  items-center flex-col text-center justify-center h-[74%]">
-                <div class="p-[3.25rem]">
-                    <img  class="inline-flex w-32 sm:w-40 " src="imgs/fh150.png" alt="logo">
-                </div>
+ <AppLayout title="Home">
+  <div class="container-fluid">
+   <div class="row">
+    <div id="search-container" class="col-md-12">
+     <!-- div#search-container.col-md-12 -->
+     <h1>Busque um Projeto Social</h1>
+     <form action="/" method="GET">
+      <input
+       type="text"
+       id="search"
+       name="search"
+       class="form-control"
+       placeholder="Procurar..."
+      />
+      <!--id para estilizar / name para pegar o conteúdo do formulário no backend / class form-control é do bootstrap para deixar o input mais bonito -->
+     </form>
+    </div>
 
-                <div class="flex items-center justify-center w-4/5 max-w-xl">
-                    <input type="text" class="w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black" placeholder="Busque um projeto">
-                </div>
+    <div id="events-container" class="col-md-12">
+     <!-- v-for="p in projects.data" :key="project.id" -->
+     <h2>Próximos Eventos</h2>
+     <p class="subtitle">Veja os eventos dos próximos dias</p>
 
-                <div class="pt-8 justify-center w-full paddin-top-1-5">
-                    <span class="text-xs text-white sm:text-lg"> BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO </span>
-                </div>
-            </div>
-        </section>
+     <ul
+      class="
+       after:content-['']
+       after:bg-stone-900/[.3]
+       after:h-0.5
+       after:w-3/6
+       after:block
+       after:ml-auto
+       after:mr-auto
+       after:mt-8
+      "
+      v-for="project in projects.data"
+      :key="project.id"
+     >
+      <li
+       class="
+        pb-4
+        mb-4
+        flex
+        items-center
+        justify-center
+        flex-col-reverse
+        sm:flex-row
+        md:justify-evenly
+        hover:shadow-xl
+        mr-4
+        ml-4
+        md:ml-8 md:mr-8
+       "
+      >
+       <div class="inline-block sm:w-2/5">
+        <p class="font-bold text-center sm:mb-4 lg:text-2xl">
+         {{ project.title }}
+        </p>
+        <!--<p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">{{ project.description }}</p>-->
+        <div class="mr-2 ml-2 flex items-end justify-between">
+         <!-- <p class="w-6/12 text-base">Organizado por: {{ $page.props.user.name }}<br> -->
+         <!-- <p>{{project.days}}</p> -->
+         <p>
+          Cidade: {{ project.city }}<br />
+          Bairro: {{ project.neighborhood }}<br />
+         </p>
+         <!-- <ul v-for="day in days.data" :key="day.id"> -->
+         <a
+          class="
+           border-solid border-2 border-gray-300
+           bg-[#1da1f2]
+           text-white
+           rounded
+           p-2
+          "
+          href="#"
+          @click="showProject(project.id)"
+          >Ver mais...</a
+         >
+        </div>
+       </div>
 
-            <section>
-                <div class="py-8 text-center text-black text-xl font-bold lg:text-2xl">
-                    <h1> PROJETOS EM DESTAQUE </h1>
-                </div>
-                <ul class="after:content-[''] after:bg-stone-900/[.3]  after:h-0.5 after:w-3/6 after:block after:ml-auto after:mr-auto after:mt-8">
-                
-
-                    <li  class=" pb-4 mb-4 flex items-center justify-center flex-col-reverse sm:flex-row        md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8">
-                        <div class="inline-block sm:w-2/5 ">
-                            <p class="font-bold  text-center sm:mb-4 lg:text-2xl">Doação de Roupas</p>
-                           <p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">Venha fazer parte de uma ação beneficente na cidade de Salvador, distribuindo roupas há 30 anos com a parceria de voluntários!</p>
-                           <div class="mr-2 ml-2 flex items-end justify-between">
-                            <p class="w-6/12 text-base">Organizado por: SENAI<br>
-                            Cidade: Lauro de Freitas<br>
-                            Data: 15/10/2022</p>
-                            <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
-                        </div>
-                        </div>
-            
-                        <div class="inline-block ">
-                           <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
-                        </div>
-                    </li>
-
-                    <li class=" pb-4  mb-3 flex items-center  flex-col-reverse justify-center sm:flex-row-reverse md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8">
-                        <div class="inline-block sm:w-2/5 ">
-                            <p class="font-bold text-center sm:mb-4 lg:text-2xl">Doação de Comida</p>
-                           <p  class="w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolorum iure exercitationem, error, aut ex ad aperiam fugit, nam eum esse necessitatibus quibusdam. Iste vel itaque, ratione temporibus nulla dolor!dleu
-                            aidoepadoepdjeudiaopeadkeladjfgofdfd</p>
-                           <div class="mr-2 ml-2 flex items-end justify-between">
-                               <p class="w-6/12 text-base">Organizado por: SENAI<br>
-                               Cidade: Lauro de Freitas<br>
-                               Data: 15/10/2022</p>
-                               <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 mb-2" type="submit">Ver mais...</button>
-                           </div>
-                        </div>
-            
-                        <div class="inline-block ">
-                           <img src="imgs/doacao_de_comida.jpeg" alt="doação de comida" class=" w-full border-solid border-2 border-blue-300 max-w-md  ">
-                        </div>
-                    </li>
-                </ul>
-               
-
-                <div class="py-8 text-center text-black font-bold lg:text-2xl text-xl">
-                    <h1>SOBRE FILANTROHUB</h1>
-                </div>
-
-                <div class="mb-3 sm:flex sm:flex-row-reverse sm:w-full lg:justify-evenly">
-                    
-                    <div class="flex sm:w-full lg:w-3/6">
-                       <p class="ml-2 text-sm text-slate-500 text-justify mr-2 mr-2 mt-auto mb-auto 2xl:text-xl">
-                       <strong class="font-bold">Título institucional</strong><br>
-                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolorum iure exercitationem, error, aut ex ad aperiam fugit, nam eum esse necessitatibus quibusdam. Iste vel itaque, ratione temporibus nulla dolor!</p>
-                    </div>
-        
-                    <div class="inline-block w-full lg:max-w-md lg:ml-5 lg:mr-5">
-                       <img src="imgs/img_do_sobre.png" alt="doação de roupas" class="mr-auto ml-auto w-4/5 border-solid border-2 border-blue-300 mt-2 max-w-sm lg:w-full lg:max-w-md ">
-                    </div>
-                </div>
-
-                <div class="mb-3 sm:flex lg:justify-evenly">
-                    <div class="flex sm:w-full lg:w-3/6 ">
-                       <p class="ml-2 text-sm text-slate-500 text-justify mr-2 mt-auto mb-auto 2xl:text-xl ">
-                       <strong class="font-bold">Título institucional</strong><br>
-                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolorum iure exercitationem, error, aut ex ad aperiam fugit, nam eum esse necessitatibus quibusdam. Iste vel itaque, ratione temporibus nulla dolor!</p>
-                    </div>
-        
-                    <div class="inline-block w-full lg:max-w-md lg:ml-5 lg:mr-5">
-                       <img src="imgs/img_do_sobre.png" alt="doação de roupas" class="mr-auto ml-auto w-4/5 border-solid border-2 border-blue-300 mt-2 max-w-sm lg:w-full lg:max-w-md">
-                    </div>
-                </div>
-        
-                
-            </section>
-        <footer class="bg-[#1da1f2]">
-            <p class="text-center font-bold truncate">FILANTROHUB</p>
-            <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
-        </footer>
-
-
-    </AppLayout>
+       <div class="inline-block">
+        <img
+         src=""
+         alt="doação de roupas"
+         class="w-full border-solid border-2 border-blue-300 max-w-md"
+        />
+       </div>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </AppLayout>
 </template>
+
+<style scoped>
+/*      search-container      */
+#search-container {
+ background-image: url("/imgs/main.png");
+ background-size: cover;
+ background-position: center;
+ height: 400px;
+ padding: 50px;
+ text-align: center;
+}
+
+#search-container h1 {
+ color: black;
+ margin-bottom: 30px;
+ font-weight: 900;
+}
+
+#search-container form {
+ width: 50%;
+ margin: 0 auto;
+}
+/*      FIM SEARCH CONTAINER       */
+h1 {
+ text-align: center;
+ font-weight: bold;
+}
+#event-create-container {
+ padding: 30px;
+}
+
+#event-create-container label {
+ font-weight: bold;
+}
+
+#event-create-container input,
+#event-create-container select,
+#event-create-container textarea {
+ font-size: 12px;
+ margin-bottom: 10px;
+ margin-top: 10px;
+}
+
+.btn-primary {
+ color: black;
+}
+
+/*INICIO            <div id="events-container" class="col-md-12">*/
+#events-container {
+ padding: 50px;
+}
+
+#events-container h2 {
+ margin-bottom: 10px;
+}
+
+#events-container .subtitle {
+ color: #757575;
+ margin-bottom: 30px;
+}
+
+#cards-container {
+ display: flex;
+}
+
+#events-container .card {
+ /*   ?   */
+ flex: 1 1 24%; /* flex: 1 1 0 --> flex: 1 1 24%; - mudou para 24% de largura base */
+ max-width: 25%;
+ border-radius: 10px;
+ padding: 0;
+ margin: 0.5%; /* margin: 5px; */
+}
+
+#events-container img {
+ max-height: 150px;
+ border-top-left-radius: 10px;
+ border-top-right-radius: 10px;
+}
+
+/* FINAL */
+</style>
