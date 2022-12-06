@@ -9,9 +9,9 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'days' => 'array'
-    ];
+    //protected $casts = [
+    //    'days' => 'array'
+    //];
 
     protected $fillable = [
         'image',
@@ -35,9 +35,8 @@ class Project extends Model
         return $this->belongsTo('App\Models\User'); 
     }
 
-    /*    MANY TO MANY - relation between database tables!
+    /*    MANY TO MANY - relation between database tables!*/
     public function users() {
         return $this->belongsToMany('App\Models\User');
    }
-    */
 }

@@ -1,5 +1,6 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { Inertia } from '@inertiajs/inertia';
 //import moment from 'moment';
 
 export default {
@@ -13,7 +14,7 @@ export default {
 
     methods: {
         showProject(id) {
-            Inertia.get(route('projects.show', {project: id}));
+            Inertia.get(route('show', {project: id}))
         }
     }
 }
@@ -35,22 +36,23 @@ export default {
                     <h2>Próximos Eventos</h2>
                     <p class="subtitle">Veja os eventos dos próximos dias</p>
 
-                    <ul class="after:content-[''] after:bg-stone-900/[.3]  after:h-0.5 after:w-3/6 after:block after:ml-auto after:mr-auto after:mt-8" v-for="p in projects.data" :key="p.id">
+                    <ul class="after:content-[''] after:bg-stone-900/[.3]  after:h-0.5 after:w-3/6 after:block after:ml-auto after:mr-auto after:mt-8" v-for="project in projects.data" :key="project.id">
                         <li  class=" pb-4 mb-4 flex items-center justify-center flex-col-reverse sm:flex-row        md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8">
                             <div class="inline-block sm:w-2/5 ">
-                                <p class="font-bold  text-center sm:mb-4 lg:text-2xl">{{ p.title }}</p>
+                                <p class="font-bold  text-center sm:mb-4 lg:text-2xl">{{ project.title }}</p>
                                 <!--<p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">{{ p.description }}</p>-->
                                 <div class="mr-2 ml-2 flex items-end justify-between">
                                     <!-- <p class="w-6/12 text-base">Organizado por: {{ $page.props.user.name }}<br> -->
                                     <!-- <p>{{p.days}}</p> -->
-                                    <p>Cidade: {{ p.city }}<br>
-                                    Bairro: {{ p.neighborhood }}<br></p> <!-- <ul v-for="day in days.data" :key="day.id"> -->
+                                    <p>Cidade: {{ project.city }}<br>
+                                    Bairro: {{ project.neighborhood }}<br></p> <!-- <ul v-for="day in days.data" :key="day.id"> -->
                                     <a class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " href="#" @click="showProject(project.id)">Ver mais...</a>
                                 </div>
                             </div>
                             
                             <div class="inline-block ">
                             <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
+                            <!-- imgs/projects/doacao_de_roupas.jpg -->
                             </div>
                         </li>
                     </ul>

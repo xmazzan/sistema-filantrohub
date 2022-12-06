@@ -1,5 +1,6 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { Inertia } from '@inertiajs/inertia';
 
 export default {
     components: {
@@ -8,6 +9,7 @@ export default {
 
     props: {
         projects: Object,
+        //msg: String,
     },
 
     methods: {
@@ -33,6 +35,10 @@ export default {
                 Inertia.delete(route('customers.destroy', {customer: id}));
             });
         },
+
+        editProject(id) {
+            Inertia.get(route('edit', {project: id}))
+        }
     }
 }
 </script>
@@ -53,13 +59,13 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="p in projects.data" :key="p.id"> <!--  -->
-                        <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} id -->
-                        <td><a href=""> {{p.title}} </a></td> <!-- this.props.user.event -->
+                    <tr v-for="project in projects.data" :key="project.id"> <!--  -->
+                        <td scropt="row"> {{ project.id }} </td> <!-- {{ $loop->index + 1 }} id -->
+                        <td><a href=""> {{project.title}} </a></td> <!-- this.props.user.event -->
                         <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> Details.vue LINK PARA VISUALIZAÇÃO DO EVENTO -->
                         <td>0</td> <!-- {{ count($event->users) }} -->
                         <td>
-                            <a href="#" class="btn btn-info edit-btn" @click="updateProject(project.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
+                            <a href="#" class="btn btn-info edit-btn" @click="editProject(project.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
                             <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
                         </td>
                     </tr>

@@ -82,12 +82,15 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $id) //Project
-    {
-        $project = Project::findOrFail($id);
-
+    public function show($id) //Project
+    {   
+        $project = $this->projectService->showSingleProject($id);
+        $hasVolunteered = $this->projectService->hasVolunteeredStatus($id);
+        $OwnerOfTheProject = $this->projectService->projectOwner($id);
         return Inertia::render('Projects/Show', [
-           'project' => $project
+           'project' => $project,
+           'hasVolunteered'=> $hasVolunteered,
+           'OwnerOfTheProject' => $OwnerOfTheProject,
         ]);
     }
 
@@ -97,10 +100,12 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
+
+        $project = $this->projectService->editProjectPage($id);
         return Inertia::render('Projects/Edit', [
-            'subject' => $project,
+            'project' => $project,
         ]);
     }
 
@@ -137,40 +142,21 @@ class ProjectController extends Controller
 
         //$projects = $this->projectService->listProjects();
         $projects = $this->projectService->showAuthProjects();
+        //$projectsVolunteering = $this->projectService->attachUserToProject();
         return Inertia::render('Projects/Panel', [
             'projects' => $projects,
+            //'projectsVolunteering' => $projectsVolunteering,
+            
         ]);
-        //return view('projects/panel', ['projects' => $projects, 'projectsAsParticipant' => $projectsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
-   
-        //$filters = Request::only([
-        //    'title', 'document', 'phone', 'email',
-        //]);
-        
     }
-    /*
-    public function dashboard() {
-        
-        $user = auth()->user(); //user == método no modelo Eventos executando método belongTo que retorna em user(belongsTo - model User); events == método no modelo User, executando método hasMany(event)
-
-        //verificar os eventos dele - para verificar os eventos dele, não é necessário fazer um where com o ID DELE, como ele já está logado podemos utilizar a propriedade que utilizamos no model Http/Models/User.php
-        $events = $user->events; //EVENTOS QUE O USUÁRIO É DONO - permite o usuário acessar o método events em Http/Models/User.php
-        
-        $eventsAsParticipant = $user->eventsAsParticipant; //
-
-        return view('events/dashboard', ['events' => $events, 'eventsAsParticipant' => $eventsAsParticipant]); //copiar a dashboard em /views/profile/dashboard.blade.php para /views/events/dashboard.blade.php
-    }
-
+    
     public function joinProject($id) {
-
-        $user = auth()->user();
-
-        $user->projectsAsParticipant()->attach($id);
-
-        $project = Project::findOrFail($id);
-
+        //$project = Project::findOrFail($id);
+        
+        $project = $this->projectService->attachUserToProject($id);
         return Redirect::route('/panel'); //->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
     }
-
+    /*
     public function leaveProject($id) {
         
         $user = auth()->user();

@@ -22,7 +22,8 @@ Route::get('/Create', function () {
     return Inertia::render('Create');
 })->name('create');
 
-Route::put('/projects/{project}', [ProjectController::class, 'show'])->name('show');
+Route::get('/project/{project}', [ProjectController::class, 'show'])->name('show');
+
 
 //Authenticated
 
@@ -31,15 +32,16 @@ Route::middleware([
 	config('jetstream.auth_session'),
 	'verified',
 ])->group(function () {
-    Route::get('/panel', [ProjectController::class, 'panel'])->name('panel'); // profile/dashboard
-
+    //Route::get('/panel', [ProjectController::class, 'panel'])->name('panel'); //GERA OUTRA
+    Route::get('/project/{project}', [ProjectController::class, 'edit'])->name('edit');
     Route::as('projects.')->group(function () {
+        Route::get('/panel', [ProjectController::class, 'panel'])->name('panel');
+        //Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('show'); /***************8 */
         Route::post('/projects', [ProjectController::class, 'store'])->name('store');
-        Route::get('/panel', [ProjectController::class, 'panel'])->name('panel'); // profile/dashboard
         Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('destroy');//acessar evento pelo id events/{id}
-        Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('edit');
+        //Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('edit');
         Route::put('/project/update/{id}', [ProjectController::class, 'update'])->name('update');
-        Route::post('/project/join/{id}',[ProjectController::class, 'joinEvent'])->name('joinEvent'); //presente na /events/DASHBOARD.blade.php join==signIn action EventController
-        Route::delete('/project/leave/{id}',[ProjectController::class, 'leaveEvent'])->name('leaveEvent');     
+        Route::post('/project/join/{id}',[ProjectController::class, 'joinProject'])->name('joinProject'); //presente na /events/DASHBOARD.blade.php join==signIn action EventController
+        Route::delete('/project/leave/{id}',[ProjectController::class, 'leaveProject'])->name('leaveProject');     
     });
 });

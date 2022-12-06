@@ -28,6 +28,45 @@ class ProjectService
         return Project::create($data);
     }
 
+    public function editProjectPage($id)
+    {
+        $user = auth()->user();
+        $project = Project::findOrFail($id);
+        if($user->id != $project->user_id){
+            return Redirect::route('/panel');
+        }
+
+        return Project::findOrFail($id);
+    }
+
+    public function showSingleProject($id) 
+    {
+        return Project::findOrFail($id);
+        //return Project::where('user_id', '=', "{$user->id}")->paginate(50);
+    }
+
+    public function projectOwner($id)
+    {
+        $project = Project::findOrFail($id);
+        return User::findOrFail($project->user_id); //return User::where('id', '=', $project->user_id); //return User::where('id', '=', $project->user_id);
+    }
+
+    public function hasVolunteeredStatus($id) 
+    {
+        $hasVolunteered = false;
+        $user = auth()->user();
+        if($user) {
+            $userProjects = $user->projects->toArray();
+            forEach ($userProjects as $userProject) {
+                if($userProject['id'] == $id) {
+                    $hasVolunteered = true;
+                    return $hasVolunteered;
+                }
+            }
+            return $hasVolunteered;
+        }
+    }
+
     public function showAuthProjects(): LengthAwarePaginator
     {
         //$project = Project::where('user_id', '=' , $project->user_id)->toArray();
@@ -55,16 +94,26 @@ class ProjectService
         return Project::where('user_id', '=', "{$user->id}")->paginate(50);
     }
 
+    
+    public function attachUserToProject() { //$id
+        $user = auth()->user();
+        $user = $user->voluntieeringOnProjects->attach($user->id);
+        return Project::where();
+    }
+
+    /*
     public function updateProject(Project $project, array $data): Project
     {
         if ($project->updateOrFail($data)) {
             return $project->refresh();
         }
     }
-
+    
     public function destroy(Project $project) 
     {
         $project->deleteOrFail();
         return Redirect::back();
     }
+    */
+    
 }

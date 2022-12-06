@@ -65,9 +65,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Project');
     } 
 
-      /*MANY TO MANY - relation between database tables!
-    public function projectsAsParticipant() {
+      /*MANY TO MANY - relation between database tables!*/
+    public function voluntieeringOnProjects() {
             return $this->belongsToMany('App\Models\Project');
     }
-    */
+    
 }

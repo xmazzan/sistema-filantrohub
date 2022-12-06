@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Project;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest; //  NECESSÁRIO
 
 class StoreProjectRequest extends FormRequest
 {
