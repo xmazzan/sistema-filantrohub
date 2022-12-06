@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateDashboardRequest;
 use Inertia\Inertia;
+use illuminate\Support\Facades\Auth;
+
 
 class DashboardController extends Controller
 {
@@ -14,7 +16,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+       
         return Inertia::render('Dashboard');
+       
     }
 
     /**
@@ -25,6 +29,9 @@ class DashboardController extends Controller
     public function create()
     {
         //
+       
+
+  
     }
 
     /**
@@ -46,7 +53,9 @@ class DashboardController extends Controller
      */
     public function show()
     {
+       
         return Inertia::render('Dashboard');
+        
     }
 
     /**

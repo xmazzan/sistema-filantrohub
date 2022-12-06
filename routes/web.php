@@ -12,12 +12,20 @@ Route::get('/', [DashboardController::class, 'show'])->name('dashboard');
 Route::get('/Know', [ProjetoController::class, 'index'])->name('know');
 
 Route::middleware([
+    'autentica'
+    
+])->group(function () {
+    
+    Route::post('/', [DashboardController::class, 'index'])->name('index');
+});
+
+Route::middleware([
 	'auth:sanctum',
 	config('jetstream.auth_session'),
 	'verified',
+    
 ])->group(function () {
 
-    Route::post('/', [DashboardController::class, 'index'])->name('index');
 
     Route::get('/Create', [ProjetoController::class, 'create'])->name('create');
 

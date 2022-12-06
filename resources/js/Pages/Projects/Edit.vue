@@ -1,4 +1,5 @@
 <script>
+
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import Swal from 'sweetalert2';
