@@ -33,7 +33,7 @@ Route::middleware([
 	'verified',
 ])->group(function () {
     //Route::get('/panel', [ProjectController::class, 'panel'])->name('panel'); //GERA OUTRA
-    Route::get('/project/{project}', [ProjectController::class, 'edit'])->name('edit');
+    Route::get('/project/{project}', [ProjectController::class, 'edit'])->name('edit'); 
     Route::as('projects.')->group(function () {
         Route::get('/panel', [ProjectController::class, 'panel'])->name('panel');
         //Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('show'); /***************8 */
