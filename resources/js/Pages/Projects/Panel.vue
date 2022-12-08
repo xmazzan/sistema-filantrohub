@@ -1,6 +1,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
+import Swal from 'sweetalert2';
 
 export default {
     components: {
@@ -9,6 +10,7 @@ export default {
 
     props: {
         projects: Object,
+        projectsVolunteering: Object,
         //msg: String,
     },
 
@@ -21,7 +23,7 @@ export default {
             Inertia.get(route('projects.edit', {project: id}))
         },
 
-        deleteCustomer(id) {
+        deleteProject(id) {
             Swal.fire({
                 titleText: `Deseja excluir o cliente ${id}?`,
                 confirmButtonText: 'Sim',
@@ -38,6 +40,21 @@ export default {
 
         editProject(id) {
             Inertia.get(route('edit', {project: id}))
+        },
+
+        leaveProject(id) {
+            Swal.fire({
+                titleText: `Deseja excluir o cliente ${id}?`,
+                confirmButtonText: 'Sim',
+                confirmButtonColor: '#009FE3',
+                showDenyButton: true,
+                denyButtonText: 'Não'
+            }).then(result => {
+                if (!result.isConfirmed) {
+                    return;
+                }
+                Inertia.delete(route('destroy', {volunteering: id}));
+            });
         }
     }
 }
@@ -87,9 +104,9 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scropt="row"> 1 </td> <!-- {{ $loop->index + 1 }} -->
-                        <td><a href="#" @click="showProject(project.id)">project->title</a></td> <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> -->
+                    <tr v-for="volunteering in projectsVolunteering.data" :key="volunteering.id">
+                        <td scropt="row"> {{ volunteering.id }} </td> <!-- {{ $loop->index + 1 }} -->
+                        <td><a href="#" @click="showProject(volunteering.id)"> {{ volunteering.title }} </a></td> <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> -->
                         <!-- LINK PARA VISUALIZAÇÃO DO EVENTO -->
                         <td>count</td> <!-- {{ count($event->users) }} {{-- <td>0</td> --}} -->
                         <td>

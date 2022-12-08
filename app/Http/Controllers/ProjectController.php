@@ -102,7 +102,6 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-
         $project = $this->projectService->editProjectPage($id);
         return Inertia::render('Projects/Edit', [
             'project' => $project,
@@ -136,25 +135,24 @@ class ProjectController extends Controller
     
     public function panel() {
 
-        //$user = auth()->user();
-        //$project = $user->projects;
-        //$projectsAsParticipant = $user->projectsAsParticipant;
 
         //$projects = $this->projectService->listProjects();
         $projects = $this->projectService->showAuthProjects();
         //$projectsVolunteering = $this->projectService->attachUserToProject();
+        //$projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
+        $user = auth()->user();
+        $projectsVolunteering = $user->voluntieeringOnProjects;
         return Inertia::render('Projects/Panel', [
             'projects' => $projects,
-            //'projectsVolunteering' => $projectsVolunteering,
-            
+            'projectsVolunteering' => $projectsVolunteering,
         ]);
     }
     
-    public function joinProject($id) {
-        //$project = Project::findOrFail($id);
-        
-        $project = $this->projectService->attachUserToProject($id);
-        return Redirect::route('/panel'); //->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
+    public function joinProject($idProject) {
+        //$this->projectService->attachUserToProject($idProject);
+        $user = auth()->user();
+        $user->voluntieeringOnProjects()->attach($idProject);
+        return Redirect::route('dashboard');//return Redirect::route('/Panel'); //->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
     }
     /*
     public function leaveProject($id) {

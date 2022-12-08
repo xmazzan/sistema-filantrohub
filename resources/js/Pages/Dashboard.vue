@@ -14,7 +14,7 @@ export default {
 
     methods: {
         showProject(id) {
-            Inertia.get(route('show', {project: id}))
+            Inertia.get(route('projects.show', {project: id}))
         }
     }
 }

@@ -142,7 +142,7 @@ export default {
             <div class="form-group">
                 <label for="date">Dias de funcionamento do projeto:</label>
                 <div class="form-group">	
-                <input type="checkbox" name="days" value="Segunda" v-model.trim="form.days"> Segunda
+                    <input type="checkbox" name="days" value="Segunda" v-model.trim="form.days"> Segunda
                 </div>
                 <div class="form-group">	
                     <input type="checkbox" name="days" value="Terça" v-model.trim="form.days"> Terça
@@ -164,7 +164,7 @@ export default {
                 </div>
             </div>
 
-            <!-- POSTCODE -->
+            <!-- POSTCODE 
             <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
                 <div class="customer-phone flex flex-col mb-4 sm:mb-0 sm:w-[    8%]">
                     <label for="txtCustomerPhone" class="text-gray-800">Telefone</label>
@@ -213,7 +213,7 @@ export default {
                     <input type="text" id="txtCustomerComplement" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.complement }" v-model.trim="form.complement">
                     <small class="text-red-700" v-if="errors.complement">{{ errors.complement }}</small>
                 </div>
-            </div>
+            </div>-->
             <!-- FIM POSTCODE -->
 
             <div class="form-group">

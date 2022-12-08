@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect; //return Redirect::back();
 
+
 class ProjectService
 {
     public function listProjects(): LengthAwarePaginator
@@ -93,12 +94,15 @@ class ProjectService
         $user = auth()->user();
         return Project::where('user_id', '=', "{$user->id}")->paginate(50);
     }
-
     
-    public function attachUserToProject() { //$id
+    public function showProjectsThatIsVolunteering() {
         $user = auth()->user();
-        $user = $user->voluntieeringOnProjects->attach($user->id);
-        return Project::where();
+        return $user->voluntieeringOnProjects;
+    }
+    
+    public function attachUserToProject($idProject) {
+        $user = auth()->user();
+        return $user = $user->voluntieeringOnProjects->attach($idProject);//->attach($idProject);
     }
 
     /*

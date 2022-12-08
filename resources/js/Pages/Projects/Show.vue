@@ -1,5 +1,6 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { Inertia } from '@inertiajs/inertia';
 import { booleanLiteral } from '@babel/types';
 
 export default {
@@ -15,8 +16,8 @@ export default {
 
     methods: {
         confirmParticipation(id) {
-            this.form
-                .post(rout('joinProject', {id}))
+            Inertia.get(route('projects.joinProject', {id}))
+            //this.form.post(route('projects.joinProject', {id}))
         }
     }
 }
@@ -33,8 +34,8 @@ export default {
                     <h1>{{ project.title }}</h1>
                     <p class="event-city"><ion-icon name="location-outline"></ion-icon> {{ project.city }} </p>
                     <p class="events-participants"><ion-icon name="people-outline"></ion-icon> <!--p.events-participants-->
-                        50 Participants
-                    </p><!-- {{ count($project->users) }} -->
+                        50 Participants <!-- {{ count($project->users) }} -->
+                    </p>
                     <!-- só foi possível mostrar o número de participantes graças ao método users() no model Events que dá 
                         acesso aos usuários que estão participando no evento  
                         // $project = Event::findOrFail($id); -> users(return belongsToMany(/model/user)) 
