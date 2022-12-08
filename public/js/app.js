@@ -29821,13 +29821,13 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-5xl text-center mb-4 font-bold"
+  "class": "text-xl sm:text-5xl text-center mb-4 font-bold"
 }, "Eventos criados", -1
 /* HOISTED */
 );
 
 var _hoisted_3 = {
-  "class": "w-full h-60"
+  "class": "w-full h-40 sm:h-56"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
@@ -29885,7 +29885,7 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Deletar");
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-5xl text-center mb-4 font-bold mt-4"
+  "class": "text-xl sm:text-5xl text-center mb-4 font-bold mt-4"
 }, "Eventos voluntáriados", -1
 /* HOISTED */
 );
@@ -29948,171 +29948,6 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Deletar");
 
-var _hoisted_26 = {
-  "class": "border-b bg-white"
-};
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "1", -1
-/* HOISTED */
-);
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "Doação de roupas", -1
-/* HOISTED */
-);
-
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "90", -1
-/* HOISTED */
-);
-
-var _hoisted_30 = {
-  "class": "text-center text-[13px]"
-};
-var _hoisted_31 = {
-  "class": "sm:p-[5%]"
-};
-
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Editar");
-
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Deletar");
-
-var _hoisted_34 = {
-  "class": "border-b bg-white"
-};
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "1", -1
-/* HOISTED */
-);
-
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "Doação de roupas", -1
-/* HOISTED */
-);
-
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "90", -1
-/* HOISTED */
-);
-
-var _hoisted_38 = {
-  "class": "text-center text-[13px]"
-};
-var _hoisted_39 = {
-  "class": "sm:p-[5%]"
-};
-
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Editar");
-
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Deletar");
-
-var _hoisted_42 = {
-  "class": "border-b bg-white"
-};
-
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "1", -1
-/* HOISTED */
-);
-
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "Doação de roupas", -1
-/* HOISTED */
-);
-
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "90", -1
-/* HOISTED */
-);
-
-var _hoisted_46 = {
-  "class": "text-center text-[13px]"
-};
-var _hoisted_47 = {
-  "class": "sm:p-[5%]"
-};
-
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Editar");
-
-var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Deletar");
-
-var _hoisted_50 = {
-  "class": "border-b bg-white"
-};
-
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "1", -1
-/* HOISTED */
-);
-
-var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "Doação de roupas", -1
-/* HOISTED */
-);
-
-var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "90", -1
-/* HOISTED */
-);
-
-var _hoisted_54 = {
-  "class": "text-center text-[13px]"
-};
-var _hoisted_55 = {
-  "class": "sm:p-[5%]"
-};
-
-var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Editar");
-
-var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Deletar");
-
-var _hoisted_58 = {
-  "class": "border-b bg-white"
-};
-
-var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "1", -1
-/* HOISTED */
-);
-
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "Doação de roupas", -1
-/* HOISTED */
-);
-
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
-  "class": "text-center text-[13px] sm:text-base"
-}, "90", -1
-/* HOISTED */
-);
-
-var _hoisted_62 = {
-  "class": "text-center text-[13px]"
-};
-var _hoisted_63 = {
-  "class": "sm:p-[5%]"
-};
-
-var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Editar");
-
-var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Deletar");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ion_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ion-icon");
 
@@ -30122,7 +29957,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Projetos"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n    <div class=\"flex flex-col\">\n    <div class=\"overflow-x-auto sm:-mx-6 lg:-mx-8\">\n      <div class=\"py-2 inline-block min-w-full sm:px-6 lg:px-8\">\n        <div class=\"overflow-hidden\">\n          <table class=\"min-w-full\">\n            <thead class=\"border-b bg-zinc-900\">\n              <tr>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  #\n                </th>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  NOME\n                </th>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  VOLUNTÁRIOS\n                </th>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  AÇÕES\n                </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr class=\"border-b bg-white\">\n                <td class=\"px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap text-[12px] font-medium text-gray-900 text-center\">1</td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap text-center\">\n                  Entrega de aliementos perecívieis\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  sm:whitespace-nowrap text-center\">\n                  10\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap\">\n                  <div class=\"flex flex-col sm:block sm:text-center\"> \n                        \n                        <a  id=\"editar\" class=\"btn btn-info edit-btn m-[5%]\" @click=\"show=true,botao='Editar',updateProject(projetos.id)\"\n                        ><ion-icon name=\"create-outline \"></ion-icon> Editar</a>    \n                        \n                        <a  class=\"btn btn-danger delete-btn m-[5%]\" @click=\"botao='Deletar',show=true,deleteProject(projetos.id)\"><ion-icon name=\"trash-outline\"></ion-icon> Deletar</a>\n                  </div>\n                </td>\n              </tr>\n              <tr class=\"bg-white border-b\">\n                <td class=\"px-2 py-2 sm:px-6 sm:py-4  sm:whitespace-nowrap text-[12px] font-medium text-gray-900 text-center\">2</td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  sm:whitespace-nowrap text-center\">\n                  doaçao de livros \n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap text-center\">\n                 70\n                </td>\n                <td class=\"text-[12px]text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  sm:whitespace-nowrap\">\n                  <div class=\"flex flex-col sm:block sm:text-center\">\n                  \n                    <a  id=\"editar\" class=\"btn btn-info edit-btn m-[5%]\" @click=\"show=true,botao='Editar',updateProject(projetos.id)\"\n                    ><ion-icon name=\"create-outline\"></ion-icon> Editar</a>    \n                  \n                    <a  class=\"btn btn-danger delete-btn m-[5%] \" @click=\"botao='Deletar',show=true,deleteProject(projetos.id)\"><ion-icon name=\"trash-outline\"></ion-icon> Deletar</a>\n                  </div>\n                </td>\n              </tr>\n              <tr class=\"bg-white border-b\">\n                <td class=\"px-2 py-2 sm:px-6 sm:py-4  sm:whitespace-nowrap text-[12px] font-medium text-gray-900 text-center\">3</td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  sm:whitespace-nowrap text-center\" >\n                  Larry\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap text-center\">\n                  Wild\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap\">\n                  <div class=\"flex flex-col sm:block sm:text-center\">\n                   \n                    <a  id=\"editar\" class=\"btn btn-info edit-btn m-[5%]\" @click=\"show=true,botao='Editar',updateProject(projetos.id)\"\n                    ><ion-icon name=\"create-outline\"></ion-icon> Editar</a>    \n                \n                    <a  class=\"btn btn-danger delete-btn m-[5%]\" @click=\"botao='Deletar',show=true,deleteProject(projetos.id)\"><ion-icon name=\"trash-outline\"></ion-icon> Deletar</a>\n                  </div>\n                </td>\n              </tr>\n              <tr class=\"border-b bg-white\">\n                <td class=\"px-2 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[12px] font-medium text-gray-900 text-center\">4</td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-center\">\n                  Entrega de coberto nas ruas\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  whitespace-nowrap text-center\">\n                  89\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap\">\n                  <div class=\"flex flex-col sm:block sm:text-center\">\n                 \n                        <a  id=\"editar\" class=\"btn btn-info edit-btn m-[5%]\" @click=\"show=true,botao='Editar',updateProject(projetos.id)\"\n                        ><ion-icon name=\"create-outline \"></ion-icon> Editar</a>    \n                       \n                        <a  class=\"btn btn-danger delete-btn m-[5%]\" @click=\"botao='Deletar',show=true,deleteProject(projetos.id)\"><ion-icon name=\"trash-outline\"></ion-icon> Deletar</a>\n                  </div>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"flex flex-col\">\n    <div class=\"overflow-x-auto sm:-mx-6 lg:-mx-8\">\n      <div class=\"py-2 inline-block min-w-full sm:px-6 lg:px-8\">\n        <div class=\"overflow-hidden\">\n          <h1 class=\"text-center m-4 font-black\">Eventos que estou participando</h1>\n          <table class=\"min-w-full\">\n            <thead class=\"border-b bg-zinc-900\">\n              <tr>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  #\n                </th>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  NOME\n                </th>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  PARTICIPANTES\n                </th>\n                <th scope=\"col\" class=\"px-2 py-2 text-[12px] font-medium text-white sm:px-6 sm:py-4 text-center\">\n                  AÇÕES\n                </th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr class=\"border-b\">\n                <td class=\"px-2 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[12px] font-medium text-gray-900 text-center\">1</td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-center\">\n                  Mark\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  whitespace-nowrap text-center\">\n                  Otto\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap\">\n                  <div class=\"flex flex-col sm:block sm:text-center\">\n                   \n                        <a  id=\"editar\" class=\"btn btn-info edit-btn m-[5%]\" @click=\"show=true,botao='Editar',updateProject(projetos.id)\"\n                        ><ion-icon name=\"create-outline \"></ion-icon> Editar</a>    \n                 \n                        <a  class=\"btn btn-danger delete-btn m-[5%]\" @click=\"botao='Deletar',show=true,deleteProject(projetos.id)\"><ion-icon name=\"trash-outline\"></ion-icon> Deletar</a>\n                  </div>\n                </td>\n              </tr>\n              <tr class=\"bg-white border-b\">\n                <td class=\"px-2 py-2 sm:px-6 sm:py-4  whitespace-nowrap text-[12px] font-medium text-gray-900 text-center\">2</td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  whitespace-nowrap text-center\">\n                  Jacob\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-center\">\n                  Thornton\n                </td>\n                <td class=\"text-[12px]text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  sm:whitespace-nowrap\">\n                  <div class=\"flex flex-col sm:block sm:text-center\">\n             \n                    <a  id=\"editar\" class=\"btn btn-info edit-btn m-[5%]\" @click=\"show=true,botao='Editar',updateProject(projetos.id)\"\n                    ><ion-icon name=\"create-outline\"></ion-icon> Editar</a>    \n                \n                    <a  class=\"btn btn-danger delete-btn m-[5%]\" @click=\"botao='Deletar',show=true,deleteProject(projetos.id)\"><ion-icon name=\"trash-outline\"></ion-icon> Deletar</a>\n                  </div>\n                </td>\n              </tr>\n              <tr class=\"bg-white border-b\">\n                <td class=\"px-2 py-2 sm:px-6 sm:py-4  whitespace-nowrap text-[12px] font-medium text-gray-900 text-center\">3</td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4  whitespace-nowrap text-center\" >\n                  Larry\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-center\">\n                  Wild\n                </td>\n                <td class=\"text-[12px] text-gray-900 font-light px-2 py-2 sm:px-6 sm:py-4 sm:whitespace-nowrap\">\n                  <div class=\"flex flex-col sm:block sm:text-center\">\n                  \n                    <a  id=\"editar\" class=\"btn btn-info edit-btn m-[5%]\" @click=\"show=true,botao='Editar',updateProject(projetos.id)\"\n                    ><ion-icon name=\"create-outline\"></ion-icon> Editar</a>    \n                  \n                    <a  class=\"btn btn-danger delete-btn m-[5%]\" @click=\"botao='Deletar',show=true,deleteProject(projetos.id)\"><ion-icon name=\"trash-outline\"></ion-icon> Deletar</a>\n                  </div>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n  \n"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_6, [_hoisted_7, _hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_6, [_hoisted_7, _hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         id: "editar",
         "class": "btn btn-info edit-btn p-[5%] w-full mb-[5%] sm:max-w-[50%] sm:mb-0 sm:mr-[2%]",
         onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -30152,82 +29987,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
         name: "trash-outline"
-      }), _hoisted_25])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_26, [_hoisted_27, _hoisted_28, _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        id: "editar",
-        "class": "btn btn-info edit-btn p-[5%] w-full mb-[5%] sm:max-w-[50%] sm:mb-0 sm:mr-[2%]",
-        onClick: _cache[4] || (_cache[4] = function ($event) {
-          return _ctx.updateProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "create-outline "
-      }), _hoisted_32]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        "class": "btn btn-danger delete-btn p-[5%] w-full sm:max-w-[50%]",
-        onClick: _cache[5] || (_cache[5] = function ($event) {
-          return _ctx.deleteProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "trash-outline"
-      }), _hoisted_33])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_34, [_hoisted_35, _hoisted_36, _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        id: "editar",
-        "class": "btn btn-info edit-btn p-[5%] w-full mb-[5%] sm:max-w-[50%] sm:mb-0 sm:mr-[2%]",
-        onClick: _cache[6] || (_cache[6] = function ($event) {
-          return _ctx.updateProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "create-outline "
-      }), _hoisted_40]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        "class": "btn btn-danger delete-btn p-[5%] w-full sm:max-w-[50%]",
-        onClick: _cache[7] || (_cache[7] = function ($event) {
-          return _ctx.deleteProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "trash-outline"
-      }), _hoisted_41])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_42, [_hoisted_43, _hoisted_44, _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        id: "editar",
-        "class": "btn btn-info edit-btn p-[5%] w-full mb-[5%] sm:max-w-[50%] sm:mb-0 sm:mr-[2%]",
-        onClick: _cache[8] || (_cache[8] = function ($event) {
-          return _ctx.updateProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "create-outline "
-      }), _hoisted_48]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        "class": "btn btn-danger delete-btn p-[5%] w-full sm:max-w-[50%]",
-        onClick: _cache[9] || (_cache[9] = function ($event) {
-          return _ctx.deleteProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "trash-outline"
-      }), _hoisted_49])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_50, [_hoisted_51, _hoisted_52, _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        id: "editar",
-        "class": "btn btn-info edit-btn p-[5%] w-full mb-[5%] sm:max-w-[50%] sm:mb-0 sm:mr-[2%]",
-        onClick: _cache[10] || (_cache[10] = function ($event) {
-          return _ctx.updateProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "create-outline "
-      }), _hoisted_56]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        "class": "btn btn-danger delete-btn p-[5%] w-full sm:max-w-[50%]",
-        onClick: _cache[11] || (_cache[11] = function ($event) {
-          return _ctx.deleteProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "trash-outline"
-      }), _hoisted_57])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_58, [_hoisted_59, _hoisted_60, _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        id: "editar",
-        "class": "btn btn-info edit-btn p-[5%] w-full mb-[5%] sm:max-w-[50%] sm:mb-0 sm:mr-[2%]",
-        onClick: _cache[12] || (_cache[12] = function ($event) {
-          return _ctx.updateProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "create-outline "
-      }), _hoisted_64]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        "class": "btn btn-danger delete-btn p-[5%] w-full sm:max-w-[50%]",
-        onClick: _cache[13] || (_cache[13] = function ($event) {
-          return _ctx.deleteProject(_ctx.projetos.id);
-        })
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ion_icon, {
-        name: "trash-outline"
-      }), _hoisted_65])])])])])])])];
+      }), _hoisted_25])])])])])])])];
     }),
     _: 1
     /* STABLE */
