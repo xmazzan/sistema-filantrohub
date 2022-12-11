@@ -1,9 +1,11 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-vue3';
 import Swal from 'sweetalert2';
 
 export default {
+    
     components: {
         AppLayout
     },
@@ -13,7 +15,7 @@ export default {
         projectsVolunteering: Object,
         //msg: String,
     },
-
+    
     methods: {
         showProject(id) {
             Inertia.get(route('projects.show', {project: id}))
@@ -89,7 +91,6 @@ export default {
                 </tbody>
             </table>
         </div>
-
         <div class="col-md-10 offset-md-1 dashboard-title-container"> <!-- md-1 é para ficar centralizada -->
             <h1>Projetos que estou participando</h1>
         </div>

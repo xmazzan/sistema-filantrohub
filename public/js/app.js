@@ -26295,8 +26295,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout.vue */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -26321,7 +26323,7 @@ __webpack_require__.r(__webpack_exports__);
       }));
     },
     deleteProject: function deleteProject(id) {
-      sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+      sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
         titleText: "Deseja excluir o cliente ".concat(id, "?"),
         confirmButtonText: 'Sim',
         confirmButtonColor: '#009FE3',
@@ -26343,7 +26345,7 @@ __webpack_require__.r(__webpack_exports__);
       }));
     },
     leaveProject: function leaveProject(id) {
-      sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+      sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
         titleText: "Deseja excluir o cliente ".concat(id, "?"),
         confirmButtonText: 'Sim',
         confirmButtonColor: '#009FE3',
@@ -34988,7 +34990,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nh1[data-v-87c74c36] {\n    text-align: center;\n    font-weight: bold;\n    font-size: 24px;\n}\n#event-create-container[data-v-87c74c36] {\n    padding: 30px;\n}\n#event-create-container label[data-v-87c74c36] {\n    font-weight: bold;\n}\n#event-create-container input[data-v-87c74c36],\n#event-create-container select[data-v-87c74c36],\n#event-create-container textarea[data-v-87c74c36] {\n    font-size: 12px;\n    margin-bottom: 10px;\n    margin-top: 10px;\n}\n.btn-primary[data-v-87c74c36] {\n    color: black;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nh1[data-v-87c74c36] {\n    text-align: center;\n    font-weight: bold;\n    font-size: 24px;\n}\n#event-create-container[data-v-87c74c36] {\n    padding: 30px;\n}\n#event-create-container label[data-v-87c74c36] {\n    font-weight: bold;\n}\n#event-create-container input[data-v-87c74c36],\n#event-create-container select[data-v-87c74c36],\n#event-create-container textarea[data-v-87c74c36] {\n    font-size: 12px;\n    margin-bottom: 10px;\n    margin-top: 10px;\n}\n.btn-primary[data-v-87c74c36] {\n    color: black;\n}\n#preview[data-v-87c74c36] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#preview img[data-v-87c74c36] {\n  max-width: 100%;\n  max-height: 500px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

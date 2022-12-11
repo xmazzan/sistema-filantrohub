@@ -139,9 +139,9 @@ class ProjectController extends Controller
         //$projects = $this->projectService->listProjects();
         $projects = $this->projectService->showAuthProjects();
         //$projectsVolunteering = $this->projectService->attachUserToProject();
-        //$projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
-        $user = auth()->user();
-        $projectsVolunteering = $user->voluntieeringOnProjects;
+        $projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
+        //$user = auth()->user();
+        //$projectsVolunteering = $user->voluntieeringOnProjects;
         return Inertia::render('Projects/Panel', [
             'projects' => $projects,
             'projectsVolunteering' => $projectsVolunteering,
