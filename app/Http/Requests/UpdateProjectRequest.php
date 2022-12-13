@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProjectRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true; //return false;
     }
 
     /**
@@ -24,7 +25,23 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'postcode' => ['nullable', 'string', 'regex:/\d{5}-\d{3}/'],
+            'state' => ['nullable', 'string'],
+            'city' => ['nullable', 'string'],
+            'neighborhood' => ['nullable', 'string'],
+            'street' => ['nullable', 'string'],
+            'number' => ['nullable', 'string'],
+            'complement' => ['nullable', 'string'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'phone.required' => 'Informe o telefone do cliente', 
+            //'phone.unique' => 'Já existe um cadastro com esse telefone',
+            'document.required' => 'Informe o CPF do cliente',
+            //'document.unique' =>'Já existe um cadastro com esse CPF',
         ];
     }
 }

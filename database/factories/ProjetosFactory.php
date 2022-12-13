@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Projetos>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project>
  */
-class ProjetosFactory extends Factory
+class ProjectFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,18 +17,22 @@ class ProjetosFactory extends Factory
     public function definition()
     {
         $days = [
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
+            'Segunda',
+            'Terça',
+            'Quarta',
+            'Quinta',
+            'Sexta',
+            'Sábado',
+            'Domingo',
         ];
+
+        $days = $this->faker->randomElement($days);
 
         return [
             //'image' => $this->faker->image(),
+            'image' => '/imgs/doacao_de_comida.jpeg',
             'title' => $this->faker->title(),
+            'phone' => $this->faker->phoneNumber(),
             'days' => $this->faker->days(),
             'postcode' => $this->faker->postcode(),
             'state' => $this->faker->state(),

@@ -13,20 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projetos', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("image");
-            $table->string("title");
+            $table->string("image")->nullable();
+            $table->string("title"); //->index();;
             $table->json("days");
-            $table->string('postcode')->nullable()->index();
-            $table->string('state')->nullable()->index();
-            $table->string('city')->nullable()->index();
-            $table->string('neighborhood')->nullable()->index();
-            $table->string('street')->nullable()->index();
-            $table->string('number')->nullable()->index();
-            $table->string('complement')->nullable()->index();
+            $table->string('phone'); //->index();
+            $table->string('postcode')->nullable(); //->index();
+            $table->string('state')->nullable(); //->index();
+            $table->string('city')->nullable(); //->index();
+            $table->string('neighborhood')->nullable(); //->index();
+            $table->string('street')->nullable(); //->index();
+            $table->string('number')->nullable(); //->index();
+            $table->string('complement')->nullable(); //->index();
             $table->text("description");
+            //$table->foreignId('user_id')->constrained();
         });
     }
 
@@ -37,6 +39,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projetos');
+        Schema::dropIfExists('projects');
+        //$table->foreignId('user_id')->constrained()->onDelete('cascade');
     }
 };

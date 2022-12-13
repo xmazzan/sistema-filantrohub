@@ -41,14 +41,14 @@ const logout = () => {
                         <div class="flex" v-if="$page.props.user">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('index')">
+                                <Link :href="route('dashboard')">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('index')" :active="route().current('index')">
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Home
                                 </NavLink>
                             </div>
@@ -60,7 +60,7 @@ const logout = () => {
                             </div>
 
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('project')" :active="route().current('project')">
+                                <NavLink :href="route('projects.myProject')" :active="route().current('projects.myProject')">
                                     Meus Projetos
                                 </NavLink>
                             </div>
@@ -173,6 +173,7 @@ const logout = () => {
                                         </button>
 
                                         <span v-else class="inline-flex rounded-md">
+                                           
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
                                             
 
