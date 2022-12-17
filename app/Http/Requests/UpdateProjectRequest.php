@@ -32,16 +32,23 @@ class UpdateProjectRequest extends FormRequest
             'street' => ['nullable', 'string'],
             'number' => ['nullable', 'string'],
             'complement' => ['nullable', 'string'],
+
+            'image' => ['required', 'image', 'min:3'],
+            'title' => ['required', 'string', 'min:3'],
+            'days' => ['required', 'json', 'min:1'],
+            'city' => ['required', 'string', 'min:3'],
+            'phone' => ['required', 'string', 'regex:/\(\d{2}\)\s\d{4,5}-\d{4}/'], //, "unique:$projectsModel,phone"],
+            'description' => ['required','string'], //tava faltando, por isso deu erro
+            'user_id' => ['required','integer'],
         ];
     }
 
     public function messages()
     {
         return [
+            'name.required' => 'Informe o nome do cliente', 
             'phone.required' => 'Informe o telefone do cliente', 
-            //'phone.unique' => 'Já existe um cadastro com esse telefone',
-            'document.required' => 'Informe o CPF do cliente',
-            //'document.unique' =>'Já existe um cadastro com esse CPF',
+            'phone.unique' => 'Já existe um cadastro com esse telefone',
         ];
     }
 }

@@ -3,6 +3,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import Swal from 'sweetalert2';
 import { mask } from 'vue-the-mask';
+//import axios from 'axios';
 
 export default {
     components: {
@@ -10,7 +11,7 @@ export default {
     },
 
     props: {
-        erros: Object,
+        errors: Object,
         project: Object,
     },
 
@@ -164,7 +165,7 @@ export default {
                 </div>
             </div>
 
-            <!-- POSTCODE 
+            <!-- POSTCODE -->
             <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
                 <div class="customer-phone flex flex-col mb-4 sm:mb-0 sm:w-[    8%]">
                     <label for="txtCustomerPhone" class="text-gray-800">Telefone</label>
@@ -213,7 +214,7 @@ export default {
                     <input type="text" id="txtCustomerComplement" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.complement }" v-model.trim="form.complement">
                     <small class="text-red-700" v-if="errors.complement">{{ errors.complement }}</small>
                 </div>
-            </div>-->
+            </div>
             <!-- FIM POSTCODE -->
 
             <div class="form-group">

@@ -41,7 +41,9 @@ export default {
                         // $project = Event::findOrFail($id); -> users(return belongsToMany(/model/user)) 
                     -->            
                     <p class="event-owner"><ion-icon name="star-outline"></ion-icon> Dono do Evento: {{ OwnerOfTheProject.name }}</p> <!-- $project->user->name - usando método belongsTo() do model events no controller// {{ $projectOwner['email'] }}-->
-                    
+                    <ul id="items-list" v-for="project in project.data" :key="project.id"> <!--  :key=".id" -->
+                        <li>{{ project.days }}</li>
+                    </ul>
                     <!--
                         <a href="/events/join/{{ $project->id }}" class="btn btn-primary" id="event-submit">
                             Confirmar Presença

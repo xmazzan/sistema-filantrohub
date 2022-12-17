@@ -27,7 +27,7 @@ export default {
 
         deleteProject(id) {
             Swal.fire({
-                titleText: `Deseja excluir o cliente ${id}?`,
+                titleText: `Deseja excluir o projeto ${id}?`,
                 confirmButtonText: 'Sim',
                 confirmButtonColor: '#009FE3',
                 showDenyButton: true,
@@ -36,7 +36,7 @@ export default {
                 if (!result.isConfirmed) {
                     return;
                 }
-                Inertia.delete(route('customers.destroy', {customer: id}));
+                Inertia.delete(route('projects.destroy', {project: id}));
             });
         },
 

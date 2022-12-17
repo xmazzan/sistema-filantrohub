@@ -9,6 +9,8 @@ use App\Models\Project;
 use App\Services\ProjectService;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -127,18 +129,20 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Project $project) // Project $project
     {
+        $user = auth()->user();
+        DB::table('project_user')->where('project_id', '=', $project->id)->where('user_id', '=', $user->id)->delete(); //precisa primiero tirar a table da foreign key
         $project->deleteOrFail();
         return Redirect::back();
     }
     
     public function panel() {
-
-
         //$projects = $this->projectService->listProjects();
         $projects = $this->projectService->showAuthProjects();
         //$projectsVolunteering = $this->projectService->attachUserToProject();
+        
+        $user = auth()->user();
         $projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
         //$user = auth()->user();
         //$projectsVolunteering = $user->voluntieeringOnProjects;
