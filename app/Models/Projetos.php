@@ -9,12 +9,13 @@ class Projetos extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'dias' => 'array'
-    ];
+    //protected $casts = [
+    //    'dias' => 'array'
+    //];
 
     protected $fillable = [
         'image',
+        'path',
         'title',
         'days',
         'phone',
@@ -26,5 +27,15 @@ class Projetos extends Model
         'number',
         'complement',
         'description',
+        'user_id',
     ];
+
+    public function user() { // 1 usuário é dono do evento
+        return $this->belongsTo('App\Models\User'); 
+    }
+
+    public function users() {
+        return $this->belongsToMany('App\Models\User');
+   }
+   
 }

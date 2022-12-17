@@ -3,18 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateDashboardRequest;
+use App\Models\Projetos;
+use App\Services\ProjectService;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
+    protected ProjectService $projectService;
+
+    public function __construct(ProjectService $projectService)
+    {
+        $this->projectService = $projectService;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        return Inertia::render('Dashboard');
+        $filter = Request::only([
+            'title',
+        ]);
+
+         $projects = $this->projectService->listProjects();
+         return Inertia::render('Dashboard', ['projects' => $projects,
+        'filter' => $filter]);
     }
 
     /**
@@ -46,7 +63,12 @@ class DashboardController extends Controller
      */
     public function show()
     {
-        return Inertia::render('Dashboard');
+        $filter = Request::only([
+            'title',
+        ]);
+         $projects = $this->projectService->listProjects();
+         return Inertia::render('Dashboard', ['projects' => $projects,
+        'filter' => $filter]);
     }
 
     /**

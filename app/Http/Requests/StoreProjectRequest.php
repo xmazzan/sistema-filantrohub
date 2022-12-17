@@ -29,10 +29,11 @@ class StoreProjectRequest extends FormRequest
 
         return [
             'image' => ['required', 'image', 'min:3'],
+            'path' => ['nullable','path', 'min:3'],
             'title' => ['required', 'string', 'min:3'],
             'days' => ['required', 'json', 'min:1'],
             'city' => ['required', 'string', 'min:3'],
-            'phone' => ['required', 'string', 'regex:/\(\d{2}\)\s\d{4,5}-\d{4}/'], //, "unique:$projectsModel,phone"],
+            'phone' => ['required', 'string', 'regex:/\(\d{2}\)\s\d{4,5}-\d{4}/'], 
             'postcode' => ['nullable', 'string', 'regex:/\d{5}-\d{3}/'],
             'state' => ['nullable', 'string'],
             'city' => ['nullable', 'string'],
@@ -40,7 +41,8 @@ class StoreProjectRequest extends FormRequest
             'street' => ['nullable', 'string'],
             'number' => ['nullable', 'string'],
             'complement' => ['nullable', 'string'],
-            'description' => ['required','string'], //tava faltando, por isso deu erro
+            'description' => ['required','string'], 
+            'user_id' => ['required','integer'],
         ];
     }
 
