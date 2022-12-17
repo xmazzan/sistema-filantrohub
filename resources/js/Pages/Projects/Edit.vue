@@ -9,22 +9,23 @@ export default {
     },
     props: {
         erros: Object,
-        subject: Object,
+        project: Object,
     },
     data() {
         return {
             form: useForm({
-                image: this.subject.image,
-                title: this.subject.title,
-                postcode: this.subject.postcode,
-                days: this.subject.days,
-                state: this.subject.state,
-                city: this.subject.city,
-                neighborhood: this.subject.neighborhood,
-                street: this.subject.street,
-                number: this.subject.number,
-                complement: this.subject.complement,
-                description: this.subject.description,
+                image: this.project.image,
+                title: this.project.title,
+                postcode: this.project.postcode,
+                days: this.project.days,
+                phone: this.project.phone,
+                state: this.project.state,
+                city: this.project.city,
+                neighborhood: this.project.neighborhood,
+                street: this.project.street,
+                number: this.project.number,
+                complement: this.project.complement,
+                description: this.project.description,
             }),
         };
     },
@@ -32,7 +33,7 @@ export default {
         submitForm() {
             this.form
                 .put(
-                    route('Projects.update', {project: this.subject.id}),
+                    route('Projects.update', {project: this.project.id}),
                     {
                         onSuccess: () => {
                             Swal.fire({
@@ -109,31 +110,109 @@ export default {
 
 <template>
     <AppLayout title="Home">
-        <div class="container-fluid">
-            <div class="row">
-                <div id="search-container" class="col-md-12"> <!-- div#search-container.col-md-12 -->
-                    <h1>Busque um Projeto Social</h1>
-                    <form action="/" method="GET">
-                        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar..."> <!--id para estilizar / name para pegar o conteúdo do formulário no backend / class form-control é do bootstrap para deixar o input mais bonito -->
-                    </form>
-                </div>
-
-                <div id="events-container" class="col-md-12">
-                    <h2>Próximos Eventos</h2>
-                    <p class="subtitle">Veja os eventos dos próximos dias</p>
-                    <div id="cards-container" class="row" style="border: 1px solid black">
-                        <div class="card col-md-3">
-                            <img src="/imgs/doacao_de_comida.jpeg" alt="Imagem do Evento">
-                            <div class="card-body">
-                                <p class="card-date"> formateDate</p>
-                                <h5 class="card-title"> project.title </h5>
-                                <p class="cards-participants"> Participantes</p>
-                                <a href="" class="btn btn-primary">Saber mais</a>
-                            </div>
-                        </div>
-                    </div>
+        <div id="event-create-container" class="col-md-6 offset-md-3">
+        <h1>Crie o seu evento</h1>
+        <form action="" method="post" @submit.prevent="submitForm"> <!-- action="/events" enctype="multipart/form-data"-->
+            <div class="form-group">
+                <label for="image">Imagem do Evento:</label>
+                <input type="file" id="image" @change="onFileChange" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
+                <div id="preview">
+                    <img v-if="imageUrl" :src="imageUrl" />
                 </div>
             </div>
+            <div class="form-group">
+                <label for="title">Evento:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento" v-model="form.title">
+            </div>
+
+            <div class="form-group">
+                <label for="date">Dias de funcionamento do projeto:</label>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Segunda" v-model.trim="form.days"> Segunda
+                </div>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Terça" v-model.trim="form.days"> Terça
+                </div>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Quarta" v-model.trim="form.days"> Quarta
+                </div>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Quinta" v-model.trim="form.days"> Quinta
+                </div>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Sexta" v-model.trim="form.days"> Sexta
+                </div>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Sábado" v-model.trim="form.days"> Sábado
+                </div>
+                <div class="form-group">	
+                    <input type="checkbox" name="days" value="Domingo" v-model.trim ="form.days"> Domingo
+                </div>
+            </div>
+
+            <!-- POSTCODE 
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="customer-phone flex flex-col mb-4 sm:mb-0 sm:w-[    8%]">
+                    <label for="txtCustomerPhone" class="text-gray-800">Telefone</label>
+                    <input type="tel" v-mask="['(##) ####-####','(##) #####-####']" id="txtCustomerPhone" maxlength="15" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.phone }" v-model.trim="form.phone">
+                    <small class="text-red-700" v-if="errors.phone">{{ errors.phone }}</small>
+                </div>
+            </div>
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="project-postcode flex flex-col mb-4 sm:mb-0 sm:w-[22%]">
+                    <label for="txtCustomerPostcode" class="text-gray-800">CEP</label>
+                    <input type="text" v-mask="'#####-###'" id="txtCustomerPostcode" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.postcode }" v-model.trim="form.postcode"/>
+                    <small class="text-red-700" v-if="errors.postcode">{{ errors.postcode }}</small>
+                </div>
+                <div class="project-state flex flex-col mb-4 sm:mb-0 sm:w-[22%]">
+                    <label for="txtCustomerState" class="text-gray-800">Estado</label>
+                        <input type="text" id="txtCustomerState" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.state }" v-model.trim="form.state">
+                    <small class="text-red-700" v-if="errors.state">{{ errors.state }}</small>
+                </div>
+                <div class="project-city flex flex-col mb-4 sm:mb-0 sm:w-[48%] ">
+                    <label for="txtCustomerCity" class="text-gray-800">Cidade</label>
+                    <input type="text" id="txtCustomerCity" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.city }" v-model.trim="form.city">
+                    <small class="text-red-700" v-if="errors.city">{{ errors.city }}</small>
+                </div>
+            </div>
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="project-neighborhood flex flex-col mb-4 sm:mb-0 sm:w-[48%]">
+                    <label for="txtCustomerNeighborhood" class="text-gray-800">Bairro</label>
+                    <input type="text" id="txtCustomerNeighborhood" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.neighborhood }" v-model.trim="form.neighborhood">
+                    <small class="text-red-700" v-if="errors.neighborhood">{{ errors.neighborhood }}</small>
+                    
+                </div>
+                <div class="project-street flex flex-col mb-4 sm:mb-0 sm:w-[48%]">
+                    <label for="txtCustomerStreet" class="text-gray-800">Rua</label>
+                    <input type="text" id="txtCustomerStreet" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.street }" v-model.trim="form.street">
+                    <small class="text-red-700" v-if="errors.street">{{ errors.street }}</small>
+                </div>
+            </div>
+            <div class="form-row flex justify-between flex-col sm:space-x-4 sm:flex-row">
+                <div class="project-number flex flex-col mb-4 sm:mb-0 sm:w-[22%] ">
+                    <label for="txtCustomerNeighborhood" class="text-gray-800">Número</label>
+                    <input type="text" id="txtCustomerNeighborhood" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.number }" v-model.trim="form.number">
+                    <small class="text-red-700" v-if="errors.number">{{ errors.number }}</small>
+                </div>
+                <div class="project-complement flex flex-col mb-4 sm:mb-0 sm:w-[48%]">
+                    <label for="txtCustomerComplement" class="text-gray-800">Complemento</label>
+                    <input type="text" id="txtCustomerComplement" class="border-gray-300 rounded-md" :class="{ 'border-red-700': errors.complement }" v-model.trim="form.complement">
+                    <small class="text-red-700" v-if="errors.complement">{{ errors.complement }}</small>
+                </div>
+            </div>-->
+            <!-- FIM POSTCODE -->
+
+            <div class="form-group">
+                <label for="title">Descrição:</label>
+                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?" v-model.trim="form.description"></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Criar Evento">
+            <!--  
+            <div class="form-footer flex justify-end space-x-4 mt-4">
+                <button class="rounded-full border-1 py-2 px-4 bg-white font-bold hover:shadow-lg hover:shadow-gray-300 transition-colors" type="submit" :disabled="form.processing">Criar Evento</button>
+            </div>
+            -->
+        </form>
         </div>
     </AppLayout>
 </template>

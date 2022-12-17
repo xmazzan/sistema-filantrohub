@@ -1,5 +1,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { mask } from 'vue-the-mask'; 
+
 
 export default {
     components: {
@@ -7,17 +9,38 @@ export default {
     },
     
     props: {
-        projetos: Object,
+        projects: Object,
     },
-    /*
+
+    data() {
+        return {
+            keyword: null,
+            Projetos: []
+        };
+    },
+    watch: {
+        keyword(after, before) {
+            if (this.keyword.length >= 3 ){
+                this.getResults();
+            }else if(this.keyword.length == 0){
+                this.Projetos = [];
+            }
+        }
+    },
     methods: {
-        showService(id) {
-            Inertia.get(route('services.show', {service: id}))
+        getResults() {
+            axios.get('/filtro', { params: { keyword: this.keyword } })
+            .then(res => this.Projetos = res.data)
+            .catch(error => {});
         },
-        
-        formatDate(dateValue)
-    }
-    */
+        showProject(id) {
+            Inertia.get(route('project', {project: id}));
+        },
+    },
+
+     directives: {
+        mask
+    },
 }
 
 </script>
@@ -31,7 +54,12 @@ export default {
                 </div>
 
                 <div class="flex items-center justify-center w-4/5 max-w-xl">
-                    <input type="text" class="w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black" placeholder="Busque um projeto">
+                    <input type="search" class="w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black" placeholder="Busque um projeto" name="search" id="search" v-model="keyword">
+                </div>
+                <div class="flex items-center justify-center w-4/5 max-w-xl" >
+                    <ul v-if="Projetos.length > 0" class="w-4/5 shadow-md shadow-black bg-white rounded-xl p-2">
+                        <a href="#" @click="showProject(projects.id)"><li v-for="p in Projetos" :key="p.id" v-text="p.title"></li></a>
+                    </ul>
                 </div>
 
                 <div class="pt-8 justify-center w-full paddin-top-1-5">
@@ -44,43 +72,26 @@ export default {
                 <div class="py-8 text-center text-black text-xl font-bold lg:text-2xl">
                     <h1> PROJETOS EM DESTAQUE </h1>
                 </div>
-                <ul class="after:content-[''] after:bg-stone-900/[.3]  after:h-0.5 after:w-3/6 after:block after:ml-auto after:mr-auto after:mt-8">
+
+                
+                <ul class="after:content-[''] after:bg-stone-900/[.3]  after:h-0.5 after:w-3/6 after:block after:ml-auto after:mr-auto after:mt-8" v-for="p in projects.data" :key="p.id">
                     <li  class=" pb-4 mb-4 flex items-center justify-center flex-col-reverse sm:flex-row        md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8" >
                         <div class="inline-block sm:w-2/5 ">
-                           <p class="font-bold  text-center sm:mb-4 lg:text-2xl"></p>
-                           <p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl" ></p>
+                           <p class="font-bold  text-center sm:mb-4 lg:text-2xl">{{ p.title }}</p>
+                           <p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl" > {{ p.description }}</p>
                            <div class="mr-2 ml-2 flex items-end justify-between">
-                            <p class="w-6/12 text-base">Organizado por: SENAI<br>
-                            Cidade: <br> 
-                            Data: 15/10/2022 </p>
-                            <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
+                            <p class="w-6/12 text-base">Organizado por: SENAI<br></p>
+                             <p class="w-6/12 text-base">Cidade: {{ p.city }}<br> </p>
+                             <p class="w-6/12 text-base">Data: 15/10/2022 </p>
+                            <a class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2" href="#" @click="showProject(project.id)">Ver mais....</a>
                         </div>
                         </div>
             
                         <div class="inline-block ">
-                           <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
-                        </div>
-                    </li>
-
-                    <li class=" pb-4  mb-3 flex items-center  flex-col-reverse justify-center sm:flex-row-reverse md:justify-evenly hover:shadow-xl mr-4 ml-4 md:ml-8 md:mr-8">
-                        <div class="inline-block sm:w-2/5 ">
-                            <p class="font-bold text-center sm:mb-4 lg:text-2xl">Doação de Comida</p>
-                           <p  class="w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolorum iure exercitationem, error, aut ex ad aperiam fugit, nam eum esse necessitatibus quibusdam. Iste vel itaque, ratione temporibus nulla dolor!dleu
-                            aidoepadoepdjeudiaopeadkeladjfgofdfd</p>
-                           <div class="mr-2 ml-2 flex items-end justify-between">
-                               <p class="w-6/12 text-base">Organizado por: SENAI<br>
-                               Cidade: Lauro de Freitas<br>
-                               Data: 15/10/2022</p>
-                            <button class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " type="submit">Ver mais....</button>
-                           </div>
-                        </div>
-            
-                        <div class="inline-block ">
-                           <img src="imgs/doacao_de_comida.jpeg" alt="doação de comida" class=" w-full border-solid border-2 border-blue-300 max-w-md  ">
+                           <img src="imgs/doacao_de_comida.jpeg" alt='doacao' class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
                         </div>
                     </li>
                 </ul>
-               
 
                 <div class="py-8 text-center text-black font-bold lg:text-2xl text-xl">
                     <h1>SOBRE FILANTROHUB</h1>
@@ -116,6 +127,5 @@ export default {
             <p class="text-center font-bold truncate">FILANTROHUB</p>
             <p class="text-center">@Copyright - No ar desde Dezembro/2022</p>
         </footer>
-
     </AppLayout>
 </template>

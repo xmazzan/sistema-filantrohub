@@ -9,10 +9,12 @@ export default {
     components: {
         AppLayout
     },
+    
     data() {
         return {
             form: useForm ({
                 image: null,
+                path:null,
                 title: null,
                 days: [],
                 phone: null,
@@ -24,7 +26,9 @@ export default {
                 number: null,
                 complement: null,
                 description: null,
+                user_id: null,
             }),
+            imageUrl: null,
         };
     },
     props: {
@@ -32,11 +36,16 @@ export default {
     },
     methods: {
         
+        onFileChange(e) {
+            const file = e.target.files[0];
+            this.imageUrl = URL.createObjectURL(file);
+        },
         submitForm() {
             this.form
             .transform( data => ({
                     ... data,
                     days: JSON.stringify(data.days) || null,
+                    user_id: this.$page.props.user?.id,
                 }))
             .post(
                 route('projects.store'),
@@ -119,7 +128,10 @@ export default {
         <form action="" method="post" @submit.prevent="submitForm">
             <div class="form-group">
                 <label for="image">Imagem do Evento:</label>
-                <input type="file" id="image" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
+                <input type="file" id="image" @change="onFileChange" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
+                <div id="preview">
+                    <img v-if="imageUrl" :src="imageUrl" />
+                </div>
             </div>
             <div class="form-group">
                 <label for="title">Evento:</label>

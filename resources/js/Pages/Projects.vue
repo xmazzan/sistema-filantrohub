@@ -1,19 +1,61 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
-
+import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-vue3';
+import Swal from 'sweetalert2';
 export default {
+    
     components: {
         AppLayout
     },
     props: {
+        projects: Object,
+        projectsVolunteering: Object,
+        //msg: String,
     },
+    
     methods: {
         showProject(id) {
-            Inertia.get(route('Know', {projetos: id}))
+            Inertia.get(route('projects.show', {project: id}))
+        },
+        updateProject(id){
+            Inertia.get(route('projects.edit', {project: id}))
+        },
+        deleteProject(id) {
+            Swal.fire({
+                titleText: `Deseja excluir o cliente ${id}?`,
+                confirmButtonText: 'Sim',
+                confirmButtonColor: '#009FE3',
+                showDenyButton: true,
+                denyButtonText: 'Não'
+            }).then(result => {
+                if (!result.isConfirmed) {
+                    return;
+                }
+                Inertia.delete(route('customers.destroy', {customer: id}));
+            });
+        },
+        editProject(id) {
+            Inertia.get(route('edit', {project: id}))
+        },
+        leaveProject(id) {
+            Swal.fire({
+                titleText: `Deseja excluir o cliente ${id}?`,
+                confirmButtonText: 'Sim',
+                confirmButtonColor: '#009FE3',
+                showDenyButton: true,
+                denyButtonText: 'Não'
+            }).then(result => {
+                if (!result.isConfirmed) {
+                    return;
+                }
+                Inertia.delete(route('destroy', {volunteering: id}));
+            });
         }
     }
 }
 </script>
+
 
 <template>
 <AppLayout title="Projetos">
@@ -31,15 +73,15 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scropt="row"> 1 </td>
-                        <td><a href=""> $project->title </a></td>
+                    <!--<tr v-for="project in projects.data" :key="project.id">
+                        <td scropt="row"> {{ project.id }} </td>
+                        <td><a href=""> {{project.title}} </a></td>
                         <td>0</td>
                         <td>
-                            <a href="#" class="btn btn-info edit-btn" @click="updateProject(projetos.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
-                            <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(projetos.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
+                            <a href="#" class="btn btn-info edit-btn" @click="editProject(project.id)"> Editar</a>    
+                            <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(project.id)"> Deletar</a>
                         </td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -58,16 +100,16 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scropt="row"> 1 </td>
-                        <td><a href="#" @click="showProject(projetos.id)">project->title</a></td> 
+                    <!--<tr v-for="volunteering in projectsVolunteering.data" :key="volunteering.id">
+                        <td scropt="row"> {{ volunteering.id }}</td>
+                        <td><a href="#" @click="showProject(volunteering.id)">{{ volunteering.title }}</a></td> 
                         <td>count</td>
                         <td>
-                            <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(projetos.id)">
-                                <ion-icon name="trash-outline"></ion-icon> Deletar
+                            <a href="#" class="btn btn-danger delete-btn"  @click="leaveProject(project.id)">
+                                 Deletar
                             </a>
                         </td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
