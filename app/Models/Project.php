@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Projetos extends Model
+class Project extends Model
 {
     use HasFactory;
 
-    //protected $casts = [
-    //    'dias' => 'array'
-    //];
-
     protected $fillable = [
-        'image',
-        'path',
+        'image_path',
         'title',
         'days',
         'phone',
@@ -27,15 +22,14 @@ class Projetos extends Model
         'number',
         'complement',
         'description',
-        'user_id',
+        'coop_type'
     ];
 
     public function user() { // 1 usuário é dono do evento
-        return $this->belongsTo('App\Models\User'); 
+        return $this->hasMany(User::class); 
     }
 
-    public function users() {
-        return $this->belongsToMany('App\Models\User');
-   }
-   
+    public function project_user_role(){
+        return $this->belongsToMany(ProjectUserRole::class);
+    }
 }

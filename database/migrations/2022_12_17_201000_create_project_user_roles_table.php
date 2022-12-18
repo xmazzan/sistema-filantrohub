@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projetos_user', function (Blueprint $table) {
-            $table->foreignId('projetos_id')->constrained();
+        Schema::create('project_user_roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('role')->index();
             $table->foreignId('user_id')->constrained();
-            $table->string('papel');
-            $table->timestamps();
+            $table->foreignId('project_id')->constrained();
         });
+
     }
 
     /**
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projetos_user');
+        Schema::dropIfExists('project_user_roles');
     }
 };

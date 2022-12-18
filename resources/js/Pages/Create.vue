@@ -2,7 +2,6 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { mask } from 'vue-the-mask';
 import { useForm } from '@inertiajs/inertia-vue3';
-import parseJson from 'parse-json';
 import Swal from 'sweetalert2';
 
 export default {
@@ -13,10 +12,8 @@ export default {
     data() {
         return {
             form: useForm ({
-                image: null,
-                path:null,
+                image_path: null,
                 title: null,
-                days: [],
                 phone: null,
                 postcode: null,
                 state: null,
@@ -26,7 +23,10 @@ export default {
                 number: null,
                 complement: null,
                 description: null,
+                coop_type: null,
+                days: [],
                 user_id: null,
+                image: null,
             }),
             imageUrl: null,
         };
@@ -44,8 +44,10 @@ export default {
             this.form
             .transform( data => ({
                     ... data,
+                    coop_type: 1,
                     days: JSON.stringify(data.days) || null,
                     user_id: this.$page.props.user?.id,
+                    image_path: 'auuu'
                 }))
             .post(
                 route('projects.store'),
@@ -125,10 +127,11 @@ export default {
     <AppLayout title="Criar">
         <div id="event-create-container" class="col-md-6 offset-md-3">
         <h1 class="ml-60 text-xl font-bold">Crie o seu evento</h1>
-        <form action="" method="post" @submit.prevent="submitForm">
+        <form action="" method="post" @submit.prevent="submitForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="image">Imagem do Evento:</label>
-                <input type="file" id="image" @change="onFileChange" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
+                <!-- " -->
+                <input type="file" id="image" @change="onFileChange" @input="form.image = $event.target.files[0]" class="form-control-file"> <!-- v-model="form.title" -->
                 <div id="preview">
                     <img v-if="imageUrl" :src="imageUrl" />
                 </div>

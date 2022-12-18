@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDashboardRequest extends FormRequest
+class StoreProjectUserRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

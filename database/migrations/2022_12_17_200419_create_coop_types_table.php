@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('projetos', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
+        Schema::create('coop_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -25,10 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('projetos', function (Blueprint $table) {
-            $table->foreignId('user_id')
-            ->constrained()
-            ->onDelete('cascade');
-        });
+        Schema::dropIfExists('coop_types');
     }
 };

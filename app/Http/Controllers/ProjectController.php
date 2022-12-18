@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use App\Models\Projetos;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
 
-class ProjetoController extends Controller
+class ProjectController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
@@ -25,71 +26,59 @@ class ProjetoController extends Controller
         $this->projectService = $projectService;
     }
 
-    public function create(){
+    public function create()
+    {
         return Inertia::render('Create');
     }
 
     public function store(StoreProjectRequest $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) { //isValid() é para verificar se é um arquivo/imagem que estamos procurando
 
-        if($request->hasFile('image') && $request->file('image')->isValid()) { //isValid() é para verificar se é um arquivo/imagem que estamos procurando
-            //$extension = $request->image->extension();
-            
-            $requestImage = $request->image;
-            
+            $requestImage = $request->file('image');
             $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-            
+            $imageName = md5($requestImage->getFilename() . strtotime("now")). "." . $extension;
             $requestImage->move(public_path('imgs/projects'), $imageName);
-
-            $request->image = $imageName;
-
-            $path = $requestImage->getRealPath();
-            $pos = strpos($path,public_path('imgs/projects'));
-            if ($pos != false) {
-                $path = substr($path, $pos + 1);
-            }
         }
+        $this->projectService->createProject($request->validated(), $imageName);
         
-        $this->projectService->createProject($request->validated());
         return Redirect::route('index'); //return Redirect::route('projects.index');
     }
 
-    public function edit(Projetos $project){
+    public function edit(Project $project)
+    {
         $project = $this->projectService->editProjectPage($project);
         return Inertia::render('Edit', [
             'project' => $project,
         ]);
     }
 
-    public function editPage(){
+    public function editPage()
+    {
         return Inertia::render('Edit');
     }
 
-    public function show1(Projetos $project){
+    public function show1(Project $project)
+    {
         $project = $this->projectService->showSingleProject($project);
         $hasVolunteered = $this->projectService->hasVolunteeredStatus($project);
         //$OwnerOfTheProject = $this->projectService->projectOwner($project);
-        $project = Projetos::findOrFail($project);
+        $project = Project::findOrFail($project);
         return Inertia::render('Projects', [
             'project' => $project,
-            'hasVolunteered'=> $hasVolunteered,
+            'hasVolunteered' => $hasVolunteered,
             //'OwnerOfTheProject' => $OwnerOfTheProject,
         ]);
     }
 
-    public function show(Projetos $id) 
+    public function show(Project $id)
     {
         $project = $this->projectService->showSingleProject($id);
         $hasVolunteered = $this->projectService->hasVolunteeredStatus($id);
         $OwnerOfTheProject = $this->projectService->projectOwner($id);
         return Inertia::render('Know', [
             'project' => $project,
-            'hasVolunteered'=> $hasVolunteered,
+            'hasVolunteered' => $hasVolunteered,
             'OwnerOfTheProject' => $OwnerOfTheProject,
         ]);
     }
@@ -100,8 +89,9 @@ class ProjetoController extends Controller
         return Inertia::render('Dashboard', ['projects' => $projects]);
     }
 
-    
-    public function panel() {
+
+    public function panel()
+    {
         //$projects = $this->projectService->listProjects();
         $projects = $this->projectService->showAuthProjects();
         //$projectsVolunteering = $this->projectService->attachUserToProject();
@@ -114,35 +104,28 @@ class ProjetoController extends Controller
         ]);
     }
 
-    public function destroy(Projetos $project)
+    public function destroy(Project $project)
     {
         $project->deleteOrFail();
         return Redirect::back();
     }
 
-    public function update(UpdateProjectRequest $request, Projetos $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         $this->project->updateProject($project, $request->validated());
         return Redirect::route('/panel');
     }
 
-    public function joinProject($idProject) {
+    public function joinProject($idProject)
+    {
         //$this->projectService->attachUserToProject($idProject);
         $user = auth()->user();
         #$user->voluntieeringOnProjects()->attach($idProject);
-        return Redirect::route('dashboard');//return Redirect::route('/Panel'); //->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
+        return Redirect::route('dashboard'); //return Redirect::route('/Panel'); //->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
     }
 
-    public function test(){
+    public function test()
+    {
         return Inertia::render('TesteDeCria');
     }
-
-    public function getProjects(Request $request)
-    {
-
-        $data = Projetos::where('title', 'LIKE','%'.$request->keyword.'%')->get();
-        return response()->json($data); 
-        
-    }
-
 }
