@@ -12,6 +12,7 @@ export default {
         project: Object,
         hasVolunteered: Boolean,
         OwnerOfTheProject: Object,
+        volunteersCount: Object,
     },
 
     methods: {
@@ -34,7 +35,7 @@ export default {
                     <h1>{{ project.title }}</h1>
                     <p class="event-city"><ion-icon name="location-outline"></ion-icon> {{ project.city }} </p>
                     <p class="events-participants"><ion-icon name="people-outline"></ion-icon> <!--p.events-participants-->
-                        50 Participants <!-- {{ count($project->users) }} -->
+                        {{ volunteersCount }} Participants <!-- {{ count($project->users) }} -->
                     </p>
                     <!-- só foi possível mostrar o número de participantes graças ao método users() no model Events que dá 
                         acesso aos usuários que estão participando no evento  
@@ -42,7 +43,7 @@ export default {
                     -->            
                     <p class="event-owner"><ion-icon name="star-outline"></ion-icon> Dono do Evento: {{ OwnerOfTheProject.name }}</p> <!-- $project->user->name - usando método belongsTo() do model events no controller// {{ $projectOwner['email'] }}-->
                     <ul id="items-list" v-for="project in project.data" :key="project.id"> <!--  :key=".id" -->
-                        <li>{{ project.days }}</li>
+                        <li>{{  }}</li>
                     </ul>
                     <!--
                         <a href="/events/join/{{ $project->id }}" class="btn btn-primary" id="event-submit">

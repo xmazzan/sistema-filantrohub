@@ -27,14 +27,6 @@ class ProjectService
 
     public function createProject(array $data): Project 
     {
-        /*
-        foreach($data->days as $day) {
-            DB::table('days')->insert([
-                'id_projeto' => '$data->id',
-                'id_dia' => $day
-            ]);
-        }
-        */
         return Project::create($data);
     }
 
@@ -53,6 +45,24 @@ class ProjectService
     {
         return Project::findOrFail($id);
         //return Project::where('user_id', '=', "{$user->id}")->paginate(50);
+    }
+
+    public function countVolunteers($id) {
+        $volunteers = DB::table('project_user')->where('project_id', $id)->where('participacao', 'Voluntário')->count();
+        return $volunteers;
+    }
+    
+    public function volunteersArray() {
+        $totalVolunteering = DB::table('projects')
+            ->join('project_user', 'projects.id', '=', 'project_user.project_id') //->join('project_user', 'project_user.project_id', '=', 'projects.id')
+            ->where('project_user.user_id', '=', "{$user->id}")
+            ->get();
+        $user = auth()->user();
+        $totalVolunteering = DB::table('project')
+            ->join('project_user', 'projects.id', '=', 'project_user.project_id') //->join('project_user', 'project_user.project_id', '=', 'projects.id')
+            ->where('project_user.user_id', '=', "{$user->id}")
+            ->get();
+        return $totalVolunteering;
     }
 
     public function projectOwner($id)
@@ -80,66 +90,22 @@ class ProjectService
     public function showAuthProjects(): LengthAwarePaginator
     {
         //$eventsAsParticipant = $user->eventsAsParticipant; //EVENTOS QUE USUÁRIO PARTICIPA 
-        
-        //$eventOwner = User::where('id', '=', $event->user_id);
-        /*
-        $project = Project::where('user_id', '=', $project->user_id, function ($query) {
-            $title = Request::input('title');
-                $query->where('title', 'LIKE', "%{$title}%");
-            })
-            ->orderBy('updated_at', 'desc')
-            ->paginate(10);
-        */
+        //$projects = DB::table('projects')->where();
+        //return $projects;
         $user = auth()->user();
         return Project::where('user_id', '=', "{$user->id}")->paginate(50);
     }
     
+
     public function showProjectsThatIsVolunteering() {
-        //$projects = Project::all();
-        //$projectsUsers = $projects->users;//->toArray();
         $user = auth()->user();
-        $userId = $user->id;
-        //                       id da coluna projects            user_id da tabela project_user
-        //$project = Project_user::where('user_id', '=', $userId)->where('papel', '=', 'criador')->get(); //where('id', '=', 'project_id')
-        //DB::table('project_user')->where('project_id', '=', )->where('user_id', '=', );
-
         $projects = DB::table('projects')
-            ->join('project_user', function ($join) use ($userId){
-                $join->on('projects.id', '=', 'project_user.project_id')
-                     ->where('project_user.user_id', '=', $userId);
-            })
+            ->join('project_user', 'projects.id', '=', 'project_user.project_id') //->join('project_user', 'project_user.project_id', '=', 'projects.id')
+            ->where('project_user.user_id', '=', "{$user->id}")
             ->get();
         return $projects;
-        /*
-        $projects = DB::table('projects')
-            ->join('users', 'users.id', '=', 'projects.user_id')
-            ->where(function ($query) {
-                $user = auth()->user();
-                $query->where('projects.user_id', '=', "{$user->id}");
-            })
-            ->get();
-        return $projects;
-        
-        if($user) {
-            $projects = $user->projects->toArray();
-
-            $userVoluntieeringOnProjects = $user->voluntieeringOnProjects->toArray();
-            $checkUserId = false;
-            forEach ($userVoluntieeringOnProjects as $userVoluntieeringOnProject) {
-                if($userVoluntieeringOnProject['user_id'] == $user->id) {
-                    $checkUserId = true;
-                    //return $checkUserId;
-                    if($checkUserId){
-                        Project::where('id', '=', "{$userVoluntieeringOnProject['project_id']}");
-                    }
-                }
-            }
-            //return $checkUserId;
-        }
-        */
-        
     }
-    
+
     public function attachUserToProject($idProject) {
         $user = auth()->user();
         return $user = $user->voluntieeringOnProjects->attach($idProject);//->attach($idProject);

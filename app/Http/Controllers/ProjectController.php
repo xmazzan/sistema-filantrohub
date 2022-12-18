@@ -31,7 +31,6 @@ class ProjectController extends Controller
     {
         //$projects = Project::withCount('Projects')->paginate(8);
         //$projects = Project::all();
-
         $projects = $this->projectService->listProjects();
         return Inertia::render('Dashboard', [
             'projects' => $projects
@@ -70,6 +69,16 @@ class ProjectController extends Controller
 
             $request->image = $imageName;
         }
+
+        $user = auth()->user();
+        $user->voluntieeringOnProjects()->attach();
+        
+        /*
+        DB::table('project_user')
+            ->where('user_id', $user->id)
+            ->where('participacao', null)
+            ->insert(array('participacao' => 'Voluntário'));
+         */
         
         //$user = auth()->user();
         //$project->user_id = $user->id;
@@ -89,10 +98,12 @@ class ProjectController extends Controller
         $project = $this->projectService->showSingleProject($id);
         $hasVolunteered = $this->projectService->hasVolunteeredStatus($id);
         $OwnerOfTheProject = $this->projectService->projectOwner($id);
+        $volunteersCount = $this->projectService->countVolunteers($id);
         return Inertia::render('Projects/Show', [
            'project' => $project,
            'hasVolunteered'=> $hasVolunteered,
            'OwnerOfTheProject' => $OwnerOfTheProject,
+           'volunteersCount' => $volunteersCount,
         ]);
     }
 
@@ -138,36 +149,36 @@ class ProjectController extends Controller
     }
     
     public function panel() {
-        //$projects = $this->projectService->listProjects();
+
         $projects = $this->projectService->showAuthProjects();
-        //$projectsVolunteering = $this->projectService->attachUserToProject();
-        
-        $user = auth()->user();
         $projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
-        //$user = auth()->user();
-        //$projectsVolunteering = $user->voluntieeringOnProjects;
+        $volunteersCount = $this->projectService->countVolunteers($project->id);
         return Inertia::render('Projects/Panel', [
             'projects' => $projects,
             'projectsVolunteering' => $projectsVolunteering,
+            //'volunteersCount' => $volunteersCount,
         ]);
     }
     
     public function joinProject($idProject) {
-        //$this->projectService->attachUserToProject($idProject);
         $user = auth()->user();
         $user->voluntieeringOnProjects()->attach($idProject);
+
+        DB::table('project_user')
+            ->where('user_id', $user->id)
+            ->where('participacao', null)
+            ->update(array('participacao' => 'Voluntário'));
         return Redirect::route('dashboard');//return Redirect::route('/Panel'); //->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
     }
-    /*
-    public function leaveProject($id) {
+    
+    public function leaveProject($id) { //Project $project
         
         $user = auth()->user();
-
         $user->projectsAsParticipant()->detach($id);
 
+        //DB::table('project_user')->where('project_user.project_id', '=', $id)->where('project_user.user_id', '=', $user->id)->delete();
         $project = Project::findOrFail($id); // para mandar a mensagem
 
         return Redirect::route('/panel'); //->with('msg', 'Sua presença no evento ' . $project->title . ' está cancelada.');
     }
-    */
 }

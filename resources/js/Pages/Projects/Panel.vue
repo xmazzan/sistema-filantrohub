@@ -13,10 +13,15 @@ export default {
     props: {
         projects: Object,
         projectsVolunteering: Object,
+        volunteersCount: Object,
         //msg: String,
     },
     
     methods: {
+        datesJsonToString() {
+            
+        },
+
         showProject(id) {
             Inertia.get(route('projects.show', {project: id}))
         },
@@ -46,7 +51,7 @@ export default {
 
         leaveProject(id) {
             Swal.fire({
-                titleText: `Deseja excluir o cliente ${id}?`,
+                titleText: `Deseja sair do projeto ${id}?`,
                 confirmButtonText: 'Sim',
                 confirmButtonColor: '#009FE3',
                 showDenyButton: true,
@@ -55,9 +60,9 @@ export default {
                 if (!result.isConfirmed) {
                     return;
                 }
-                Inertia.delete(route('destroy', {volunteering: id}));
+                Inertia.delete(route('projects.destroy', {project: id}));
             });
-        }
+        },
     }
 }
 </script>
@@ -105,15 +110,13 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="volunteering in projectsVolunteering.data" :key="volunteering.id">
+                    <tr v-for="volunteering in projectsVolunteering" :key="volunteering.id"> <!-- .data -->
                         <td scropt="row"> {{ volunteering.id }} </td> <!-- {{ $loop->index + 1 }} -->
                         <td><a href="#" @click="showProject(volunteering.id)"> {{ volunteering.title }} </a></td> <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> -->
                         <!-- LINK PARA VISUALIZAÇÃO DO EVENTO -->
-                        <td>count</td> <!-- {{ count($event->users) }} {{-- <td>0</td> --}} -->
+                        <td> volunteering </td> <!-- {{ count($event->users) }} {{-- <td>0</td> --}} -->
                         <td>
-                            <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(project.id)">
-                                <ion-icon name="trash-outline"></ion-icon> Deletar
-                            </a>
+                            <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(volunteering.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
                             <!--
                             <form action="/events/leave/{{ $event->id }}" method="POST">
                                 @csrf

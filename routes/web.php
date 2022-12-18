@@ -46,6 +46,7 @@ Route::middleware([
         Route::put('/project/update/{id}', [ProjectController::class, 'update'])->name('update');
         //Route::post('/project/join/{project}',[ProjectController::class, 'joinProject'])->name('joinProject'); //presente na /events/DASHBOARD.blade.php join==signIn action EventController
         Route::get('/project/join/{project}',[ProjectController::class, 'joinProject'])->name('joinProject');
-        Route::delete('/project/leave/{id}',[ProjectController::class, 'leaveProject'])->name('leaveProject');     
+        Route::delete('/project/{id}',[ProjectController::class, 'leaveProject'])->name('leaveProject'); //Route::delete('/project/leave/{id}',[ProjectController::class, 'leaveProject'])->name('leaveProject');     
+        //Route::get('/project/leave/{id}',[ProjectController::class, 'leaveProject'])->name('leaveProject');     
     });
 });
