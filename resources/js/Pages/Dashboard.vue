@@ -1,7 +1,7 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { mask } from "vue-the-mask";
-import { Inertia } from '@inertiajs/inertia';
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
  components: {
@@ -20,27 +20,29 @@ export default {
   };
  },
  watch: {
-    'search': {
-            handler(search) {
-                Inertia.get(
-                    this.$page.url,
-                    { search: search },
-                    {
-                        preserveScroll: true,
-                        preserveState: true,
-                    }
-                );
-            }
-        },
+  search: {
+   handler: function (search) {
+    if (this.validateSearch) {
+     Inertia.get(
+      this.$page.url,
+      { search: search },
+      {
+       preserveScroll: true,
+       preserveState: true,
+      }
+     );
+    }
+   },
   },
-  /*keyword(after, before) {
+ },
+ /*keyword(after, before) {
    if (this.keyword.length >= 3) {
     this.getResults();
    } else if (this.keyword.length == 0) {
     this.Projetos = [];
    }
   },*/
- 
+
  methods: {
   validateSearch(search) {
    if (!search) {
@@ -57,7 +59,7 @@ export default {
     .catch((error) => {});
   },*/
   showProject(id) {
-   Inertia.get(route("project", { project: id }));
+   Inertia.get(route('show', { project: id }));
   },
  },
 
@@ -94,15 +96,15 @@ export default {
      />
     </div>
     <div
-     v-if="search_projects"
-     class="flex items-center justify-center w-4/5 max-w-xl"
+     v-if="search != '' || null"
+     class="flex flex-col items-center justify-center w-4/5 max-w-xl"
     >
      <ul
-      v-for="result in search_projects"
+      v-for="result in search_projects.data"
       :key="result.id"
       class="w-4/5 shadow-md shadow-black bg-white rounded-xl p-2"
      >
-      <a href="" @click="showProject(result.id)">
+      <a href="#" @click="showProject(result.id)">
        <li>{{ result.title }}</li>
       </a>
      </ul>
@@ -178,7 +180,7 @@ export default {
          p-2
         "
         href="#"
-        @click="showProject(project.id)"
+        @click="showProject(p.id)"
         >Ver mais....</a
        >
       </div>

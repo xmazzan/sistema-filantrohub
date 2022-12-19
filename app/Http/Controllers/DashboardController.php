@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateDashboardRequest;
-use App\Models\Projetos;
 use App\Services\ProjectService;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
@@ -26,16 +25,17 @@ class DashboardController extends Controller
     public function index()
     {
         $filter = Request::only([
-            'search',
+            'search'
         ]);
          $projects = $this->projectService->listProjects();
          $search_projects = $this->projectService->getProjects();
          return Inertia::render('Dashboard', [
             'filter' => $filter,
             'projects' => $projects,
-            'search_projects' => $search_projects
+            'search_projects' => $search_projects->withQueryString()
         ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.

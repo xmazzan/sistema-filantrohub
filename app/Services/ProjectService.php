@@ -94,14 +94,13 @@ class ProjectService
         return Project::findOrFail($id);
     }
 
-    public function getProjects()
+    public function getProjects():LengthAwarePaginator
     {
         return Project::query()
             ->when(Request::input('search'), function (Builder $query) {
                 $search = Request::input('search');
                 $query->where('title', 'LIKE', "%{$search}%");
-            })
-            ->orderBy('updated_at', 'desc');
+            })->orderBy('updated_at', 'desc')->paginate(5);
             
     }
 }

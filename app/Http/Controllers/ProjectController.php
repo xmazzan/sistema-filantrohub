@@ -74,12 +74,12 @@ class ProjectController extends Controller
     public function show(Project $id)
     {
         $project = $this->projectService->showSingleProject($id);
-        $hasVolunteered = $this->projectService->hasVolunteeredStatus($id);
-        $OwnerOfTheProject = $this->projectService->projectOwner($id);
+        //$hasVolunteered = $this->projectService->hasVolunteeredStatus($id);
+        //$OwnerOfTheProject = $this->projectService->projectOwner($id);
         return Inertia::render('Know', [
             'project' => $project,
-            'hasVolunteered' => $hasVolunteered,
-            'OwnerOfTheProject' => $OwnerOfTheProject,
+            //'hasVolunteered' => $hasVolunteered,
+            //'OwnerOfTheProject' => $OwnerOfTheProject,
         ]);
     }
 
