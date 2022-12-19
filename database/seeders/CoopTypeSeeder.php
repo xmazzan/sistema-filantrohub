@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Projetos;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProjectSeeder extends Seeder
+class CoopTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class ProjectSeeder extends Seeder
      */
     public function run()
     {
-        Projetos::factory(20)->create();
+        //
     }
 }

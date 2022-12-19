@@ -59,15 +59,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    
-       // ONE TO MANY - relation between database tables!
-    public function projects() { // 1 usuário possui muitos eventos
-        return $this->hasMany('App\Models\Project');
-    } 
-
-      /*MANY TO MANY - relation between database tables!
-    public function projectsAsParticipant() {
-            return $this->belongsToMany('App\Models\Project');
+    public function project_user_role(){
+        return $this->belongsToMany(ProjectUserRole::class);
     }
-    */
 }

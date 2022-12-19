@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Project;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProjectRequest extends FormRequest
@@ -27,20 +28,18 @@ class StoreProjectRequest extends FormRequest
         //$projectsModel = Project::class;
 
         return [
-            'image' => ['required', 'image', 'min:3'],
+            'image_path' => ['required','string'],
             'title' => ['required', 'string', 'min:3'],
-            'days' => ['required', 'json', 'min:1'],
             'city' => ['required', 'string', 'min:3'],
-            'phone' => ['required', 'string', 'regex:/\(\d{2}\)\s\d{4,5}-\d{4}/'], //, "unique:$projectsModel,phone"],
-            'postcode' => ['nullable', 'string', 'regex:/\d{5}-\d{3}/'],
+            'phone' => ['required', 'string', 'regex:/\(\d{2}\)\s\d{4,5}-\d{4}/'],
+            'postcode' => ['required', 'string', 'regex:/\d{5}-\d{3}/'],
             'state' => ['nullable', 'string'],
-            'city' => ['nullable', 'string'],
             'neighborhood' => ['nullable', 'string'],
             'street' => ['nullable', 'string'],
             'number' => ['nullable', 'string'],
             'complement' => ['nullable', 'string'],
-            'description' => ['required','string'], //tava faltando, por isso deu erro
-            'user_id' => ['required','integer'],
+            'description' => ['required','string'],
+            'coop_type' => ['required','integer'],
         ];
     }
 
@@ -50,6 +49,8 @@ class StoreProjectRequest extends FormRequest
             'title.required' => 'Informe o título do projeto',
             'phone.required' => 'Informe o telefone do responsável',
             'document.required' => 'Informe o CPF/CNPJ do responsável',
+            'coop_type.required' => 'Informe o tipo de evento',
+            'image_path.string' => 'Erro porra'
         ];
     }
 }

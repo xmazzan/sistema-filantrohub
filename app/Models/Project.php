@@ -9,12 +9,8 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'days' => 'array'
-    ];
-
     protected $fillable = [
-        'image',
+        'image_path',
         'title',
         'days',
         'phone',
@@ -26,18 +22,14 @@ class Project extends Model
         'number',
         'complement',
         'description',
-        'user_id',
+        'coop_type'
     ];
 
-    
-          //ONE TO MANY - relation between database tables!
     public function user() { // 1 usuário é dono do evento
-        return $this->belongsTo('App\Models\User'); 
+        return $this->hasMany(User::class); 
     }
 
-    /*    MANY TO MANY - relation between database tables!
-    public function users() {
-        return $this->belongsToMany('App\Models\User');
-   }
-    */
+    public function project_user_role(){
+        return $this->belongsToMany(ProjectUserRole::class);
+    }
 }
