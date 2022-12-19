@@ -23775,6 +23775,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout.vue */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -23783,33 +23785,52 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     projects: Object,
-    search_projects: Object
+    search_projects: Object,
+    filter: Object
   },
   data: function data() {
+    var _this$filter;
     return {
-      keyword: null
+      search: (_this$filter = this.filter) === null || _this$filter === void 0 ? void 0 : _this$filter.search
     };
   },
   watch: {
-    /*keyword(after, before) {
-     if (this.keyword.length >= 3) {
-      this.getResults();
-     } else if (this.keyword.length == 0) {
-      this.Projetos = [];
-     }
-    },*/
+    'search': {
+      handler: function handler(search) {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get(this.$page.url, {
+          search: search
+        }, {
+          preserveScroll: true,
+          preserveState: true
+        });
+      }
+    }
   },
+  /*keyword(after, before) {
+   if (this.keyword.length >= 3) {
+    this.getResults();
+   } else if (this.keyword.length == 0) {
+    this.Projetos = [];
+   }
+  },*/
+
   methods: {
-    getResults: function getResults() {
-      var _this = this;
-      axios.get("/filtro", {
-        keyword: this.keyword
-      }).then(function (res) {
-        return _this.Projetos = res.data;
-      })["catch"](function (error) {});
+    validateSearch: function validateSearch(search) {
+      if (!search) {
+        return false;
+      } else if (search.length < 3) {
+        return false;
+      }
+      return true;
     },
+    /*getResults() {
+     axios
+      .get("/filtro", { search: this.search })
+      .then((res) => (this.search = res.data))
+      .catch((error) => {});
+    },*/
     showProject: function showProject(id) {
-      Inertia.get(route("project", {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get(route("project", {
         project: id
       }));
     }
@@ -27698,11 +27719,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "search",
         "class": "w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black",
         placeholder: "Busque um projeto",
-        name: "search",
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $data.keyword = $event;
+          return $data.search = $event;
         })
-      }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.keyword]])]), $props.search_projects ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.search_projects, function (result) {
+      }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.search]])]), $props.search_projects ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.search_projects, function (result) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
           key: result.id,
           "class": "w-4/5 shadow-md shadow-black bg-white rounded-xl p-2"
@@ -27723,7 +27743,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.showProject(_ctx.project.id);
           })
         }, "Ver mais....")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          src: '../imgs/projects/' + p.image_path,
+          src: 'imgs/projects/' + p.image_path,
           alt: "doacao",
           "class": "w-full border-solid border-2 border-blue-300 max-w-md"
         }, null, 8 /* PROPS */, _hoisted_19)])])]);

@@ -25,9 +25,13 @@ class DashboardController extends Controller
     
     public function index()
     {
+        $filter = Request::only([
+            'search',
+        ]);
          $projects = $this->projectService->listProjects();
          $search_projects = $this->projectService->getProjects();
          return Inertia::render('Dashboard', [
+            'filter' => $filter,
             'projects' => $projects,
             'search_projects' => $search_projects
         ]);
@@ -62,12 +66,14 @@ class DashboardController extends Controller
      */
     public function show()
     {
+        /*
         $filter = Request::only([
             'title',
         ]);
          $projects = $this->projectService->listProjects();
          return Inertia::render('Dashboard', ['projects' => $projects,
         'filter' => $filter]);
+        */
     }
 
     /**

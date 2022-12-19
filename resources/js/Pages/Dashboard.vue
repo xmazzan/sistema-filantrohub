@@ -1,6 +1,7 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { mask } from "vue-the-mask";
+import { Inertia } from '@inertiajs/inertia';
 
 export default {
  components: {
@@ -10,14 +11,28 @@ export default {
  props: {
   projects: Object,
   search_projects: Object,
+  filter: Object,
  },
 
  data() {
   return {
-   keyword: null,
+   search: this.filter?.search,
   };
  },
  watch: {
+    'search': {
+            handler(search) {
+                Inertia.get(
+                    this.$page.url,
+                    { search: search },
+                    {
+                        preserveScroll: true,
+                        preserveState: true,
+                    }
+                );
+            }
+        },
+  },
   /*keyword(after, before) {
    if (this.keyword.length >= 3) {
     this.getResults();
@@ -25,14 +40,22 @@ export default {
     this.Projetos = [];
    }
   },*/
- },
+ 
  methods: {
-  getResults() {
-   axios
-    .get("/filtro", { keyword: this.keyword })
-    .then((res) => (this.Projetos = res.data))
-    .catch((error) => {});
+  validateSearch(search) {
+   if (!search) {
+    return false;
+   } else if (search.length < 3) {
+    return false;
+   }
+   return true;
   },
+  /*getResults() {
+   axios
+    .get("/filtro", { search: this.search })
+    .then((res) => (this.search = res.data))
+    .catch((error) => {});
+  },*/
   showProject(id) {
    Inertia.get(route("project", { project: id }));
   },
@@ -66,8 +89,7 @@ export default {
       type="search"
       class="w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black"
       placeholder="Busque um projeto"
-      name="search"
-      v-model="keyword"
+      v-model="search"
      />
     </div>
     <div
@@ -98,7 +120,8 @@ export default {
     <h1>PROJETOS EM DESTAQUE</h1>
    </div>
 
-   <ul class="
+   <ul
+    class="
      after:content-['']
      after:bg-stone-900/[.3]
      after:h-0.5
@@ -162,7 +185,7 @@ export default {
 
      <div class="inline-block">
       <img
-       :src="imgs/projects/+p.image_path"
+       :src="'imgs/projects/' + p.image_path"
        alt="doacao"
        class="w-full border-solid border-2 border-blue-300 max-w-md"
       />

@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
-Route::get('/', [DashboardController::class, 'show'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/Know', [ProjectController::class, 'index'])->name('know');
 
 Route::get('/project/{project}', [ProjectController::class, 'show'])->name('show');
 //Route::put('/projects/{project}', [ProjectController::class, 'show'])->name('show');
 Route::get('/test', [ProjectController::class, 'test'])->name('test');
-Route::get('/filtro', [ProjectController::class, 'getProjects'])->name('filtro');
+//Route::get('/filtro', [ProjectController::class, 'getProjects'])->name('filtro');
 
 Route::middleware([
 	'auth:sanctum',
