@@ -16,16 +16,26 @@ export default {
 
  data() {
   return {
-   search: this.filter?.search,
+    search: this.filter?.search,
   };
  },
+
  watch: {
   search: {
    handler: function (search) {
-    if (this.validateSearch) {
+    if (this.validateSearch(search)) {
      Inertia.get(
       this.$page.url,
       { search: search },
+      {
+       preserveScroll: true,
+       preserveState: true,
+      }
+     );
+    }else if(search.length == 0){
+      Inertia.get(
+      this.$page.url,
+      { search: search = ""},
       {
        preserveScroll: true,
        preserveState: true,
@@ -35,13 +45,7 @@ export default {
    },
   },
  },
- /*keyword(after, before) {
-   if (this.keyword.length >= 3) {
-    this.getResults();
-   } else if (this.keyword.length == 0) {
-    this.Projetos = [];
-   }
-  },*/
+
 
  methods: {
   validateSearch(search) {
@@ -52,12 +56,7 @@ export default {
    }
    return true;
   },
-  /*getResults() {
-   axios
-    .get("/filtro", { search: this.search })
-    .then((res) => (this.search = res.data))
-    .catch((error) => {});
-  },*/
+  
   showProject(id) {
    Inertia.get(route('show', { project: id }));
   },
@@ -95,8 +94,9 @@ export default {
       v-model="search"
      />
     </div>
+
     <div
-     v-if="search != '' || null"
+     v-if="search == '' || null"
      class="flex flex-col items-center justify-center w-4/5 max-w-xl"
     >
      <ul
@@ -109,7 +109,7 @@ export default {
       </a>
      </ul>
     </div>
-
+    
     <div class="pt-8 justify-center w-full paddin-top-1-5">
      <span class="text-xs text-white sm:text-lg">
       BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO
