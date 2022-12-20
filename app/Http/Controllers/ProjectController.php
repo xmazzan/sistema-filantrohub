@@ -43,18 +43,6 @@ class ProjectController extends Controller
              'search_projects' => $search_projects->withQueryString()
          ]);
      }
-    /*
-    public function index()
-    {
-        //$projects = Project::withCount('Projects')->paginate(8);
-        //$projects = Project::all();
-        $projects = $this->projectService->listProjects();
-        return Inertia::render('Dashboard', [
-            'projects' => $projects
-        ]);
-        //return Inertia::render('Dashboard', ['teste' => 'TESTE CONTROLLER DATA']);
-    }
-     */
 
     /**
      * Show the form for creating a new resource.
@@ -74,22 +62,6 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        /*
-        if($request->hasFile('image') && $request->file('image')->isValid()) { //isValid() é para verificar se é um arquivo/imagem que estamos procurando
-            //$extension = $request->image->extension();
-            
-            $requestImage = $request->image;
-            
-            $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-            
-            $requestImage->move(public_path('imgs/projects'), $imageName);
-
-            $request->image = $imageName;
-        }
-        $this->projectService->createProject($request->validated());
-        */
         if ($request->hasFile('image') && $request->file('image')->isValid()) { //isValid() é para verificar se é um arquivo/imagem que estamos procurando
 
             $requestImage = $request->file('image');
@@ -99,12 +71,14 @@ class ProjectController extends Controller
         }
         $this->projectService->createProject($request->validated(), $imageName);
 
-        //DB::insert('insert into users (id, name) values (?, ?)', [1, 'Marc']);
-        
-        //$user = auth()->user();
-        //$user->voluntieeringOnProjects()->attach();
-        //$user = auth()->user();
-        //$project->user_id = $user->id;
+        //$quantProjetos = $this->projectService->countProjects();
+        /*
+        $days = $request->days;
+        $projectId = $request->id;
+        foreach($days as $day) {
+            DB::insert('insert into project_days (project_id, day) values (?, ?)', [$projectId, "{$day}"]); //'Marc'
+        }
+        */
         return Redirect::route('dashboard'); //return Redirect::route('projects.index');
     }
 

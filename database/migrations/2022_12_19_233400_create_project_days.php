@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('project_days', function (Blueprint $table) {
             //$table->id();
             //$table->timestamps();
-            
+            $table->foreignId('project_id')->constrained();
+            $table->string('day');
         });
     }
 

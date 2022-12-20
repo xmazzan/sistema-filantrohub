@@ -84,10 +84,9 @@ export default {
                 </thead>
                 <tbody>
                     <tr v-for="project in projects.data" :key="project.id"> <!--  -->
-                        <td scropt="row"> {{ project.id }} </td> <!-- {{ $loop->index + 1 }} id -->
-                        <td><a href=""> {{project.title}} </a></td> <!-- this.props.user.event -->
-                        <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> Details.vue LINK PARA VISUALIZAÇÃO DO EVENTO -->
-                        <td>{{  }}</td> <!-- {{ count($event->users) }} -->
+                        <td scropt="row"> {{ project.id }} </td>
+                        <td><a href="#"> {{project.title}} </a></td>
+                        <td>0</td> 
                         <td>
                             <a href="#" class="btn btn-info edit-btn" @click="editProject(project.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
                             <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
@@ -110,20 +109,12 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="volunteering in projectsVolunteering" :key="volunteering.id"> <!-- .data -->
-                        <td scropt="row"> {{ volunteering.id }} </td> <!-- {{ $loop->index + 1 }} -->
-                        <td><a href="#" @click="showProject(volunteering.id)"> {{ volunteering.title }} </a></td> <!-- <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td> -->
-                        <!-- LINK PARA VISUALIZAÇÃO DO EVENTO -->
-                        <td> volunteering </td> <!-- {{ count($event->users) }} {{-- <td>0</td> --}} -->
+                    <tr v-for="volunteering in projectsVolunteering" :key="volunteering.id">
+                        <td scropt="row"> {{ volunteering.id }} </td>
+                        <td><a href="#" @click="showProject(volunteering.id)"> {{ volunteering.title }} </a></td>
+                        <td> volunteering </td>
                         <td>
                             <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(volunteering.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
-                            <!--
-                            <form action="/events/leave/{{ $event->id }}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Sair do Evento</button>
-                            </form>
-                            -->
                         </td>
                     </tr>
                 </tbody>
