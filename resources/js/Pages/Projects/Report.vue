@@ -28,9 +28,9 @@ export default {
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">id</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Telefone</th>
+                        <th scope="col">Email</th>
                     </tr>
                 </thead>
                 <tbody>

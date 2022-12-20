@@ -17,7 +17,7 @@ class Project extends Model
         //'image',
         'image_path',
         'title',
-        'days',
+        //'days',
         'phone',
         'postcode',
         'state',

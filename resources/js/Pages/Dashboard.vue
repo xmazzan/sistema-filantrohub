@@ -93,7 +93,7 @@ export default {
                         </div>
                         <div class="pt-8 justify-center w-full paddin-top-1-5">
                             <span class="text-xs text-white sm:text-lg">
-                            BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO
+                            BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO PROJETO
                             </span>
                         </div>
                     </div>

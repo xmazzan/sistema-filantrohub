@@ -126,18 +126,18 @@ export default {
 <template>
     <AppLayout title="Home">
         <div id="event-create-container" class="col-md-6 offset-md-3">
-        <h1>Crie o seu evento</h1>
+        <h1>Edite seu projeto</h1>
         <form action="" method="post" @submit.prevent="submitForm"> <!-- action="/events" enctype="multipart/form-data"-->
             <div class="form-group">
-                <label for="image">Imagem do Evento:</label>
+                <label for="image">Imagem do Projeto:</label>
                 <input type="file" id="image" @change="onFileChange" @input="form.image = $event.target.files[0]" name="image" class="from-control-file"> <!-- v-model="form.title" -->
                 <div id="preview">
                     <img v-if="imageUrl" :src="imageUrl" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="title">Evento:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do evento" v-model="form.title">
+                <label for="title">Projeto:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do projeto" v-model="form.title">
             </div>
 
             <div class="form-group">
@@ -219,9 +219,9 @@ export default {
 
             <div class="form-group">
                 <label for="title">Descrição:</label>
-                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?" v-model.trim="form.description"></textarea>
+                <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no projeto?" v-model.trim="form.description"></textarea>
             </div>
-            <input type="submit" class="btn btn-primary" value="Criar Evento">
+            <input type="submit" class="btn btn-primary" value="Criar Projeto">
             <!--  
             <div class="form-footer flex justify-end space-x-4 mt-4">
                 <button class="rounded-full border-1 py-2 px-4 bg-white font-bold hover:shadow-lg hover:shadow-gray-300 transition-colors" type="submit" :disabled="form.processing">Criar Evento</button>

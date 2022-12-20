@@ -19,7 +19,7 @@ return new class extends Migration
             //$table->string("image")->nullable();
             $table->string("title"); //->index();
             $table->string("image_path")->nullable();
-            $table->json("days");
+            //$table->json("days");
             $table->string('phone'); //->index();
             $table->string('postcode')->nullable(); //->index();
             $table->string('state')->nullable(); //->index();

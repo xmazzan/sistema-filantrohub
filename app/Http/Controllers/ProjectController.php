@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 
+
 class ProjectController extends Controller
 {
     protected ProjectService $projectService;
@@ -72,13 +73,15 @@ class ProjectController extends Controller
         $this->projectService->createProject($request->validated(), $imageName);
 
         //$quantProjetos = $this->projectService->countProjects();
-        /*
+        
         $days = $request->days;
-        $projectId = $request->id;
+        //count projetos, ultimo +1 é o id do atual.
+        //$projectId = $request->id;
+        $countProjects = DB::table('projects')->count();
+        //$countProjects += 1;
         foreach($days as $day) {
-            DB::insert('insert into project_days (project_id, day) values (?, ?)', [$projectId, "{$day}"]); //'Marc'
+            DB::insert('insert into project_days (project_id, day) values (?, ?)', [$countProjects, "{$day}"]); //'Marc'
         }
-        */
         return Redirect::route('dashboard'); //return Redirect::route('projects.index');
     }
 
@@ -106,16 +109,19 @@ class ProjectController extends Controller
 
         $OwnerOfTheProject = $this->projectService->projectOwner($id);
         $volunteersCount = $this->projectService->countVolunteers($id);
+        $days = $this->projectService->getDays($id);
         return Inertia::render('Projects/Show', [
            'project' => $project,
            'hasVolunteered'=> $hasVolunteered,
            'OwnerOfTheProject' => $OwnerOfTheProject,
            'volunteersCount' => $volunteersCount,
-           //'days' => $days,
+           'days' => $days,
         ]);
     }
 
     public function report($id) {
+        $user = auth()->user();
+
         $users = $this->projectService->getUsers($id);
         $project = $this->projectService->showSingleProject($id);
         $volunteersCount = $this->projectService->countVolunteers($id);
@@ -173,9 +179,11 @@ class ProjectController extends Controller
 
         $projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
 
+        /*
         foreach($projects as $proje){
             $volunteersCount = $this->projectService->countVolunteers($proje->id);
         }
+        */
 
         //$volunteersCount = $this->projectService->countVolunteers($project->id);
         $volunteersCount = $this->projectService->volunteersArray();

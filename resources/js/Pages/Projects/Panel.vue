@@ -18,10 +18,6 @@ export default {
     },
     
     methods: {
-        datesJsonToString() {
-            
-        },
-
         showProject(id) {
             Inertia.get(route('projects.show', {project: id}))
         },
@@ -73,59 +69,64 @@ export default {
 
 <template>
     <AppLayout title="Home">
-        <div class="col-md-10 offset-md-1 dashboard-title-container">
-            <h1>Meus Projetos</h1>
-        </div>
-        <div class="col-md-10 offset-md-1 dashboard-events-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Título do Projeto</th>
-                        <th scope="col">Participantes</th>
-                        <th scope="col">Ações</th>
-                    </tr>
+        <div class="p-[2%] ">
+            <h1 class="text-xl sm:text-5xl text-center mb-4 font-bold ">Projetos criados</h1>
+            <table class="w-full h-40 sm:h-56">
+                <thead class="border-b bg-zinc-900">
+                <tr>
+                    <th scope="col" class="text-center text-[15px] text-white sm:px-6 ">Id</th>
+                    <th scope="col" class="text-center text-[15px] text-white sm:px-6">Nome</th>
+                    <th scope="col" class="text-center text-[15px] text-white sm:px-6">Relatório</th>
+                    <th scope="col" class="text-center text-[15px] text-white sm:px-6">Ações</th>
+                </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="project in projects.data" :key="project.id"> <!--  -->
-                        <td scropt="row"> {{ project.id }} </td>
-                        <td><a href=""> {{project.title}} </a></td>
-                        <td  @click="showReport(project.id)"><a href="#">Relatório</a></td> 
-                        <td>
-                            <a href="#" class="btn btn-info edit-btn" @click="editProject(project.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
-                            <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
+                <tbody class="sm:whitespace-nowrap " >
+                    <tr class="border-b bg-white " v-for="project in projects.data" :key="project.id">
+                        <td class="text-center text-[13px] sm:text-base">{{ project.id }}</td>
+                        <td class="text-center text-[13px] sm:text-base">{{project.title}}</td>
+                        <td class="text-center text-[13px] sm:text-base" @click="showReport(project.id)"><a href="#">Relatório</a></td>
+                        <td class="text-center text-[13px]">
+                            <div class="sm:p-[5%]">
+                                <a  id="editar" class="btn btn-info edit-btn p-[5%] w-full mb-[5%] sm:max-w-[50%] sm:mb-0 sm:mr-[2%] " @click="editProject(project.id)">
+                                    <ion-icon name="create-outline "></ion-icon> Editar</a>
+                                <a class="btn btn-danger delete-btn p-[5%] w-full sm:max-w-[50%]" @click="deleteProject(projetos.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="col-md-10 offset-md-1 dashboard-title-container"> <!-- md-1 é para ficar centralizada -->
-            <h1>Projetos que estou participando</h1>
-        </div>
-        <div class="col-md-10 offset-md-1 dashboard-events-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Título do Projeto</th>
-                        <th scope="col">Ações</th>
-                    </tr>
+            <h1 class="text-xl  sm:text-5xl text-center mb-4 font-bold mt-4">Projetos que estou participando</h1>
+            <table class="w-full h-50">
+                <thead class="border-b bg-zinc-900">
+                <tr>
+                    <th scope="col" class="text-center text-[15px] text-white sm:px-6 ">Id</th>
+                    <th scope="col" class="text-center text-[15px] text-white sm:px-6">Nome</th>
+                    <th scope="col" class="text-center text-[15px] text-white sm:px-6">Ações</th>
+                </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="volunteering in projectsVolunteering" :key="volunteering.id">
-                        <td scropt="row"> {{ volunteering.id }} </td>
-                        <td><a href="#" @click="showProject(volunteering.id)"> {{ volunteering.title }} </a></td>
-                        <td>
-                            <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(volunteering.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
+                <tbody class="sm:whitespace-nowrap">
+                    <tr v-for="volunteering in projectsVolunteering" :key="volunteering.id"> 
+                        <td class="text-center text-[13px] sm:text-base" >{{ volunteering.id }}</td>
+                        <td class="text-center text-[13px] sm:text-base"><a href="#" @click="showProject(volunteering.id)">{{ volunteering.title }}</a></td>
+                        <td class="text-center text-[13px]">
+                        <div class="sm:p-[5%]">  
+                            <a  class="btn btn-danger delete-btn p-[4%] w-full sm:max-w-[45%]" @click="leaveProject(volunteering.id)"> Deletar</a>
+                        </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+            </div>
     </AppLayout>
 </template>
 
 <style scoped>
+
+#panel-width {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .dashboard-title-container {
     margin-bottom: 30px;
     margin-top: 30px;
@@ -141,7 +142,7 @@ export default {
 
 /* Edit - img */
 .img-preview {
-    width: 100px;
+    width: 100px; 
     margin-top: 20px;
 }
 

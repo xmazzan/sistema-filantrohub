@@ -13,6 +13,7 @@ export default {
         hasVolunteered: Boolean,
         OwnerOfTheProject: Object,
         volunteersCount: Object,
+        days: Object,
     },
 
     
@@ -28,33 +29,37 @@ export default {
 
 <template>
     <AppLayout title="Home">
-        <div class="col-md-10 offset-md-1">
-            <div class="row">
-                <div id="image-container" class="col-md-6">
-                    <img :src="'imgs/projects/' + project.image_path" class="img-fluid" alt="">
+        <div class="bg-gray-200"> 
+                <div id="image-container" class="p-3 bg-white w-full " > 
+                    <img :src="'../imgs/projects/' + project.image_path" class="shadow-lg max-w-lg mx-auto w-full rounded-lg" alt=""> <!--  -->
                 </div>
-                <div id="info-container" class="col-md-6">
-                    <h1>{{ project.title }}</h1>
-                    <p class="event-city"><ion-icon name="location-outline"></ion-icon> {{ project.city }} </p>
-                    <p class="events-participants"><ion-icon name="people-outline"></ion-icon>
-                        {{ volunteersCount }} Participants
-                    </p>
-                    <p class="event-owner"><ion-icon name="star-outline"></ion-icon> Dono do Evento: {{ OwnerOfTheProject.name }}</p>
-                    <ul id="days-list" v-for="day in project.days" :key="day.id"> <!--day in days" :key="day.id-->
-                        <!-- @foreach($project->items as $item) -->
-                        <li><ion-icon name="play-outline"></ion-icon> <span> {{ day }} </span> </li>
-                        <!-- @endforeach -->
-                    </ul>                                                                           <!-- {{ $page.props.user.name }} -->
-                        <button v-if="hasVolunteered == false" class="btn btn-primary" id="event-submit"><a href="#" @click="confirmParticipation(project.id)" >Confirmar Presença</a></button>
-                        <p v-else class="already-joined-message">Você já está participando desse evento!</p>
-                    <h3>O evento conta com:</h3>
-                    
+                <div class="text-center mt-4 font-bold text-lg">
+                    <button v-if="hasVolunteered == false" class="btn btn-primary" id="event-submit"><a href="#" @click="confirmParticipation(project.id)" >Confirmar Presença</a></button>
+                    <p v-else class="already-joined-message">Você já está participando desse projeto!</p>
                 </div>
-                <div class="col-md-12" id="description-container">
-                    <h3>Sobre o evento:</h3>
-                    <p class="event-discription"> {{ project.description }} </p>
+                <h1 class="text-center mt-4 font-bold text-lg">{{ project.title }}</h1>
+                <div id="info-container" class=" sm:flex justify-around">
+                    <div>
+                        <p class="my-2 ml-2">Cidade: {{ project.city }} </p>
+                        <p class="my-2 ml-2">Participantes: {{ volunteersCount }}</p>
+                        <p class="my-2 ml-2">Responsável pelo Projeto: {{ OwnerOfTheProject.name }}</p> 
+                    </div>
+                    <div>
+                        <h3 class="my-2 ml-2">Dias do Projeto:</h3>
+                        <ul id="days-list" v-for="day in days" :key="day.id"> <!--  -->
+                            <li> <span> {{ day.day }} </span> </li>
+                            <!--
+                                <li> <span> Segunda </span> </li>
+                                <li> <span> Segunda </span> </li>
+                                <li> <span> Segunda </span> </li>
+                            -->
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                <h3 class="text-center mt-4 font-bold text-lg">Sobre o Projeto:</h3>
+                <div class=" sm:flex justify-around">
+                    <p class="my-2 ml-2"> {{ project.description }} </p>
+                </div>
         </div>
     </AppLayout>
 </template>

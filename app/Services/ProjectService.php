@@ -97,22 +97,30 @@ class ProjectService
     }
 
     public function getUsers($id) {
-        /*
-        $users = DB::table('users')
-        ->join('project_user', function ($join) use ($id){
-            $join->on('users.id', '=', 'project_user.user_id') //'contacts.user_id')
-                 ->where('project_user.user_id', '=', $id);
-        })
-        ->get();
-        */
         
         $users = DB::table('users')
             ->join('project_user', 'users.id', '=', 'project_user.user_id') //->join('project_user', 'project_user.project_id', '=', 'projects.id')
-            ->where('project_user.project_id', '>', "{$id}")
+            ->where('project_user.project_id', '=', "{$id}")
             ->get();
         return $users;
     }
 
+    public function getDays($id){
+        /*
+        $days = DB::table('project_days')
+            ->join('projects', 'projects.id', '=', "'project_days.project_id'") //->join('project_user', 'project_user.project_id', '=', 'projects.id')
+            ->get();
+        return $days;
+        */
+        $days = DB::table('project_days')
+        ->join('projects', function ($join) use ($id) {
+            $join->on('projects.id', '=', 'project_days.project_id')
+                 ->where('projects.id', '=', $id);
+        })
+        ->get();
+        return $days;
+    }
+    
     public function attachUserToProject($idProject) {
         $user = auth()->user();
         return $user = $user->voluntieeringOnProjects->attach($idProject);//->attach($idProject);

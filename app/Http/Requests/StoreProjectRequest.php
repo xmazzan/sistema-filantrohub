@@ -30,7 +30,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'image' => ['required', 'image', 'min:3'],
             'title' => ['required', 'string', 'min:3'],
-            'days' => ['required', 'json', 'min:1'],
+            //'days' => ['required', 'json', 'min:1'],
             'city' => ['required', 'string', 'min:3'],
             'phone' => ['required', 'string', 'regex:/\(\d{2}\)\s\d{4,5}-\d{4}/'], //, "unique:$projectsModel,phone"],
             'postcode' => ['nullable', 'string', 'regex:/\d{5}-\d{3}/'],
