@@ -28,22 +28,18 @@ export default {
 
 <template>
     <AppLayout title="Home">
-        <div class="col-md-10 offset-md-1"> <!-- .col-md-10.offset-md-1  - o offset-md-1 é para CENTRALIZAR NO MEIO -->
+        <div class="col-md-10 offset-md-1">
             <div class="row">
-                <div id="image-container" class="col-md-6"> <!-- #image-container.col-md-6 -->
-                    <img src="" class="img-fluid" alt=""> <!--alt="{{ $project->title }} a class img-fluid do bootstrap deixa a imagem responsiva -->
+                <div id="image-container" class="col-md-6">
+                    <img :src="'imgs/projects/' + project.image_path" class="img-fluid" alt="">
                 </div>
                 <div id="info-container" class="col-md-6">
                     <h1>{{ project.title }}</h1>
                     <p class="event-city"><ion-icon name="location-outline"></ion-icon> {{ project.city }} </p>
-                    <p class="events-participants"><ion-icon name="people-outline"></ion-icon> <!--p.events-participants-->
-                        {{ volunteersCount }} Participants <!-- {{ count($project->users) }} -->
+                    <p class="events-participants"><ion-icon name="people-outline"></ion-icon>
+                        {{ volunteersCount }} Participants
                     </p>
-                    <!-- só foi possível mostrar o número de participantes graças ao método users() no model Events que dá 
-                        acesso aos usuários que estão participando no evento  
-                        // $project = Event::findOrFail($id); -> users(return belongsToMany(/model/user)) 
-                    -->            
-                    <p class="event-owner"><ion-icon name="star-outline"></ion-icon> Dono do Evento: {{ OwnerOfTheProject.name }}</p> <!-- $project->user->name - usando método belongsTo() do model events no controller// {{ $projectOwner['email'] }}-->
+                    <p class="event-owner"><ion-icon name="star-outline"></ion-icon> Dono do Evento: {{ OwnerOfTheProject.name }}</p>
                     <ul id="days-list" v-for="day in project.days" :key="day.id"> <!--day in days" :key="day.id-->
                         <!-- @foreach($project->items as $item) -->
                         <li><ion-icon name="play-outline"></ion-icon> <span> {{ day }} </span> </li>

@@ -71,48 +71,33 @@ export default {
                     </form>
                 </div>
                 -->
-                <div
-   class="
-    bg-center bg-no-repeat
-    sm:w-full sm:bg-[length:100vw] sm:h-3/6 sm:bg-cover
-   "
-   style="background-image: url(../imgs/main.png)"
-  >
-   <div class="flex items-center flex-col text-center justify-center h-[74%]">
-    <div class="p-[3.25rem]">
-     <img class="inline-flex w-32 sm:w-40" src="imgs/fh150.png" alt="logo" />
-    </div>
-
-    <div class="flex items-center justify-center w-4/5 max-w-xl">
-     <input
-      type="search"
-      class="w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black"
-      placeholder="Busque um projeto"
-      v-model="search"
-     />
-    </div>
-    <div
-     v-if="hasFilter"
-     class="flex flex-col items-center justify-center text-left w-4/5 max-w-xl"
-    >
-     <ul
-      v-for="result in search_projects.data"
-      :key="result.id"
-      class="w-4/5 shadow-md shadow-black bg-white p-2"
-     >
-      <a href="#" @click="showProject(result.id)">
-       <li>{{ result.title }}</li>
-      </a>
-     </ul>
-    </div>
-
-    <div class="pt-8 justify-center w-full paddin-top-1-5">
-     <span class="text-xs text-white sm:text-lg">
-      BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO
-     </span>
-    </div>
-   </div>
-  </div>
+                <div class="bg-center bg-no-repeat sm:w-full sm:bg-[length:100vw] sm:h-3/6 sm:bg-cover" style="background-image: url(../imgs/main.png)">
+                    <div class="flex items-center flex-col text-center justify-center h-[74%]">
+                        <div class="p-[3.25rem]">
+                            <img class="inline-flex w-32 sm:w-40" src="imgs/fh150.png" alt="logo" />
+                        </div>
+                        <div class="flex items-center justify-center w-4/5 max-w-xl">
+                            <input
+                            type="search"
+                            class="w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black"
+                            placeholder="Busque um projeto"
+                            v-model="search"
+                            />
+                        </div>
+                        <div v-if="hasFilter" class="flex flex-col items-center justify-center text-left w-4/5 max-w-xl">
+                            <ul v-for="result in search_projects.data" :key="result.id" class="w-4/5 shadow-md shadow-black bg-white p-2" >
+                                <a href="#" @click="showProject(result.id)">
+                                    <li>{{ result.title }}</li>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="pt-8 justify-center w-full paddin-top-1-5">
+                            <span class="text-xs text-white sm:text-lg">
+                            BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <div id="events-container" class="col-md-12" > <!-- v-for="p in projects.data" :key="p.id" -->
                     <h2>Próximos Eventos</h2>
                     <p class="subtitle">Veja os eventos dos próximos dias</p>
@@ -123,35 +108,24 @@ export default {
                                 <p class="font-bold  text-center sm:mb-4 lg:text-2xl">{{ project.title }}</p>
                                 <!--<p class=" trucante w-auto ml-2 text-sm text-slate-500 text-justify mr-2 2xl:text-xl">{{ p.description }}</p>-->
                                 <div class="mr-2 ml-2 flex items-end justify-between">
-                                    <!-- <p class="w-6/12 text-base">Organizado por: {{ $page.props.user.name }}<br> -->
+                                    <!-- <p class="w-6/12 text-base"></p> -->
                                     <!-- <p>{{p.days}}</p> -->
-                                    <p>Cidade: {{ project.city }}<br>
-                                    Bairro: {{ project.neighborhood }}<br></p> <!-- <ul v-for="day in days.data" :key="day.id"> -->
+                                    <p>
+                                        Cidade: {{ project.city }}<br>
+                                        Bairro: {{ project.neighborhood }}<br>
+                                        <!-- {{ $.name }} -->
+                                    </p> <!-- <ul v-for="day in days.data" :key="day.id"> -->
                                     <a class="border-solid border-2 border-gray-300 bg-[#1da1f2] text-white rounded p-2 " href="#" @click="showProject(project.id)">Ver mais...</a>
                                 </div>
                             </div>
                             
                             <div class="inline-block ">
-                            <img :src="'imgs/projects/' + project.image_path" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
+                                <img :src="'imgs/projects/' + project.image_path" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
                             <!-- <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  "> -->
                             <!-- imgs/projects/doacao_de_roupas.jpg -->
                             </div>
                         </li>
                     </ul>
-
-                    <!---
-                    <div id="cards-container" class="row" style="border: 1px solid black">
-                        <div class="card col-md-3">
-                            <img src="/imgs/doacao_de_comida.jpeg" alt="Imagem do Evento">
-                            <div class="card-body">
-                                !--<p class="card-date"> formateDate</p>--
-                                <h5 class="card-title">  $project->title </h5>  !--{{ p.title }}--
-                                <p class="cards-participants"> Participantes</p>
-                                <a href="" class="btn btn-primary">Saber mais</a>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>

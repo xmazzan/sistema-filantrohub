@@ -83,6 +83,7 @@ class ProjectService
         //return $projects;
         $user = auth()->user();
         return Project::where('user_id', '=', "{$user->id}")->paginate(50);
+        //return Project::where('user_id', '=', "{$user->id}")->get();
     }
     
 
@@ -93,6 +94,23 @@ class ProjectService
             ->where('project_user.user_id', '=', "{$user->id}")
             ->get();
         return $projects;
+    }
+
+    public function getUsers($id) {
+        /*
+        $users = DB::table('users')
+        ->join('project_user', function ($join) use ($id){
+            $join->on('users.id', '=', 'project_user.user_id') //'contacts.user_id')
+                 ->where('project_user.user_id', '=', $id);
+        })
+        ->get();
+        */
+        
+        $users = DB::table('users')
+            ->join('project_user', 'users.id', '=', 'project_user.user_id') //->join('project_user', 'project_user.project_id', '=', 'projects.id')
+            ->where('project_user.project_id', '>', "{$id}")
+            ->get();
+        return $users;
     }
 
     public function attachUserToProject($idProject) {

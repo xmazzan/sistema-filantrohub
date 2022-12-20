@@ -63,6 +63,10 @@ export default {
                 Inertia.delete(route('projects.destroy', {project: id}));
             });
         },
+
+        showReport(id) {
+            Inertia.get(route('projects.report', {project: id}))
+        }
     }
 }
 </script>
@@ -77,7 +81,7 @@ export default {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nome</th>
+                        <th scope="col">Título do Projeto</th>
                         <th scope="col">Participantes</th>
                         <th scope="col">Ações</th>
                     </tr>
@@ -85,8 +89,8 @@ export default {
                 <tbody>
                     <tr v-for="project in projects.data" :key="project.id"> <!--  -->
                         <td scropt="row"> {{ project.id }} </td>
-                        <td><a href="#"> {{project.title}} </a></td>
-                        <td>0</td> 
+                        <td><a href=""> {{project.title}} </a></td>
+                        <td  @click="showReport(project.id)"><a href="#">Relatório</a></td> 
                         <td>
                             <a href="#" class="btn btn-info edit-btn" @click="editProject(project.id)"><ion-icon name="create-outline"></ion-icon> Editar</a>    
                             <a href="#" class="btn btn-danger delete-btn" style="margin-left: 5px;" @click="deleteProject(project.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
@@ -103,8 +107,7 @@ export default {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Participantes</th>
+                        <th scope="col">Título do Projeto</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -112,7 +115,6 @@ export default {
                     <tr v-for="volunteering in projectsVolunteering" :key="volunteering.id">
                         <td scropt="row"> {{ volunteering.id }} </td>
                         <td><a href="#" @click="showProject(volunteering.id)"> {{ volunteering.title }} </a></td>
-                        <td> volunteering </td>
                         <td>
                             <a href="#" class="btn btn-danger delete-btn" @click="leaveProject(volunteering.id)"><ion-icon name="trash-outline"></ion-icon> Deletar</a>
                         </td>

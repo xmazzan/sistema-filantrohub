@@ -115,6 +115,17 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function report($id) {
+        $users = $this->projectService->getUsers($id);
+        $project = $this->projectService->showSingleProject($id);
+        $volunteersCount = $this->projectService->countVolunteers($id);
+        return Inertia::render('Projects/Report', [
+            'project' => $project,
+            'volunteersCount' => $volunteersCount,
+            'users' => $users,
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -159,16 +170,22 @@ class ProjectController extends Controller
     public function panel() {
 
         $projects = $this->projectService->showAuthProjects();
+
         $projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
+
+        foreach($projects as $proje){
+            $volunteersCount = $this->projectService->countVolunteers($proje->id);
+        }
+
         //$volunteersCount = $this->projectService->countVolunteers($project->id);
         $volunteersCount = $this->projectService->volunteersArray();
         return Inertia::render('Projects/Panel', [
             'projects' => $projects,
             'projectsVolunteering' => $projectsVolunteering,
-            //'volunteersCount' => $volunteersCount,
+            'volu'=> $volunteersCount,
         ]);
     }
-    
+
     public function joinProject($idProject) {
         $user = auth()->user();
         $user->voluntieeringOnProjects()->attach($idProject);

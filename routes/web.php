@@ -40,6 +40,7 @@ Route::middleware([
     Route::as('projects.')->group(function () {
         Route::get('/panel', [ProjectController::class, 'panel'])->name('panel');
         Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('show');
+        Route::get('/projects/report/{project}', [ProjectController::class, 'report'])->name('report');
         Route::post('/projects', [ProjectController::class, 'store'])->name('store');
         Route::delete('/project/{project}', [ProjectController::class, 'destroy'])->name('destroy');//acessar evento pelo id events/{id}
         //Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('edit');
