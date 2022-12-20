@@ -25,8 +25,9 @@ class ProjectService
             ->paginate(10);
     }
 
-    public function createProject(array $data): Project 
+    public function createProject(array $data, $imageName = null): Project 
     {
+        $data['image_path'] = $imageName;
         return Project::create($data);
     }
 
@@ -53,16 +54,15 @@ class ProjectService
     }
     
     public function volunteersArray() {
+        $user = auth()->user();
+        /*
         $totalVolunteering = DB::table('projects')
             ->join('project_user', 'projects.id', '=', 'project_user.project_id') //->join('project_user', 'project_user.project_id', '=', 'projects.id')
             ->where('project_user.user_id', '=', "{$user->id}")
             ->get();
-        $user = auth()->user();
-        $totalVolunteering = DB::table('project')
-            ->join('project_user', 'projects.id', '=', 'project_user.project_id') //->join('project_user', 'project_user.project_id', '=', 'projects.id')
-            ->where('project_user.user_id', '=', "{$user->id}")
-            ->get();
-        return $totalVolunteering;
+        */
+
+        //return $totalVolunteering;
     }
 
     public function projectOwner($id)
@@ -73,18 +73,7 @@ class ProjectService
 
     public function hasVolunteeredStatus($id) 
     {
-        $hasVolunteered = false;
-        $user = auth()->user();
-        if($user) {
-            $userProjects = $user->projects->toArray();
-            forEach ($userProjects as $userProject) {
-                if($userProject['id'] == $id) {
-                    $hasVolunteered = true;
-                    return $hasVolunteered;
-                }
-            }
-            return $hasVolunteered;
-        }
+        
     }
 
     public function showAuthProjects(): LengthAwarePaginator
@@ -123,5 +112,14 @@ class ProjectService
     {
         $project->deleteOrFail();
         return Redirect::back();
+    }
+
+    public function getProjects(): LengthAwarePaginator
+    {
+        return Project::query()
+            ->when(Request::input('search'), function (Builder $query) {
+                $search = Request::input('search');
+                $query->where('title', 'LIKE', "%{$search}%");
+            })->orderBy('updated_at', 'desc')->paginate(5);
     }
 }

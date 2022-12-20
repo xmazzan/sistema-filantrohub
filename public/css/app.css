@@ -1327,6 +1327,12 @@ select {
 .h-20 {
   height: 5rem;
 }
+.h-\[calc\(100vh_-_64px\)\] {
+  height: calc(100vh - 64px);
+}
+.h-\[74\%\] {
+  height: 74%;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1377,6 +1383,12 @@ select {
 }
 .w-6\/12 {
   width: 50%;
+}
+.w-32 {
+  width: 8rem;
+}
+.w-4\/5 {
+  width: 80%;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1477,6 +1489,9 @@ select {
 .justify-between {
   justify-content: space-between;
 }
+.justify-around {
+  justify-content: space-around;
+}
 .justify-items-center {
   justify-items: center;
 }
@@ -1534,6 +1549,9 @@ select {
 }
 .rounded-full {
   border-radius: 9999px;
+}
+.rounded-xl {
+  border-radius: 0.75rem;
 }
 .rounded-l-md {
   border-top-left-radius: 0.375rem;
@@ -1664,6 +1682,9 @@ select {
 .bg-cover {
   background-size: cover;
 }
+.bg-\[length\:100vw_91vh\] {
+  background-size: 100vw 91vh;
+}
 .bg-center {
   background-position: center;
 }
@@ -1679,6 +1700,9 @@ select {
 }
 .p-6 {
   padding: 1.5rem;
+}
+.p-\[3\.25rem\] {
+  padding: 3.25rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1963,6 +1987,10 @@ select {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-black {
+  --tw-shadow-color: #000;
+  --tw-shadow: var(--tw-shadow-colored);
 }
 .ring-1 {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
@@ -2353,6 +2381,10 @@ select {
     height: 5rem;
   }
 
+  .sm\:h-3\/6 {
+    height: 50%;
+  }
+
   .sm\:w-10 {
     width: 2.5rem;
   }
@@ -2371,6 +2403,10 @@ select {
 
   .sm\:w-2\/5 {
     width: 40%;
+  }
+
+  .sm\:w-40 {
+    width: 10rem;
   }
 
   .sm\:max-w-md {
@@ -2468,6 +2504,14 @@ select {
     border-bottom-right-radius: 0.375rem;
   }
 
+  .sm\:bg-\[length\:100vw\] {
+    background-size: 100vw;
+  }
+
+  .sm\:bg-cover {
+    background-size: cover;
+  }
+
   .sm\:p-6 {
     padding: 1.5rem;
   }
@@ -2501,6 +2545,11 @@ select {
 
   .sm\:text-right {
     text-align: right;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 @media (min-width: 768px) {

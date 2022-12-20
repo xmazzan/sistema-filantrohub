@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class ProjectController extends Controller
 {
@@ -27,6 +27,23 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function index()
+     {
+         $filter = FacadesRequest::only([
+             'search'
+         ]);
+ 
+         $projects = $this->projectService->listProjects();
+         $search_projects = $this->projectService->getProjects();
+         
+         return Inertia::render('Dashboard', [
+             'filter' => $filter,
+             'projects' => $projects,
+             'search_projects' => $search_projects->withQueryString()
+         ]);
+     }
+    /*
     public function index()
     {
         //$projects = Project::withCount('Projects')->paginate(8);
@@ -37,6 +54,7 @@ class ProjectController extends Controller
         ]);
         //return Inertia::render('Dashboard', ['teste' => 'TESTE CONTROLLER DATA']);
     }
+     */
 
     /**
      * Show the form for creating a new resource.
@@ -56,6 +74,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        /*
         if($request->hasFile('image') && $request->file('image')->isValid()) { //isValid() é para verificar se é um arquivo/imagem que estamos procurando
             //$extension = $request->image->extension();
             
@@ -69,21 +88,23 @@ class ProjectController extends Controller
 
             $request->image = $imageName;
         }
+        $this->projectService->createProject($request->validated());
+        */
+        if ($request->hasFile('image') && $request->file('image')->isValid()) { //isValid() é para verificar se é um arquivo/imagem que estamos procurando
 
-        $user = auth()->user();
-        $user->voluntieeringOnProjects()->attach();
-        
-        /*
-        DB::table('project_user')
-            ->where('user_id', $user->id)
-            ->where('participacao', null)
-            ->insert(array('participacao' => 'Voluntário'));
-         */
+            $requestImage = $request->file('image');
+            $extension = $requestImage->extension();
+            $imageName = md5($requestImage->getFilename() . strtotime("now")). "." . $extension;
+            $requestImage->move(public_path('imgs/projects'), $imageName);
+        }
+        $this->projectService->createProject($request->validated(), $imageName);
+
+        //DB::insert('insert into users (id, name) values (?, ?)', [1, 'Marc']);
         
         //$user = auth()->user();
+        //$user->voluntieeringOnProjects()->attach();
+        //$user = auth()->user();
         //$project->user_id = $user->id;
-
-        $this->projectService->createProject($request->validated());
         return Redirect::route('dashboard'); //return Redirect::route('projects.index');
     }
 
@@ -96,7 +117,19 @@ class ProjectController extends Controller
     public function show($id) //Project
     {   
         $project = $this->projectService->showSingleProject($id);
-        $hasVolunteered = $this->projectService->hasVolunteeredStatus($id);
+        //$days = json_encode($project->days);
+
+        $hasVolunteered = false;
+        $user = auth()->user();
+        if($user) {
+            $userProjects = $user->voluntieeringOnProjects->toArray();
+            forEach ($userProjects as $userProject) {
+                if($userProject['id'] == $id) {
+                    $hasVolunteered = true;
+                }
+            }
+        }
+
         $OwnerOfTheProject = $this->projectService->projectOwner($id);
         $volunteersCount = $this->projectService->countVolunteers($id);
         return Inertia::render('Projects/Show', [
@@ -104,6 +137,7 @@ class ProjectController extends Controller
            'hasVolunteered'=> $hasVolunteered,
            'OwnerOfTheProject' => $OwnerOfTheProject,
            'volunteersCount' => $volunteersCount,
+           //'days' => $days,
         ]);
     }
 
@@ -152,7 +186,8 @@ class ProjectController extends Controller
 
         $projects = $this->projectService->showAuthProjects();
         $projectsVolunteering = $this->projectService->showProjectsThatIsVolunteering();
-        $volunteersCount = $this->projectService->countVolunteers($project->id);
+        //$volunteersCount = $this->projectService->countVolunteers($project->id);
+        $volunteersCount = $this->projectService->volunteersArray();
         return Inertia::render('Projects/Panel', [
             'projects' => $projects,
             'projectsVolunteering' => $projectsVolunteering,
@@ -180,5 +215,14 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id); // para mandar a mensagem
 
         return Redirect::route('/panel'); //->with('msg', 'Sua presença no evento ' . $project->title . ' está cancelada.');
+    }
+
+    public function getProjects(): LengthAwarePaginator
+    {
+        return Project::query()
+            ->when(Request::input('search'), function (Builder $query) {
+                $search = Request::input('search');
+                $query->where('title', 'LIKE', "%{$search}%");
+            })->orderBy('updated_at', 'desc')->paginate(5);
     }
 }

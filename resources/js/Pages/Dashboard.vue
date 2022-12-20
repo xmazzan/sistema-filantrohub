@@ -10,9 +10,47 @@ export default {
     
     props: {
         projects: Object,
+        search_projects: Object,
+        filter: Object,
+    },
+    
+    data() {
+        return {
+            search: this.filter?.search,
+            hasFilter: false,
+        };
+    },
+
+    watch: {
+        search: {
+            handler: function (search) {
+                if (this.validateSearch(search)) {
+                    Inertia.get(
+                        this.$page.url,
+                        { search: search },
+                        {
+                            preserveScroll: true,
+                            preserveState: true,
+                        }
+                        );
+                            this.hasFilter = true;
+                        } else {
+                            this.hasFilter = false;
+                }
+            },
+        },
     },
 
     methods: {
+        validateSearch(search) {
+            if (!search) {
+                return false;
+            } else if (search.length < 3) {
+                return false;
+            }
+            return true;
+        },
+        
         showProject(id) {
             Inertia.get(route('projects.show', {project: id}))
         }
@@ -20,18 +58,61 @@ export default {
 }
 </script>
 
-
 <template>
     <AppLayout title="Home">
         <div class="container-fluid">
             <div class="row">
-                <div id="search-container" class="col-md-12"> <!-- div#search-container.col-md-12 -->
+                
+                <!--
+                <div id="search-container" class="col-md-12">
                     <h1>Busque um Projeto Social</h1>
                     <form action="/" method="GET">
-                        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar..."> <!--id para estilizar / name para pegar o conteúdo do formulário no backend / class form-control é do bootstrap para deixar o input mais bonito -->
+                        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
                     </form>
                 </div>
+                -->
+                <div
+   class="
+    bg-center bg-no-repeat
+    sm:w-full sm:bg-[length:100vw] sm:h-3/6 sm:bg-cover
+   "
+   style="background-image: url(../imgs/main.png)"
+  >
+   <div class="flex items-center flex-col text-center justify-center h-[74%]">
+    <div class="p-[3.25rem]">
+     <img class="inline-flex w-32 sm:w-40" src="imgs/fh150.png" alt="logo" />
+    </div>
 
+    <div class="flex items-center justify-center w-4/5 max-w-xl">
+     <input
+      type="search"
+      class="w-4/5 max-w-xl padding-top texto rounded-xl shadow-md shadow-black"
+      placeholder="Busque um projeto"
+      v-model="search"
+     />
+    </div>
+    <div
+     v-if="hasFilter"
+     class="flex flex-col items-center justify-center text-left w-4/5 max-w-xl"
+    >
+     <ul
+      v-for="result in search_projects.data"
+      :key="result.id"
+      class="w-4/5 shadow-md shadow-black bg-white p-2"
+     >
+      <a href="#" @click="showProject(result.id)">
+       <li>{{ result.title }}</li>
+      </a>
+     </ul>
+    </div>
+
+    <div class="pt-8 justify-center w-full paddin-top-1-5">
+     <span class="text-xs text-white sm:text-lg">
+      BUSQUE POR CIDADE, INSTITUIÇÃO OU TIPO DO EVENTO
+     </span>
+    </div>
+   </div>
+  </div>
                 <div id="events-container" class="col-md-12" > <!-- v-for="p in projects.data" :key="p.id" -->
                     <h2>Próximos Eventos</h2>
                     <p class="subtitle">Veja os eventos dos próximos dias</p>
@@ -51,7 +132,8 @@ export default {
                             </div>
                             
                             <div class="inline-block ">
-                            <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
+                            <img :src="'imgs/projects/' + project.image_path" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  ">
+                            <!-- <img src="imgs/doacao_de_roupas.jpg" alt="doação de roupas" class="w-full  border-solid border-2 border-blue-300 max-w-md  "> -->
                             <!-- imgs/projects/doacao_de_roupas.jpg -->
                             </div>
                         </li>

@@ -15,6 +15,8 @@ export default {
         volunteersCount: Object,
     },
 
+    
+
     methods: {
         confirmParticipation(id) {
             Inertia.get(route('projects.joinProject', {id}))
@@ -42,36 +44,15 @@ export default {
                         // $project = Event::findOrFail($id); -> users(return belongsToMany(/model/user)) 
                     -->            
                     <p class="event-owner"><ion-icon name="star-outline"></ion-icon> Dono do Evento: {{ OwnerOfTheProject.name }}</p> <!-- $project->user->name - usando método belongsTo() do model events no controller// {{ $projectOwner['email'] }}-->
-                    <ul id="items-list" v-for="project in project.data" :key="project.id"> <!--  :key=".id" -->
-                        <li>{{  }}</li>
-                    </ul>
-                    <!--
-                        <a href="/events/join/{{ $project->id }}" class="btn btn-primary" id="event-submit">
-                            Confirmar Presença
-                        </a>
-                    -->
-                    
-                    <!-- @if(!$hasUserJoined)  -->
-                    <!-- 
-                        <form action="/events/join/{{ $project->id }}" method="POST">
-                            @csrf
-                            <a href="" 
-                                class="btn btn-primary" 
-                                id="event-submit"
-                                onclick="event.preventDefault(); this.closest('form').submit()"> Confirmar Presença
-                            </a>
-                        </form>
-                    v-if -->                                                                            <!-- {{ $page.props.user.name }} -->
-                        <button class="btn btn-primary" id="event-submit"><a href="#" @click="confirmParticipation(project.id)" >Confirmar Presença</a></button> <!--  -->
-                    <!-- @else v-else -->
-                        <p class="already-joined-message">Você já está participando desse evento!</p>
-                    <!-- @endif -->
-                    <h3>O evento conta com:</h3>
-                    <ul id="days-list" v-for="day in days" :key="day.id">
+                    <ul id="days-list" v-for="day in project.days" :key="day.id"> <!--day in days" :key="day.id-->
                         <!-- @foreach($project->items as $item) -->
                         <li><ion-icon name="play-outline"></ion-icon> <span> {{ day }} </span> </li>
                         <!-- @endforeach -->
-                    </ul>
+                    </ul>                                                                           <!-- {{ $page.props.user.name }} -->
+                        <button v-if="hasVolunteered == false" class="btn btn-primary" id="event-submit"><a href="#" @click="confirmParticipation(project.id)" >Confirmar Presença</a></button>
+                        <p v-else class="already-joined-message">Você já está participando desse evento!</p>
+                    <h3>O evento conta com:</h3>
+                    
                 </div>
                 <div class="col-md-12" id="description-container">
                     <h3>Sobre o evento:</h3>

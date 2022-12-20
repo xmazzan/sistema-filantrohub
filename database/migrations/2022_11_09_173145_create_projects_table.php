@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("image")->nullable();
-            $table->string("title"); //->index();;
+            //$table->string("image")->nullable();
+            $table->string("title"); //->index();
+            $table->string("image_path")->nullable();
             $table->json("days");
             $table->string('phone'); //->index();
             $table->string('postcode')->nullable(); //->index();
